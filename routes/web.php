@@ -98,3 +98,9 @@ Route::get('/home/reminds','Home\RegController@reminds');
 Route::get('/','Home\IndexController@index');
 //处理文章
 Route::resource('/home/article','Home\ArticleController');
+
+//前台文章管理
+Route::resource('/home/type','Home\TypeController');
+
+//前台文章分类管理
+Route::resource('home/arttype','Home\ArttypeController');

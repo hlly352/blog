@@ -47,7 +47,7 @@ class ArticleController extends Controller
         //获取需要的值
         $rs = $request->only('title','keywords','description');
         $rs['type_id'] = $request->input('twice');
-        $rs['person'] = $request->input('person','无个人分类');
+        $rs['person'] = $request->input('person','0');
         $rs['addtime'] = time();
         $rs['uid'] = 1;
         $rs['contents'] = $request->input('editorValue');
