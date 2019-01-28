@@ -23,13 +23,15 @@ class RegController extends Controller
    	{
    		//表单验证
    		$this->validate($request, [
-            'username' => 'required',
-            'password' => 'required',
+            'username' => 'required|regex:/\w{2,10}/',
+            'password' => 'required|regex:/\w{6,12}/',
             'repassword' => 'same:password',
             'email' => 'email',
         ],[
             'username.required' => '用户名不能为空',
+            'username.regex' => '用户名格式不正确',
             'password.required' => '密码不能为空',
+            'password.regex' => '密码格式不正确',
             'repassword.same' => '两次密码不一致',
             'email.email' => '邮箱格式不正确',
         ]);

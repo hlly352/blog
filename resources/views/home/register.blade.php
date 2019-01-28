@@ -35,7 +35,7 @@
 			<dd>账号通行证</dd>
 		</dl>
 		<dl class="nav2">
-			<dt style="margin-top:25px"><a href="">登录</a></dt>
+			<dt style="margin-top:25px"><a href="/home/login">登录</a></dt>
 			
 		</dl>
 	</div>

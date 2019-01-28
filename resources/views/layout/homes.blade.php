@@ -73,10 +73,10 @@
                 </div>
             </li>
             <li>
-                <a href="http://home.51cto.com/user/register?reback=http%253A%252F%252Fblog.51cto.com%252F" target="_self">注册</a>
+                <a href="/home/register" target="_self">注册</a>
             </li>
             <li class="login">
-                <a href="/user/login?reback=http%3A%2F%2Fblog.51cto.com%2F" target="_self">登录</a>
+                <a href="/home/login" target="_self">登录</a>
             </li>
             <li class="mRead"><a href="javascript:;">手机阅读</a>
                 <div>

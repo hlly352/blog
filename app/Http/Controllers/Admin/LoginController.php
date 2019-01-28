@@ -34,6 +34,11 @@ class LoginController extends Controller
     	$uname = $request->username;
     	//通过账号查找数据库里面有没有
     	$res = DB::table('user')->where('username',$uname)->first();
+        // dd($res->level);
+        if($res->level < 2 ){
+            return back()->with('error','你没有登录后台的权限');
+        }
+        
     	if(!$res){
     		return back()->with('error','用户名或密码不正确');
     	}

@@ -48,10 +48,33 @@
                         <div class="tosignup">
                             <a target="_blank" href="http://51ctohome.blog.51cto.com/1805422/579769"
                             style="margin-right:10px;color:#969696;">无法登录?</a>|
-                            <a href="/user/register?reback=" style="margin-left:10px;color:#d54e4e;">注册</a>
+                            <a href="/home/register" style="margin-left:10px;color:#d54e4e;">注册</a>
                         </div>
                         <h1 style="color:#333;">登录博客</h1>
                     </div>
+
+                    @if(count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{session('success')}}
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{session('error')}}
+                        </div>
+                    @endif
+
                     <form id="login-form" action="/home/dologin" method="post" role="form">
                         <input type="hidden" name="_csrf" value="TmN6YzVuUGwKVhMVciYRCXdSKFoFLz0iO1IlGlQoAFgUABsFRxwGGw=="/>
                         <div class="inpBox textbox_ui user">
@@ -72,7 +95,7 @@
                             </div>
                         </div>
                         <div class="clearfix zxfDl">
-                            <a class="fr" href="/forgot-password/find-password?reback=">忘记密码?</a>
+                            <a class="fr" href="">忘记密码?</a>
                             <label for="agree_userterm" class="fr">
                                 <div class="form-group field-loginform-rememberme">
                                     <div class="checkbox">

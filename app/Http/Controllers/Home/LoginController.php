@@ -24,18 +24,16 @@ class LoginController extends Controller
     	// dd($res);
     	// dd($pass);
     	if(!$user){
-    		alert('此用户名不存在');
-    		return back();
+    		return back()->with('error','用户名或密码不正确');
     	}
 
     	//解密
     	if(!Hash::check($pass,$user->password)){
-    		alert('用户名或密码不正确');
-    		return back();
+    		return back()->with('error','用户名或密码不正确');
     	}
 
     	//存入session
     	session(['uid'=>$user->id]);
-    	return view('welcome');
+    	return redirect('/');
     }
 }
