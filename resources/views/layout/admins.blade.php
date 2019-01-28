@@ -83,20 +83,20 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-layers-alt"></i>分类管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                            <li><i class="ti ti-pencil"></i><a href="/admin/user/create">添加分类</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">查看分类</a></li>
+                            <li><i class="ti ti-pencil"></i><a href="/admin/article/type/create">添加分类</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/article/type">查看分类</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-book"></i>文章管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">浏览文章</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/article">浏览文章</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-comments"></i>评论管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">浏览评论</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/comment/show">浏览评论</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -178,7 +178,7 @@
                             @else
                             <a class="nav-link" href="/admin/profiles"><i class="fa fa- user"></i>修改头像</a>
                             @endif
-                            <a class="nav-link" href="/admin/changepass/{{$user->id}}"><i class="fa fa- user"></i>修改密码</a>
+                            <a class="nav-link" href="/admin/changepass/{{$user->id}}"><i class="fa fa- user"></i>修改密码</a>                            
                             <a class="nav-link" href="/admin/logout"><i class="fa fa-power -off"></i>退出登录</a>
                         </div>
                     </div>

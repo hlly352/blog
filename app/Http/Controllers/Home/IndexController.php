@@ -26,7 +26,7 @@ class IndexController extends Controller
     	 	$info[] = $v->name; 
     	 }
     	
-    	return view('welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info]);
+    	return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info]);
     }
 
 }
