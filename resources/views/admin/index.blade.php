@@ -1,5 +1,6 @@
 @extends('layout.admins')
 @section('title',$title)
+
 <style>
     #dvs{
         width: 400px;
@@ -156,4 +157,6 @@
 <script type="text/javascript">
     $('.alert').delay(2000).fadeOut(1500);
 </script>
+
+
 @endsection

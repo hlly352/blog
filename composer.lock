@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9006f80f96b854a5d994dcc1fbd76bde",
+
+    // "content-hash": "9006f80f96b854a5d994dcc1fbd76bde",
+
+    "content-hash": "b7904d07d1e1765a0a199aa11d6301a3",
+
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -321,6 +325,7 @@
             "time": "2017-06-15T17:19:42+00:00"
         },
         {
+
             "name": "gregwar/captcha",
             "version": "v1.1.7",
             "source": {
@@ -374,6 +379,7 @@
             "time": "2018-08-17T22:57:28+00:00"
         },
         {
+
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -2349,6 +2355,7 @@
     ],
     "packages-dev": [
         {
+
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.2.1",
             "source": {
@@ -2417,6 +2424,7 @@
             "time": "2018-11-09T08:37:55+00:00"
         },
         {
+
             "name": "doctrine/instantiator",
             "version": "1.0.5",
             "source": {
@@ -2691,6 +2699,7 @@
             "time": "2017-12-15T11:13:46+00:00"
         },
         {
+
             "name": "mockery/mockery",
             "version": "1.2.0",
             "source": {

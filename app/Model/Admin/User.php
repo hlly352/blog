@@ -28,12 +28,18 @@ class User extends Model
 	 */
 	protected $guarded = [];
 
+
     /**
      * 获得与用户表关联的详情信息 
      */
     public function infos()
     {
         return $this->hasOne('App\Model\Admin\Userinfo','uid','id');
+    }
+
+
+    public function article(){
+        return $this->hasMany('App\Model\Article','uid','id');
     }
 
 }

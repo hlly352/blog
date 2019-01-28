@@ -7,18 +7,18 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/admins/assets/css/normalize.css">
-	<link rel="stylesheet" href="/admins/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/admins/assets/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/admins/assets/css/themify-icons.css">
-	<link rel="stylesheet" href="/admins/assets/css/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/admins/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admins/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/admins/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="/admins/assets/css/pe-icon-7-filled.css">
     <link rel="stylesheet" href="/admins/assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="/admins/assets/css/style.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="/admins/assets/weather/css/weather-icons.css" rel="stylesheet" />
-	<link href="/admins/assets/calendar/fullcalendar.css" rel="stylesheet" />
-	<link href="/admins/assets/css/charts/chartist.min.css" rel="stylesheet">
-	<link href="/admins/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+    <link href="/admins/assets/calendar/fullcalendar.css" rel="stylesheet" />
+    <link href="/admins/assets/css/charts/chartist.min.css" rel="stylesheet">
+    <link href="/admins/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
     <style>
     #weatherWidget .currentDesc {
         color: #ffffff!important;
@@ -69,7 +69,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-user"></i>用户管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                        	<li><i class="ti ti-pencil"></i><a href="/admin/user/create">添加用户</a></li>
+                            <li><i class="ti ti-pencil"></i><a href="/admin/user/create">添加用户</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="/admin/user">查看用户</a></li>
                         </ul>
                     </li>
@@ -212,21 +212,21 @@
     <!-- <script src="/js/jquery-1.8.3.min.js"></script> -->
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/admins/assets/js/vendor/jquery-2.1.4.min.js"></script>
-	<script src="/admins/assets/js/popper.min.js"></script>
-	<script src="/admins/assets/js/plugins.js"></script>
-	<script src="/admins/assets/js/main.js"></script>
-	<script src="/admins/assets/js/lib/chart-js/Chart.bundle.js"></script>
+    <script src="/admins/assets/js/popper.min.js"></script>
+    <script src="/admins/assets/js/plugins.js"></script>
+    <script src="/admins/assets/js/main.js"></script>
+    <script src="/admins/assets/js/lib/chart-js/Chart.bundle.js"></script>
 
-	<script src="/admins/assets/js/lib/chartist/chartist.min.js"></script>
-	<script src="/admins/assets/js/lib/chartist/chartist-plugin-legend.js"></script>
-	<script src="/admins/assets/js/lib/flot-chart/jquery.flot.js"></script>
-	<script src="/admins/assets/js/lib/flot-chart/jquery.flot.pie.js"></script>
-	<script src="/admins/assets/js/lib/flot-chart/jquery.flot.spline.js"></script>
-	<script src="/admins/assets/weather/js/jquery.simpleWeather.min.js"></script>
-	<script src="/admins/assets/weather/js/weather-init.js"></script>
-	<script src="/admins/assets/js/lib/moment/moment.js"></script>
-	<script src="/admins/assets/calendar/fullcalendar.min.js"></script>
-	<script src="/admins/assets/calendar/fullcalendar-init.js"></script>
+    <script src="/admins/assets/js/lib/chartist/chartist.min.js"></script>
+    <script src="/admins/assets/js/lib/chartist/chartist-plugin-legend.js"></script>
+    <script src="/admins/assets/js/lib/flot-chart/jquery.flot.js"></script>
+    <script src="/admins/assets/js/lib/flot-chart/jquery.flot.pie.js"></script>
+    <script src="/admins/assets/js/lib/flot-chart/jquery.flot.spline.js"></script>
+    <script src="/admins/assets/weather/js/jquery.simpleWeather.min.js"></script>
+    <script src="/admins/assets/weather/js/weather-init.js"></script>
+    <script src="/admins/assets/js/lib/moment/moment.js"></script>
+    <script src="/admins/assets/calendar/fullcalendar.min.js"></script>
+    <script src="/admins/assets/calendar/fullcalendar-init.js"></script>
     <script src="/admins/assets/js/init/weather-init.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>

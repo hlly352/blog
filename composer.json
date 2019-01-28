@@ -27,6 +27,16 @@
         "psr-4": {
             "App\\": "app/"
         }
+
+        },
+        "files":[
+            "app/Function/getParent.php",
+            "app/Function/gettitle.php",
+            "app/Function/getAuthor.php",
+            "app/Function/getCom.php"
+
+        ]
+
     },
     "autoload-dev": {
         "psr-4": {
