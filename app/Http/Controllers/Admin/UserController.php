@@ -55,6 +55,7 @@ class UserController extends Controller
         $rs['password'] = Hash::make($request->password);
         //添加数据
         $rs['addtime'] = time();
+        $rs['token'] = str_random(32);
         try {
             $data = User::create($rs);
             if($data){

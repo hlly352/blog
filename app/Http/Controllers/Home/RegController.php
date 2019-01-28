@@ -16,7 +16,7 @@ class RegController extends Controller
      */
    	public function index()
    	{
-   		return view('home.register',['title'=>'注册页面']);
+   		return view('home.register.register',['title'=>'注册页面']);
    	}
 
    	public function add(Request $request)
@@ -58,7 +58,7 @@ class RegController extends Controller
 		            $m->from(env('MAIL_USERNAME'), '二郎巷博客');
 		            $m->to($email['email'], $res['username'])->subject('激活信息!');
 	        	});
-	        	return view('home.reminds',['title'=>'邮件激活']);
+	        	return view('home.register.reminds',['title'=>'邮件激活']);
    			}else{
    				return back()->with('error','激活失败');
    			}
@@ -103,7 +103,7 @@ class RegController extends Controller
    	 */
    	public function reminds()
    	{
-   		return view('home.reminds',['title'=>'邮箱激活页面显示']);
+   		return view('home.register.reminds',['title'=>'邮箱激活页面显示']);
    	}
     
 }

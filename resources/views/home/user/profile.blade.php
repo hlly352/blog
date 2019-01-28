@@ -4,8 +4,8 @@
 @section('index')
 <!-- 获取账号登录的信息 -->
 @php
-    $user = DB::table('user')->where('id',8)->first();
-    $info = DB::table('userinfo')->where('uid',8)->first();
+    $user = DB::table('user')->where('id',session('uid'))->first();
+    $info = DB::table('userinfo')->where('uid',session('uid'))->first();
 @endphp
 
 <div class="lev_sec">

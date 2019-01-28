@@ -88,9 +88,17 @@ Route::get('/home/profile/{id}','Home\UserController@profile');
 //修改未存在头像
 Route::get('/home/profiles','Home\UserController@profiles');
 Route::post('/home/doprofile','Home\UserController@doprofile');
+//修改密码
+Route::get('/home/changepass/{id}','Home\UserController@changepass');
+Route::post('/home/dochangepass/{id}','Home\UserController@dochangepass');
+//修改邮箱
+Route::get('/home/changemail/{id}','Home\UserController@changemail');
+Route::post('/home/dochangemail/{id}','Home\UserController@dochangemail');
+Route::get('/home/reminds','Home\UserController@reminds');
+
 
 //激活提醒页面
-Route::get('/home/reminds','Home\RegController@reminds');
+// Route::get('/home/reminds','Home\RegController@reminds');
 
 
 

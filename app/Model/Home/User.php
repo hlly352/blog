@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\Home;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,7 +33,7 @@ class User extends Model
      */
     public function infos()
     {
-        return $this->hasOne('App\Model\Admin\Userinfo','uid','id');
+        return $this->hasOne('App\Model\Home\Userinfo','uid','id');
     }
 
 }
