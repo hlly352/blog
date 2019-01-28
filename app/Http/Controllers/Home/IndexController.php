@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Articel;
 use App\Model\Admin\Type;
+use App\Model\Admin\User;
 
 class IndexController extends Controller
 {
@@ -25,8 +26,13 @@ class IndexController extends Controller
     	 foreach($type as $k=>$v){
     	 	$info[] = $v->name; 
     	 }
-    	
-    	return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info]);
+
+    	if(session('uid')){
+            $id = session('uid');
+            $img = User::find($id)->infos;
+            // dump($img);
+        }
+    	return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'img'=>$img]);
     }
 
 }

@@ -21,14 +21,6 @@
                     <dd class="left w_325 ml10">
                         <span>
                              <input require="false" class="form-control" datatype="limit|ajax"  max="18" placeholder="请填写姓名，最多6个字"  msg="请填写姓名，最多6个字|请输入真实姓名" type="text"  name="realname" value="{{$res->realname}}" />
-                        </span></dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name="">
-                                <option value="0"  selected>所有人可见</option>
-                                <option value="1"  >仅粉丝可见</option>
-                                <option value="2"  >仅自己可见</option>
-                            </select>
                         </span>
                     </dd>
                 </dl>
@@ -51,16 +43,6 @@
                             <label for="nomail" class="pl10">保密</label>
                         </span>
                     </dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name=""  disabled="disabled">
-                                <option>所有人可见</option>
-                                <option>仅粉丝可见</option>
-                                <option>仅自己可见</option>
-                            </select>
-                            <input type="hidden" name="" value ="0">
-                        </span>
-                    </dd>
                 </dl>
             </div>
             <div class="formlist t14 validation_or">
@@ -69,15 +51,6 @@
                     <dd class="left w_325 ml10">
                         <span>
                             <input name="birth" type="text"  class="form-control" onfocus="WdatePicker({lang:'zh-cn'})"  readonly="true" value="{{$res->birth}}"/>
-                        </span>
-                    </dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name="">
-                                <option value="0"  selected>所有人可见</option>
-                                <option value="1"  >仅粉丝可见</option>
-                                <option value="2"  >仅自己可见</option>
-                            </select>
                         </span>
                     </dd>
                 </dl>
@@ -90,15 +63,6 @@
                             <input type="text" require="false" value="{{$res->age}}" name="age" class="form-control" />
                         </span>
                     </dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name="">
-                                <option value="0"  >所有人可见</option>
-                                <option value="1"  >仅粉丝可见</option>
-                                <option value="2"  >仅自己可见</option>
-                            </select>
-                        </span>
-                    </dd>
                 </dl>
                 <div class="set_jy jsErrorphone" ><span class="icon_gth"></span><em></em></div>
             </div>
@@ -107,16 +71,7 @@
                     <dt class="left w_110 tr">邮箱：</dt>
                     <dd class="left w_325 ml10">
                         <span> 
-                            <input type="email" require="false" value="{{$res->email}}" name="email" class="form-control" />
-                        </span>
-                    </dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name="">
-                                <option value="0"  >所有人可见</option>
-                                <option value="1"  >仅粉丝可见</option>
-                                <option value="2"  >仅自己可见</option>
-                            </select>
+                            <input type="email" require="false" value="{{$res->email}}" name="email" class="form-control" disabled/>
                         </span>
                     </dd>
                 </dl>
@@ -130,15 +85,6 @@
                             <input type="text" require="false" datatype="mobile" maxlength="11" msg="请输入正确手机"  name="phone" class="form-control" value="{{$res->phone}}"/>
                         </span>
                     </dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name="">
-                                <option value="0"  selected>所有人可见</option>
-                                <option value="1"  >仅粉丝可见</option>
-                                <option value="2"  >仅自己可见</option>
-                            </select>
-                        </span>
-                    </dd>
                 </dl>
                 <div class="set_jy jsErrorcellphone" ><span class="icon_gth"></span><em></em></div>
             </div>
@@ -148,15 +94,6 @@
                     <dd class="left w_325 ml10">
                         <span>
                             <input type="text" require="false" datatype="limit"  max="150"  msg ="通讯地址，最多支持50个字" placeholder="请输入通讯地址，最多支持50个字" value="{{$res->phone}}" name="address"  class="form-control" />
-                        </span>
-                    </dd>
-                    <dd class="left ml15">
-                        <span>
-                            <select name="">
-                                <option value="0"  selected>所有人可见</option>
-                                <option value="1"  >仅粉丝可见</option>
-                                <option value="2"  >仅自己可见</option>
-                            </select>
                         </span>
                     </dd>
                 </dl>

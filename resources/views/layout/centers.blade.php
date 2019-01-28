@@ -47,8 +47,8 @@
 
 <!-- 获取账号登录的信息 -->
 @php
-    $user = DB::table('user')->where('id',8)->first();
-    $info = DB::table('userinfo')->where('uid',8)->first();
+    $user = DB::table('user')->where('id',session('uid'))->first();
+    $info = DB::table('userinfo')->where('uid',session('uid'))->first();
 @endphp
 
 <div class="main mb20">
@@ -79,7 +79,7 @@
                     <div class="lev_first"><a href="javascript:;"><b class="icon_set_gr"></b>个人资料</a></div>
                     @section('index')
                     <div class="lev_sec">
-                        <div class="lev_secin index"><a href="#">修改个人资料</a></div>
+                        <div class="lev_secin index"><a href="/home/center/{{$info->id}}/edit">修改个人资料</a></div>
                         @if($info)
                         <div class="lev_secin face"><a href="/home/profile/{{$info->id}}">修改头像</a></div>
                         @else
@@ -90,11 +90,13 @@
                 </div>		
                 <div class="lev_box">
                     <div class="lev_first"><a href="javascript:;"><b class="icon_set_dt"></b>账号设置</a></div>
+                    @section('change')
                     <div class="lev_sec">
-    			        <div class="lev_secin set-mobile"><a href="">绑定手机</a></div>   
-    			        <div class="lev_secin set-email"><a href="">绑定邮箱</a></div> 
-                        <div class="lev_secin set-pass"><a href="">修改密码</a></div>
+    			        <!-- <div class="lev_secin set-mobile"><a href="">绑定手机</a></div>    -->
+    			        <div class="lev_secin set-email"><a href="/home/changemail/{{$user->id}}">修改邮箱</a></div> 
+                        <div class="lev_secin set-pass"><a href="/home/changepass/{{$user->id}}">修改密码</a></div>
                     </div>
+                    @show
                 </div>
             </div>
         </div>
