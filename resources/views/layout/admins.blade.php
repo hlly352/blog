@@ -121,8 +121,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-notepad"></i>公告管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                            <li><i class="ti ti-pencil"></i><a href="/admin/user">添加公告</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">浏览公告</a></li>
+                            <li><i class="ti ti-pencil"></i><a href="/admin/tip/create">添加公告</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/tip/">浏览公告</a></li>
                         </ul>
                     </li>
                 </ul>

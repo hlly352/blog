@@ -29,7 +29,7 @@ Route::resource('/admin/user','Admin\UserController');
 Route::resource('/admin/link','Admin\LinkController');
 
 //公告页面
-Route::resource('admin/tip','Admin\TipController');
+Route::resource('/admin/tip','Admin\TipController');
 
 
 

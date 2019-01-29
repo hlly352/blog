@@ -4,14 +4,15 @@ namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Tip extends Model
 {
-    /**
+     /**
      * 与模型关联的数据表
      *
-     * @var firend_link
+     * @var string
      */
-    protected $table = '';
+    protected $table = 'tip';
+
     protected $primarykey = 'id';
 
     /**
