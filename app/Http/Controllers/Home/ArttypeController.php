@@ -95,9 +95,9 @@ class ArttypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function del(Request $request)
+    public function destroy($id)
     {
-        dd('d');
+       
         //获取用户id
         $uid = session('uid');
        

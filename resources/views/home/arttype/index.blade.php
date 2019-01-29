@@ -95,10 +95,10 @@ padding-top: 50px;
     <ul class="setting-title">
 	<li ><a href="/home/type">文章管理</a></li>
     	<li  class="on"><a href="/home/arttype">文章分类</a></li>
-	<li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
+	
 		<div class="clear"></div>
 </ul>    <div class="setting-content-2">
-    <form id="cateFrom" method="post">
+  
         <table>
             <thead>
                 <tr>
@@ -117,9 +117,14 @@ padding-top: 50px;
                         <td>
                         	<input class="title" type="text" name="" value="{{$v}}">
                         </td>
-                        <td>                        	
-                         	<a href="/home/arttype/del?v={{$v}}" class="btn btn-warning">删除</a>                         	
+                        <td>  
+                            <form action="/home/arttype/{{$v}}" method="post">                      	
+                             	<button  class="btn btn-warning">删除</button> 
+                                {{csrf_field()}}
+                                {{method_field('DELETE')}}  
+                            </form>                      	
                          </td>
+
                     </tr>
               		@endif
                   @endforeach
@@ -131,7 +136,7 @@ padding-top: 50px;
             <input type="hidden" name="_csrf" value="acr0HLqMqIWGS01_7B8oIfAyvjRQVjfbaQtK0mnxepI8Az1njDF_CnoGDEZz8s3ALT2--8LbSHVEsX9W2fEOHg=="/>
             <div class="clear"></div>
         </div>
-    </form>
+    
     </div>
 </div>
 <script>
