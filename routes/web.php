@@ -134,4 +134,6 @@ Route::resource('/home/type','Home\TypeController');
 
 //前台文章分类管理
 Route::resource('home/arttype','Home\ArttypeController');
+//前台文章分类
+Route::get('home/arttype/del','Home\ArttypeController@del');
 
