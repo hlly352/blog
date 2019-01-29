@@ -9,15 +9,11 @@ class User extends Model
     /**
      * 与模型关联的数据表
      *
-<<<<<<< HEAD
-     * @var firend_link
-     */
-    protected $table = '';
-=======
+
      * @var string
      */
     protected $table = 'user';
->>>>>>> 40c69d08601d8d0c757df2f68f19a42500a4dadf
+
     protected $primarykey = 'id';
 
     /**
@@ -33,8 +29,7 @@ class User extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
-<<<<<<< HEAD
-=======
+
 
 
     /**
@@ -50,5 +45,5 @@ class User extends Model
         return $this->hasMany('App\Model\Article','uid','id');
     }
 
->>>>>>> 40c69d08601d8d0c757df2f68f19a42500a4dadf
+
 }
