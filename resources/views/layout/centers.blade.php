@@ -47,8 +47,8 @@
 
 <!-- 获取账号登录的信息 -->
 @php
-    $user = DB::table('user')->where('id',session('uid'))->first();
-    $info = DB::table('userinfo')->where('uid',session('uid'))->first();
+    $user = DB::table('user')->where('id',session('userid'))->first();
+    $info = DB::table('userinfo')->where('uid',session('userid'))->first();
 @endphp
 
 <div class="main mb20">

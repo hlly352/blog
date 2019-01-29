@@ -361,13 +361,15 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
       <!-- banners start-->
     <div class="banners" id="banners">
         <ul class="bannerList" id="bannerList">
+            @foreach($banner as $k=>$v)
             <li class="cur">
-                <a href="http://blog.51cto.com/cloumn/composedetail?id=4" target="_blank">
-                    <img src="static/picture/ecb2bf80e9bc163c9faca8f3490b94a0.png">
-                    <span>网络工程师的看家本领 ——从零设计企业网络</span>
+                <a href="{{$v->link}}" target="_blank">
+                    <img src="{{$v->pic}}">
+                    <span>{{$v->title}}</span>
                 </a>
             </li>
-            <li class="">
+            @endforeach
+            <!-- <li class="">
                 <a href="http://blog.51cto.com/cloumn/detail/45?dl" target="_blank">
                     <img src="static/picture/2a98fea055c1a3b9ed7c668e57be0cf9.jpg">
                     <span>Oracle的十八般武艺</span>
@@ -384,7 +386,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     <img src="static/picture/581b1692d608304e3565a973c3c1f594.jpg">
                     <span>拼团来袭，2人组团，直降12元！</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
         <ul class="bannerDots" id="bannerDots"><li class="cur"></li><li ></li><li ></li><li ></li></ul>
         <button class="prev" id="bannerPrev"></button>

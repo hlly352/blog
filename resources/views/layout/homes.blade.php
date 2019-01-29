@@ -72,7 +72,7 @@
                     <i class="arrow"></i>
                 </div>
             </li>
-            @if(session('uid'))
+            @if(session('userid'))
             <li class="more user">
               <a class="is-vip-bg-1" href="/home/center" target="_blank">
                 @if(isset($img))
