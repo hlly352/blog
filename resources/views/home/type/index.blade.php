@@ -81,24 +81,13 @@ padding-top: 50px;
                 }
             });
     },70);
-    //广告图
-$(function(){
-     new AutoAD({
-      ADD:$('<a href="http://blog.51cto.com/cloumn/composedetail?id=5&PC" class="closeMB" target="_blank" styel="display:block;"><img src="https://s1.51cto.com/images/blog/201901/17/fbf176834fafd373d58c079b2c8cb18e.png"></a><a class="closeMB" style="position: absolute;right:2px;top: 3px;width: 50px;height: 40px;cursor: pointer;" href="javascript:;"></a>'),
-      W:500,
-      H:400,
-      cookie:'blog_activity_blog7',
-      mask:"#000",
-      ts:'21600',
-      noCBtn: true
-    }) 
-})    
+   
 </script>
  <div class="Content-box">
     <div class="Page setting-box">
   <ul class="setting-title">
   <li  class="on"><a href="/home/type">文章管理</a></li>
-      <li ><a href="http://blog.51cto.com/blogger/cate-manage#C">文章分类</a></li>
+      <li ><a href="/home/arttype">文章分类</a></li>
   <li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
     <div class="clear"></div>
 </ul> <div class="setting-content-3">

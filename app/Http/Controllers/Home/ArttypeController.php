@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Article;
 
 class ArttypeController extends Controller
 {
@@ -14,8 +15,12 @@ class ArttypeController extends Controller
      */
     public function index()
     {
-        //
-        return view('home.arttype.index',['title'=>'分类管理页面']);
+        //查找分类信息
+        $id = session('userid');
+                                    $id = 1;
+        $rs = Article::where('uid',$id)->get();
+        
+        return view('home.arttype.index',['title'=>'分类管理页面','rs'=>$rs]);
     }
 
     /**
