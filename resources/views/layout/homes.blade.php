@@ -75,7 +75,11 @@
             @if(session('uid'))
             <li class="more user">
               <a class="is-vip-bg-1" href="/home/center" target="_blank">
+                @if($img)
                 <img class="is-vip-img is-vip-img-5" data-uid="14175912" src="{{$img->profile}}">
+                @else
+                <img class="is-vip-img is-vip-img-5" data-uid="14175912" src="/uploads/profile.jpg">
+                @endif
               </a>
               <div>
                 <a href="">我的博客</a>
