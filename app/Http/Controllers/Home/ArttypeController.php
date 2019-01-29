@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Article;
 
+
+
 class ArttypeController extends Controller
 {
     /**
@@ -17,10 +19,19 @@ class ArttypeController extends Controller
     {
         //查找分类信息
         $id = session('userid');
-                                    $id = 1;
+                                    $id = 3;
         $rs = Article::where('uid',$id)->get();
+        //接受分类名
+        $info = [];
+
+        foreach($rs as $k=>$v){
+            $info[] = $v->person;
+        }
+
+        $types = array_unique($info);
         
-        return view('home.arttype.index',['title'=>'分类管理页面','rs'=>$rs]);
+        $i = 1;
+        return view('home.arttype.index',['title'=>'分类管理页面','types'=>$types,'i'=>$i]);
     }
 
     /**
@@ -84,8 +95,15 @@ class ArttypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function del(Request $request)
     {
-        //
+        dd('d');
+        //获取用户id
+        $uid = session('uid');
+       
+        //把分类名改为未分类
+        Article::where('uid',$uid)->where('person',$id)->update(['person'=>'0']);
+        
+        return back();
     }
 }

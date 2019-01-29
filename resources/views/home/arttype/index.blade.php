@@ -108,15 +108,23 @@ padding-top: 50px;
                 </tr>
             </thead>
             <tbody>
-                   @foreach($rs as $k=>$v)
+                   @foreach($types as $k=>$v)
+                   	@if($v != '0')
      				 <tr>
-                        <td><input class="number" type="text" name="Cate[1][sort]" value="1"/></td>
-                        <td><input class="title" type="text" name="Cate[1][name]" value={{$v->person}}></td>
-                        <td> <a class="btn btn-warning">删除</a></td>
+                        <td>
+                        	<input class="number" type="text" name="" value="{{$i++}}" disabled/>
+                        </td>
+                        <td>
+                        	<input class="title" type="text" name="" value="{{$v}}">
+                        </td>
+                        <td>                        	
+                         	<a href="/home/arttype/del?v={{$v}}" class="btn btn-warning">删除</a>                         	
+                         </td>
                     </tr>
+              		@endif
                   @endforeach
-                			</tbody>
-		</table>
+            </tbody>
+			</table>
 		<div class="btn-box">
 			<p class="add-input fl">添加分类</p>
 			<p class="save-input blue-btn fr">保存</p>
