@@ -9,6 +9,11 @@ class User extends Model
     /**
      * 与模型关联的数据表
      *
+<<<<<<< HEAD
+
+     * @var string
+     */
+    protected $table = 'user';
 
      * @var string
      */
@@ -29,7 +34,6 @@ class User extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
-
 
 
     /**
