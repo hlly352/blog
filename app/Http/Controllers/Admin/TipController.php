@@ -136,5 +136,5 @@ class TipController extends Controller
         }
             return redirect('/admin/tip');
 
-    }
+    }   
 }

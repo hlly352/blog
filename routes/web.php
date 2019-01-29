@@ -20,11 +20,15 @@ Route::get('captch','Admin\LoginController@captch');
 
 
 
-//友情链接页面
+//后台友情链接页面
 Route::resource('/admin/link','Admin\LinkController');
 
-//公告页面
+//后台公告页面
 Route::resource('/admin/tip','Admin\TipController');
+
+//后台广告页面
+Route::resource('admin/advert','Admin\AdvertController');
+
 
 
 

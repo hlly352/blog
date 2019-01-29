@@ -19,7 +19,12 @@ layout.admins')
                     <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="text-input" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告名称</font></font></label></div>
                     <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder="友情链接" class="form-control"></div>
                 </div>
-
+                <form enctype="multipart/form-data">
+                <input id="file-0" class="file" type="file" multiple data-min-file-count="1">
+                <br>
+                <button type="submit" class="btn btn-primary">Einreichen</button>
+                    <button type="reset" class="btn btn-default">Erfrischen</button>
+                </form>
                 <div class="row form-group">
                     <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="text-input" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">链接地址</font></font></label></div>
                     <div class="col-12 col-md-9"><input type="text" id="text-input" name="url" placeholder="请输入地址" class="form-control"></div>

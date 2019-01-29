@@ -130,7 +130,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-announcement"></i>广告管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                            <li><i class="ti ti-pencil"></i><a href="/admin/user">添加广告</a></li>
+                            <li><i class="ti ti-pencil"></i><a href="/admin/advert/create">添加广告</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="/admin/user">浏览广告</a></li>
                         </ul>
                     </li>
@@ -157,7 +157,7 @@
 
                     <a class="navbar-brand" href="./">
                         <!-- <img src="/admins/images/logo.png" alt="Logo"> -->
-                        <h3>二郎巷博客</h3>
+                        <h3>江小娟博客</h3>
                     </a>
                     <a class="navbar-brand hidden" href="./">
                         <img src="/admins/images/logo2.png" alt="Logo">
