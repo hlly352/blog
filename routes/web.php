@@ -12,6 +12,32 @@
 */
 
 
+
+
+
+//验证码测试
+Route::get('captch','Admin\LoginController@captch');
+
+
+
+//后台友情链接页面
+Route::resource('/admin/link','Admin\LinkController');
+
+//后台公告页面
+Route::resource('/admin/tip','Admin\TipController');
+
+//后台广告页面
+Route::resource('admin/advert','Admin\AdvertController');
+
+
+
+
+
+
+
+
+	
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -110,6 +136,9 @@ Route::resource('/home/article','Home\ArticleController');
 Route::resource('/home/type','Home\TypeController');
 
 //前台文章分类管理
+
 Route::resource('/home/arttype','Home\ArttypeController');
+
+
 
 

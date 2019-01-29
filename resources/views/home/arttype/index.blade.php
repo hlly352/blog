@@ -16,7 +16,8 @@
 	<link href="/static/css/other.css" rel="stylesheet">
 	<link href="/static/css/list_tab.css" rel="stylesheet">
 	<link href="/static/css/setting.css" rel="stylesheet">
-   
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/cookie.js"></script>
     <script src="/static/js/login.js"></script>
@@ -92,8 +93,8 @@ padding-top: 50px;
  <div class="Content-box">
     <div class="Page setting-box">
     <ul class="setting-title">
-	<li ><a href="http://blog.51cto.com/blogger/blog-manage#A">文章管理</a></li>
-    	<li  class="on"><a href="http://blog.51cto.com/blogger/cate-manage#C">文章分类</a></li>
+	<li ><a href="/home/type">文章管理</a></li>
+    	<li  class="on"><a href="/home/arttype">文章分类</a></li>
 	<li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
 		<div class="clear"></div>
 </ul>    <div class="setting-content-2">
@@ -103,17 +104,27 @@ padding-top: 50px;
                 <tr>
                     <td style="width: 70px;">序号</td>
                     <td>分类</td>
-                    <td style="width: 70px;">删除</td>
+                    <td style="width: 70px;">操作</td>
                 </tr>
             </thead>
             <tbody>
-                                                    <tr>
-                        <td><input class="number" type="text" name="Cate[1][sort]" value="1"/></td>
-                        <td><input class="title" type="text" name="Cate[1][name]" value="dsadsadsa"></td>
-                        <td><p class="close" data-id="177149"></p></td>
+                   @foreach($types as $k=>$v)
+                   	@if($v != '0')
+     				 <tr>
+                        <td>
+                        	<input class="number" type="text" name="" value="{{$i++}}" disabled/>
+                        </td>
+                        <td>
+                        	<input class="title" type="text" name="" value="{{$v}}">
+                        </td>
+                        <td>                        	
+                         	<a href="/home/arttype/del?v={{$v}}" class="btn btn-warning">删除</a>                         	
+                         </td>
                     </tr>
-                			</tbody>
-		</table>
+              		@endif
+                  @endforeach
+            </tbody>
+			</table>
 		<div class="btn-box">
 			<p class="add-input fl">添加分类</p>
 			<p class="save-input blue-btn fr">保存</p>

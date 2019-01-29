@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Model\Admin\User;
 use App\Http\Requests\FormsRequest;
 use Hash;
@@ -18,6 +19,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function index(Request $request)
     {
         //获取表单传过来的数据
@@ -27,6 +29,7 @@ class UserController extends Controller
         $id = 1;
         // dump($user);
         return view('admin.user.index',['title'=>'用户列表','user'=>$user,'id'=>$id,'request'=>$request]);
+
     }
 
     /**
@@ -47,6 +50,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function store(FormsRequest $request)
     {
         //获取数据
@@ -65,6 +69,7 @@ class UserController extends Controller
             return back();
         }
 
+
     }
 
     /**
@@ -75,6 +80,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+
         
         $res = User::find($id)->infos;
         // dump($res);
@@ -84,6 +90,7 @@ class UserController extends Controller
         }
         // dump($user);
         return view('admin.user.detail',['title'=>'用户详情','res'=>$res,'user'=>$user]);
+
         
     }
 
@@ -95,11 +102,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
 
         $res = User::find($id);
         // dump($res);
         return view('admin.user.edit',['title'=>'用户的修改','res'=>$res]);
+
 
     }
 
@@ -112,6 +120,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
 
         //表单验证
 
@@ -126,6 +135,7 @@ class UserController extends Controller
         }
         // dump($res);
 
+
     }
 
     /**
@@ -136,6 +146,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+
 
         try {
             $data = User::find($id);
@@ -265,6 +276,7 @@ class UserController extends Controller
             $info['profile'] = $filepath;
             DB::table('userinfo')->insert($info);            
         }
+
 
     }
 }

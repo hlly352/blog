@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
+
 use Gregwar\Captcha\PhraseBuilder; 
 use DB;
+
 use Hash;
 
 class LoginController extends Controller
 {
+
 	/**
 	 * 管理员登录页面
 	 * 
@@ -83,6 +86,7 @@ class LoginController extends Controller
      */
     public function captch()
     {
+
     	$phrase = new PhraseBuilder;
         // 设置验证码位数
         $code = $phrase->build(4);

@@ -5,6 +5,7 @@
 <div class="col-lg-10">
     <div class="card">
         <div class="card-header">
+
             <strong class="fa fa-plus-square"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp;&nbsp;{{$title}}</font></font></strong>
         </div>
 
@@ -57,6 +58,7 @@
                     <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="select" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font></label></div>
                     <div class="col-12 col-md-7">
                         <select name="status" id="select" class="form-control">
+
                             <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开启</font></font></option>
                             <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">禁用</font></font></option>
                         </select>
@@ -64,8 +66,10 @@
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="select" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">权限</font></font></label></div>
+
                     <div class="col-12 col-md-7">
                         <select name="level" id="select" class="form-control">
+
                             <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">普通用户</font></font></option>
                             <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vip用户</font></font></option>
                             <option value="2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">普通管理员</font></font></option>
@@ -73,6 +77,7 @@
                         </select>
                     </div>
                 </div>
+
             </div>
             <div class="card-footer">
                 {{csrf_field()}}
@@ -89,4 +94,5 @@
         $('.alert').slideUp(1000);
     },2000)
 </script>
+
 @endsection

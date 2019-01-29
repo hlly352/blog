@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\Article;
+use App\Model\Admin\Tip;
 
 
-
-class ArttypeController extends Controller
+class TipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +16,15 @@ class ArttypeController extends Controller
      */
     public function index()
     {
-        //查找分类信息
-        $id = session('userid');
-                                    $id = 3;
-        $rs = Article::where('uid',$id)->get();
-        //接受分类名
-        $info = [];
 
-        foreach($rs as $k=>$v){
-            $info[] = $v->person;
-        }
+        //公告显示
+        //
+        $res = tip::all();
 
-        $types = array_unique($info);
-        
-        $i = 1;
-        return view('home.arttype.index',['title'=>'分类管理页面','types'=>$types,'i'=>$i]);
+        return view('admin.tip.tip',[
+            'title'=>'后台公告链接',
+            'res'=>$res
+            ]);
     }
 
     /**
@@ -41,7 +34,11 @@ class ArttypeController extends Controller
      */
     public function create()
     {
-        //
+        //后台公告链接添加
+         return view('admin.tip.dotip',['title'=>'后台公告链接添加']);
+
+
+
     }
 
     /**
@@ -53,6 +50,19 @@ class ArttypeController extends Controller
     public function store(Request $request)
     {
         //
+        $res = $request->except("_token");
+        $res['addtime'] = time();
+       
+       
+        try{
+            Tip::create($res);
+        
+        } catch(\Exception $e){
+
+             return back();
+        }
+            return redirect('/admin/tip');
+
     }
 
     /**
@@ -74,7 +84,12 @@ class ArttypeController extends Controller
      */
     public function edit($id)
     {
-        //
+         $res = Tip::find($id);
+         return view('admin.tip.updatetip',[
+        'title'=>'后台公告修改',
+        'res'=>$res
+
+    ]); 
     }
 
     /**
@@ -86,7 +101,20 @@ class ArttypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $res = $request->only('title','content','status');
+
+       //修改数据
+        try{
+
+        //添加
+        Tip::where('id', $id)->update($res);
+
+        }catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+        }
+         return redirect('/admin/tip')->with('success','修改成功');
     }
 
     /**
@@ -95,15 +123,18 @@ class ArttypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function del(Request $request)
+    public function destroy($id)
     {
-        dd('d');
-        //获取用户id
-        $uid = session('uid');
-       
-        //把分类名改为未分类
-        Article::where('uid',$uid)->where('person',$id)->update(['person'=>'0']);
+        $rs = Tip::destroy($id);
+
+        try{
+            Tip::destroy($id);
         
-        return back();
-    }
+        } catch(\Exception $e){
+
+            return back();
+        }
+            return redirect('/admin/tip');
+
+    }   
 }

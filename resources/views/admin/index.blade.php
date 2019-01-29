@@ -1,6 +1,8 @@
 @extends('layout.admins')
 @section('title',$title)
 
+
+@section('content')
 <style>
     #dvs{
         width: 400px;
@@ -14,7 +16,6 @@
         box-shadow: 6px 8px 20px rgba(45,45,45,.15);
     }
 </style>
-@section('content')
 
 @if(session('success'))
     <div class="alert alert-info" role="alert">
@@ -157,6 +158,7 @@
 <script type="text/javascript">
     $('.alert').delay(2000).fadeOut(1500);
 </script>
+
 
 
 @endsection
