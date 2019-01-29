@@ -31,8 +31,10 @@ class IndexController extends Controller
             $id = session('uid');
             $img = User::find($id)->infos;
             // dump($img);
+            return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'img'=>$img]);
+        } else {
+    	    return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info]);
         }
-    	return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'img'=>$img]);
     }
 
 }
