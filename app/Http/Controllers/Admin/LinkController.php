@@ -50,7 +50,7 @@ class LinkController extends Controller
     {
         //
         $res = $request->except("_token");
-  
+        
        
         try{
             Link::create($res);
@@ -107,13 +107,8 @@ class LinkController extends Controller
        //修改数据
         try{
 
-            //添加
-             Link::where('id', $id)->update($res);
-
-            
-          
-               
-          
+        //添加
+        Link::where('id', $id)->update($res);
 
         }catch(\Exception $e){
 

@@ -5,73 +5,84 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
-use Gregwar\Captcha\PhraseBuilder;
 
-use DB; 
+use Gregwar\Captcha\PhraseBuilder; 
+use DB;
+
 use Hash;
 
 class LoginController extends Controller
 {
-    //后台登录页面
-    public function login(){
-    	return view('admin.login.login');
+
+	/**
+	 * 管理员登录页面
+	 * 
+	 * @return [type] [description]
+	 */
+    public function login()
+    {
+    	return view('admin.login',['title'=>'登录']);
     }
 
-    // 处理管理员的方法
-    public function dologin(Request $request){
-
+    /**
+     * 处理登录方法
+     *
+     * @return
+     */
+    public function dologin(Request $request)
+    {
     	//表单验证
     	
-    	//1.获取账号
+    	//获取账号
     	$uname = $request->username;
-
-    	//通过账号查找数据库里面里有没有
-    	$rs = DB::table('user')->where('username', $uname)->first();
-
-    	if(!$rs){
-
-    		return back()->with('errors','用户名或密码不正确');
+    	//通过账号查找数据库里面有没有
+    	$res = DB::table('user')->where('username',$uname)->first();
+        // dd($res->level);
+        if($res->level < 2 ){
+            return back()->with('error','你没有登录后台的权限');
+        }
+        
+    	if(!$res){
+    		return back()->with('error','用户名或密码不正确');
     	}
-    	
-    	//2.获取密码
+    	//获取密码
     	$pass = $request->password;
-
-    	// 检测 解密
-    	// 1.哈希
-    	if (Hash::check($pass, $rs->password)) {
-    		
-    			return back()->with('errors','用户名或密码不正确');
-		} 
-
-		//2)解密
-		/*$ps = decrypt($rs->password);
-
-		if($pass != $ps){
-    		return back()->with('errors','用户名或密码不正确');
-			
-		} */
-
-    	
-    	//3.获取验证码
+    	//检测 解密  hash解密
+    	if(!Hash::check($pass,$res->password)){
+    		return back()->with('error','用户名或密码不正确');
+    	}
+    	//获取验证码
     	$vcode = $request->vcode;
-
     	//获取session里面存储的code
     	$code = session('code');
-
     	if($vcode != $code){
-    		return back()->with('errors','验证码不正确');
+    		return back()->with('error','验证码不正确');
     	}
-
     	//存储session
-    	session(['uid'=>$rs->id]);
-
+    	session(['uid'=>$res->id]);
     	//跳转后台首页
-    	return redirect('admin/index')->with('success','登录成功');
-    	
+    	return redirect('/admin/index')->with('success','登录成功');
     }
 
-    //验证码
-    public function captch(){
+    /**
+     * 退出登录
+     * 
+     */
+    public function logout()
+    {
+    	//清空session
+    	session(['uid'=>'']);
+
+    	return redirect('/admin/login');
+    }
+
+    /**
+     * 验证码
+     * 
+     */
+    public function captch()
+    {
+
     	$phrase = new PhraseBuilder;
         // 设置验证码位数
         $code = $phrase->build(4);
