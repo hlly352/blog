@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+@extends('layout.homes')
+
+@section('title',$title)
+
+@section('content')
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
-        <title>wx5c4042f13be00的博客-51CTO博客</title>
-    <meta name="keywords" content="wx5c4042f13be00的博客,,51CTO博客">
+
+
 <meta name="description" content="wx5c4042f13be00的博客(http://blog.51cto.com/14179969)">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet"><link href="/static/css/right.css" rel="stylesheet"><link href="/static/css/blog_my.css" rel="stylesheet">
     <script>
         var HOME_URL = 'http://home.51cto.com/';
     </script>
-    <script src="/static/js/jquery.min_1.js"></script><script src="/static/js/cookie.js"></script><script src="/static/js/login.js"></script><script src="/static/js/common.js"></script><script src="/static/js/mbox.js"></script><script src="/static/js/follow.js"></script><script src="/static/js/vip.js"></script><script src="/static/js/window.js"></script></head>
-<body>
+    <script src="/static/js/jquery.min_1.js"></script><script src="/static/js/cookie.js"></script><script src="/static/js/login.js"></script><script src="/static/js/common.js"></script><script src="/static/js/mbox.js"></script><script src="/static/js/follow.js"></script><script src="/static/js/vip.js"></script><script src="/static/js/window.js"></script>
+
 <img src="/static/picture/share_default.jpg" border="0" style="width:0; height:0; position:absolute;">
 <style type="text/css">
 	.service-btn{
@@ -161,7 +163,10 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
         	</ul>
 			<!-- title -->
                             <ul class="blog-my-title">
-                    <li class="on"><a href="http://blog.51cto.com/14179969">主页</a></li>
+                       <li class="on"><a href="/home/myblog">全部</a></li>
+                              @foreach($mytype as $k=>$v)
+                    <li class="on"><a href="/home/myblog?person={{$v->name}}">{{$v->name}}</a></li>
+                    @endforeach
                                         <div class="clear"></div>
                 </ul>
 			<div class="artical-tit">
@@ -190,43 +195,39 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 	                    	                    	<li value="全部"><a href="http://blog.51cto.com/14179969?s=">全部</a></li>
 	                    			              				                	<li value="推荐" data-id="3"><a href="http://blog.51cto.com/14179969?s=3">推荐</a></li>
 			              				                	<li value="原创" data-id="4"><a href="http://blog.51cto.com/14179969?s=4">原创</a></li>
-			              				                	<li value="转载" data-id="5"><a href="http://blog.51cto.com/14179969?s=5">转载</a></li>
+		              				                	ti<li value="转载" data-id="5"><a href="http://blog.51cto.com/14179969?s=5">转载</a></li>
 			              				                	<li value="翻译" data-id="6"><a href="http://blog.51cto.com/14179969?s=6">翻译</a></li>
 			              							</ul>
 						<!-- <input name="filtrate_id" id="filtrate_id" value="" type="hidden"> -->
 	                </div>
-	                <div class="pulldown select-down filtrate fl">
-	                    						<p>全部</p>
-	                    	                    <i class="arrow"></i>
-	                    <ul class="pulldown-list" for="filtrate_id">
-	                    	                    	<li value="全部"><a href="http://blog.51cto.com/14179969?s=">全部</a></li>
-                                    @foreach($mytype as $k=>$v)
-	                    			                 <li value="推荐" data-id="3"><a href="/home/myblog?person={{$v->name}}">{{$v->name}}</a></li>
-			              				        @endforeach    
-			              							</ul>
-						<!--<input name="filtrate_id" id="filtrate_id" value="" type="hidden">-->
-	                </div>
+	            
                 </form>
 				<div class="clear"></div>
             </div>
             
 
             <!--文章的显示逻辑-->
+           
+
+                
               <ul class="artical-list">
-                                        <li>
+                @foreach($rs as $key=>$val)
+           
+                     <li id="userblog">
                         <div class="top ">
                             <div class="is-vip-bg fl">
                                 <a href="http://blog.51cto.com/14179965" class="a-img" target="_blank">
                                     <img class="avatar is-vip-img is-vip-img-4" data-uid="14169965" src="https://ucenter.51cto.com/images/noavatar_middle.gif">
                                 </a>
                             </div>
-                            <a href="http://blog.51cto.com/14179965" class="name fl">wx5c40423391747</a>
-                                                        <a href="javascript:;" class="time fl">发布于：1 天前</a>
-                            <p class="zan fr " type="1" blog_id="2347317">0</p>
+                            <a href="/home/myblog" class="name fl">{{$val->author}}</a>
+                                                        <a href="javascript:;" class="time fl">发布于:{{date('Y-m-d H:i',$val->addtime)}}</a>
+                  
                             <div class="clear"></div>
                         </div>
                         <a class="tit" href="http://blog.51cto.com/14179965/2347317">
-                            第一篇                                                                                </a>
+                          {!!$val->contents!!}
+                                                                                                           </a>
                         <a href="javascript:;" class="con">fewqftr3wqfewqafewafasf</a>
                         <div class="bot">
                                                             <p class="tab original fl">原创</p>
@@ -238,14 +239,20 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
                                                         <div class="clear"></div>
                         </div>
                     </li>
-                         
+                 
+            
+              @endforeach 
                  </ul>
-
-            <!--没有文章显示的内容-->
+        
+                    <!--没有文章显示的内容-->
+              <!-- 
                   <div class="noList">
                         <img src="/static/picture/nolist.png">
                         <p>暂无文章</p>
                     </div>
+                -->
+            
+              
                             
             <!--关注和粉丝的显示-->
             
@@ -427,5 +434,6 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
         $('.Content-box').css({'min-height': wh-fh-hh})
     })()
 </script>
-</body>
-</html>
+
+@stop
+

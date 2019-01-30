@@ -168,22 +168,32 @@ class ArticleController extends Controller
      {
         //从数据库读取所有文章
      
-        $rs = Article::get();
+        $rs = Article::paginate(6);
         
-        return view('home.article.total',['rs'=>$rs]);
+        return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页']);
      }
 
      //我的博客方法
      public function myblog(Request $request)
      {
-        $person = $request->person;
+        $data = $request->person;
+        //通过分类名查询类名的id
+        try{
+            $person = Clas::where('name',$data)->first()->id;
+        } catch(\Exception $e) {
+            $person = '';
+        }
         //查找当前用户的所有文章
         $uid = session('userid');
+        //查找当前用户名
+        $username = getAuthor($uid);
         $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->get();
+
 
         //查找个人的分类
         $mytype = Clas::where('uid',$uid)->get();
+
       
-        return view('home.article.myblog',['rs'=>$rs,'mytype'=>$mytype]);
+        return view('home.article.myblog',['rs'=>$rs,'mytype'=>$mytype,'title'=>$username.'的博客']);
      }
 }

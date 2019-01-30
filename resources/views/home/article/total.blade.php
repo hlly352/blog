@@ -1,6 +1,6 @@
 @extends('layout.homes')
 
-@section('title','个人博客列表')
+@section('title',$title)
 
 @section('content')
 	
@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
-
     <meta name="keywords" content="原创技术文章,技术文章,技术博客,51CTO博客">
 <meta name="description" content="原创文章包含51CTO博客中的所有原创文章,包含系统运维,云计算,大数据分析,Web开发入门,PHP教程,Python入门,Java,数据库文章,网络安全文章,人工智能,移动开发技术,服务器,考试认证等。">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet"><link href="/static/css/right.css" rel="stylesheet"><link href="/static/css/blog_list.css" rel="stylesheet">
     <script>
@@ -131,19 +130,10 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
             		
         
 		<!-- page -->
-        <ul class="pagination"><li class="first" style="display: none;"><span>首页</span></li>
-<li class="prev" style="display: none;"><span>上一页</span></li>
-<li class="active"><a href="http://blog.51cto.com/original/p1" data-page="0">1</a></li>
-<li><a href="http://blog.51cto.com/original/p2" data-page="1">2</a></li>
-<li><a href="http://blog.51cto.com/original/p3" data-page="2">3</a></li>
-<li><a href="http://blog.51cto.com/original/p4" data-page="3">4</a></li>
-<li><a href="http://blog.51cto.com/original/p5" data-page="4">5</a></li>
-<li><a href="http://blog.51cto.com/original/p6" data-page="5">6</a></li>
-<li><a href="http://blog.51cto.com/original/p7" data-page="6">7</a></li>
-<li><a href="http://blog.51cto.com/original/p8" data-page="7">8</a></li>
-<li class="next"><a href="http://blog.51cto.com/original/p2" data-page="1">下一页</a></li>
-<li class="last"><a href="http://blog.51cto.com/original/p500" data-page="499">末页</a></li>
-<li class="last" style="display: none;"><span>共5000条记录</span></li></ul>	</div>
+        <ul class="pagination">
+<li>{!!$rs->links()!!}</li>
+
+</ul>	</div>
 	<div class="Right fr">
 		<ul class="artical-parent">
         	<li class="artical-parent-li artical-parent-li-1 on">

@@ -16,7 +16,7 @@ class TypeController extends Controller
     {
 
         //查找当前用户的自由分类
-        $rs = Article::where('uid',3)->get();
+        $rs = Article::where('uid',3)->paginate(8);
         //申明数组用于填充文章类
      
 
