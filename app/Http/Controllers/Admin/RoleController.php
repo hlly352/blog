@@ -5,9 +5,35 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Role;
+use App\Model\Admin\Permission;
 
 class RoleController extends Controller
 {
+    /**
+     * 添加权限的页面.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function roleper($id)
+    {
+        //根据id查角色名
+        $role = Role::find($id);
+        //获取权限名
+        $permission = Permission::all();;
+        return view('admin.role.roleper',['title'=>'角色权限添加页面','role'=>$role,'permission'=>$permission]);
+    }
+
+    /**
+     * 处理添加权限的方法.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function doroleper($id)
+    {
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *

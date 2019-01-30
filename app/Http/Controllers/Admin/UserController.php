@@ -14,11 +14,59 @@ use DB;
 class UserController extends Controller
 {
     /**
+     * 添加角色的页面.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userrole(Request $request)
+    {
+        //用户名
+        $id = $request->id;
+        $user = User::find($id);
+        //角色名
+        $roles = DB::table('role')->get();
+        $userrole = $user->roles;
+        $ur = [];
+        foreach($userrole as $k=>$v){
+            $ur[] = $v->rolename;
+        }
+        return view('admin.user.userrole',['title'=>'添加角色页面','roles'=>$roles,'user'=>$user,'ur'=>$ur]);
+    }
+
+    /**
+     * 处理用户角色的方法.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function douserrole(Request $request)
+    {
+        //用户的id
+        $uid = $request->id;
+        //角色的id
+        $roleid = $request->roleid;
+        DB::table('user_role')->where('user_id',$uid)->delete();
+        $info = [];
+        foreach($roleid as $k=>$v){
+            $arr = [];
+            $arr['user_id'] = $uid;
+            $arr['role_id'] = $v;
+            $info[] = $arr;
+        }
+        // dump($info);
+        $data = DB::table('user_role')->insert($info);
+        if($data){
+            return redirect('/admin/user')->with('success','添加成功');
+        } else {
+            return back()->with('error','添加失败');
+        }
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
 
     public function index(Request $request)
     {

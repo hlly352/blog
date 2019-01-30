@@ -65,8 +65,9 @@
 			                        <tr role="row" class="odd">
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$id++}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->rolename}}</font></font></td>
-			                            <td style="width:200px">
+			                            <td style="width:600px">
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+			                            		<a href="/admin/roleper/{{$v->id}}" class="btn btn-outline-info" style="display:inline">添加权限</a>
 			                            		<a href="/admin/role/{{$v->id}}/edit" class="btn btn-outline-info" style="display:inline">修改</a>
 												
 												<form action="/admin/role/{{$v->id}}" method="post" style="display:inline">

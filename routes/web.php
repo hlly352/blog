@@ -57,8 +57,12 @@ Route::group(['middleware'=>'login'],function(){
 	//后台的管理员操作
 	Route::resource('/admin/user','Admin\UserController');
 	Route::any('/admin/ajax','Admin\UserController@ajax');
+	Route::get('/admin/userrole','Admin\UserController@userrole');
+	Route::post('/admin/douserrole','Admin\UserController@douserrole');
 	//角色管理
 	Route::resource('/admin/role','Admin\RoleController');
+	Route::get('/admin/roleper/{id}','Admin\RoleController@roleper');
+	Route::get('/admin/doroleper/{id}','Admin\RoleController@doroleper');
 	//权限管理
 	Route::resource('/admin/permission','Admin\PermissionController');
 	//修改账号密码

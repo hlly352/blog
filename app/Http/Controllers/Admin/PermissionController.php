@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Permission; 
 
 class PermissionController extends Controller
 {
@@ -12,9 +13,13 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $permission = Permission::
+        where('pername','like','%'.$request->pername.'%')->paginate($request->input('nums',10));
+        $id = 1;
+        return view('admin.permission.index',['title'=>'权限的列表','permission'=>$permission,'id'=>$id,'request'=>$request]);
     }
 
     /**
@@ -36,7 +41,24 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //表单验证
+        $this->validate($request, [
+            'pername' => 'required',
+            'perurl' => 'required',
+        ],[
+            'pername.required' => '权限名不能为空',
+            'perurl.required' => '路径不能为空',
+        ]);
+
+        $rs = $request->except('_token');
+        try {
+            $data = Permission::create($rs);
+            if($data){
+                return redirect('/admin/permission')->with('success','添加成功');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
@@ -59,6 +81,8 @@ class PermissionController extends Controller
     public function edit($id)
     {
         //
+        $res = Permission::find($id);
+        return view('admin.permission.edit',['title'=>'修改页面','res'=>$res]);
     }
 
     /**
@@ -71,6 +95,24 @@ class PermissionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'pername' => 'required',
+            'perurl' => 'required',
+        ],[
+            'pername.required' => '权限名不能为空',
+            'perurl.required' => '权限路径不能为空',
+        ]);
+        
+        $res = $request->except('_token','_method');
+        // dd($res);
+        try {
+            $data = Permission::where('id',$id)->update($res);
+            if($data){
+                return redirect('/admin/permission')->with('success','修改成功');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -82,5 +124,11 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         //
+        $res = Permission::destroy($id);
+        if($res){
+            return redirect('/admin/permission')->with('success','删除成功');
+        } else {
+            return back()->with('error','删除失败');
+        }
     }
 }

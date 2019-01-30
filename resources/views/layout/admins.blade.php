@@ -160,9 +160,9 @@
             <div class="top-left">
                 <div class="navbar-header">
 
-                    <a class="navbar-brand" href="./">
+                    <a class="navbar-brand" href="./" style="width:180px">
                         <!-- <img src="/admins/images/logo.png" alt="Logo"> -->
-                        <h3>江小娟博客</h3>
+                        <h3>二郎巷博客</h3>
                     </a>
                     <a class="navbar-brand hidden" href="./">
                         <img src="/admins/images/logo2.png" alt="Logo">

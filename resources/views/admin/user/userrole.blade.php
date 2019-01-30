@@ -5,6 +5,7 @@
 <div class="col-lg-10">
     <div class="card">
         <div class="card-header">
+
             <strong class="fa fa-plus-square"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp;&nbsp;{{$title}}</font></font></strong>
         </div>
 
@@ -17,40 +18,45 @@
             </ul>
         </div>
         @endif
-
-        @if(session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{session('error')}}
-            </div>
-        @endif
     
-        <form action="/admin/permission/{{$res->id}}" method="post" class="form-horizontal">
+        <form action="/admin/douserrole?id={{$user->id}}" method="post" class="form-horizontal">
             <div class="card-body card-block">
                 <div class="row form-group">
                     <div class="col col-md-2" style="text-align:center; line-height: 38px">
                         <label for="text-input" class=" form-control-label">
-                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">权限名</font></font>
+                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户名</font></font>
                         </label>
                     </div>
                     <div class="col-12 col-md-7">
-                        <input type="text" id="text-input" name="pername" placeholder="请输入权限名" class="form-control" value="{{$res->pername}}">
+                        <input type="text" id="text-input" name="username" value="{{$user->username}}" class="form-control">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-2" style="text-align:center; line-height: 38px">
                         <label for="text-input" class=" form-control-label">
-                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">权限路径</font></font>
+                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">角色名</font></font>
                         </label>
                     </div>
-                    <div class="col-12 col-md-7">
-                        <input type="text" id="text-input" name="perurl" class="form-control" value="{{$res->perurl}}">
+                    <div class="col col-md-7" style="margin-top: 10px">
+                        <div class="form-check-inline form-check">
+                            @foreach($roles as $k=>$v)
+                            @if(in_array($v->rolename, $ur))
+                            <label class="form-check-label ">
+                                <input type="checkbox" id="inline-checkbox1" name="roleid[]" value="{{$v->id}}" checked class="form-check-input">{{$v->rolename}}&nbsp;
+                            </label>
+                            @else
+                            <label class="form-check-label ">
+                                <input type="checkbox" id="inline-checkbox1" name="roleid[]" value="{{$v->id}}" class="form-check-input">{{$v->rolename}}&nbsp;
+                            </label>
+                            @endif
+                            @endforeach
+                        </div>
                     </div>
-                </div>      
+                </div>
             </div>
             <div class="card-footer">
                 {{csrf_field()}}
-                {{method_field('PUT')}}
-                <input class="btn btn-outline-info" type="submit" value="修改" style="margin-left: 172px">
+                <input class="btn btn-outline-info" type="submit" value="提交" style="margin-left: 172px">
             </div>
         </form>
     </div>
@@ -63,4 +69,5 @@
         $('.alert').slideUp(1000);
     },2000)
 </script>
+
 @endsection

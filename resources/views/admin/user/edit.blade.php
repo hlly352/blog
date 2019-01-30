@@ -51,7 +51,6 @@
                             <option value="0" @if($res->level == 0) selected="selected" @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">普通用户</font></font></option>
                             <option value="1" @if($res->level == 1) selected="selected" @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vip用户</font></font></option>
                             <option value="2" @if($res->level == 2) selected="selected" @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">普通管理员</font></font></option>
-                            <option value="3" @if($res->level == 3) selected="selected" @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">超级管理员</font></font></option>
                         </select>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
 @endif
 
 @if(session('success'))
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-success" role="alert">
 		{{session('success')}}
 	</div>
 @endif
@@ -59,7 +59,7 @@
 			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font>
 			                            	</th>
 			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 146px;"><font style="vertical-align: inherit;">
-			                            		<font style="vertical-align: inherit;">权限</font></font>
+			                            		<font style="vertical-align: inherit;">level</font></font>
 			                            	</th>
 			                            	<th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 248px;">
 			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">详情</font></font>
@@ -71,10 +71,25 @@
 			                        </thead>
 			                        <tbody>
 									@foreach($user as $k=>$v)
+									@if($v->level == 3)
+									<tr role="row" class="odd">
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$id++}}</font></font></td>
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->username}}</font></font></td>
+			                            <td>
+			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+			                            		<button class="btn btn-outline-info button">开启</button>
+			                            	</font></font>
+			                            </td>
+			                            <td>
+			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">超级管理员</font></font>
+			                        	</td>
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="/admin/user/{{$v->id}}" class="btn btn-outline-success" >查看详情</a></font></font></td>
+			                            <td style="width:400px">   </td>
+			                        </tr>
+									@else
 			                        <tr role="row" class="odd">
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$id++}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->username}}</font></font></td>
-
 			                            <td>
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
 			                            		<input type="hidden" name="" value="{{$v->id}}">
@@ -85,7 +100,6 @@
 												@endif
 			                            	</font></font>
 			                            </td>
-
 			                            <td>
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
 			                            	@if($v->level == 0)
@@ -101,8 +115,9 @@
 			                        	</td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="/admin/user/{{$v->id}}" class="btn btn-outline-success" >查看详情</a></font></font></td>
 
-			                            <td style="width:200px">
+			                            <td style="width:400px">
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+			                            		<a href="/admin/userrole?id={{$v->id}}" class="btn btn-outline-info" style="display:inline">添加角色</a>
 			                            		<a href="/admin/user/{{$v->id}}/edit" class="btn btn-outline-info" style="display:inline">修改</a>
 												
 												<form action="/admin/user/{{$v->id}}" method="post" style="display:inline">
@@ -113,6 +128,7 @@
 			                            	</font>
 			                            </font></td>
 			                        </tr>
+			                        @endif
 									@endforeach
 			                        </tbody>
                     			</table>
