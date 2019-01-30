@@ -39,5 +39,7 @@ class IndexController extends Controller
     	    return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'banner'=>$banner]);
         }
     }
+    
+    
 
 }
