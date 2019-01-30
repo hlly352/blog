@@ -6,12 +6,9 @@
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
     <meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="mQiidwMZ1I_jK7MUtaabGmVGv4p3Vqlb0IHEyRMu4FnrGGwTLzY9PtJ-PY37KQ3nu0D1LY-dw7Oz2gnR-ZvWJg==">
-    <title>51CTO博客2.0-原创IT技术文章分享及交流平台</title>
-    <meta name="keywords" content="51CTO博客2.0,51CTO博客,IT博客,技术博客,原创技术文章,技术交流">
-<meta name="description" content="51CTO博客2.0是国内领先的IT原创文章分享及交流平台,包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    <link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/publish.css" rel="stylesheet">
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
+    <meta name="keywords" content="IT博客,技术博客,原创技术文章,技术交流">
+<meta name="description" content="包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    <link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/publish.css" rel="stylesheet">
+    
     <script src="/static/js/jquery.min.js"></script><script src="/static/js/cookie.js"></script><script src="/static/js/login.js"></script><script src="/static/js/common.js"></script><script src="/static/js/mbox.js"></script><script src="/static/js/follow.js"></script><script src="/static/js/vip.js"></script><script src="/static/js/window.js"></script>
 <body>
 <img src="/static/image/share.png" border="0" style="width:0; height:0; position:absolute;">
@@ -91,18 +88,7 @@ padding-top: 50px;
                 }
             });
     },70);
-    //广告图
-$(function(){
-     new AutoAD({
-      ADD:$('<a href="http://blog.51cto.com/cloumn/composedetail?id=5&PC" class="closeMB" target="_blank" styel="display:block;"><img src="https://s1.51cto.com/images/blog/201901/17/fbf176834fafd373d58c079b2c8cb18e.png"></a><a class="closeMB" style="position: absolute;right:2px;top: 3px;width: 50px;height: 40px;cursor: pointer;" href="javascript:;"></a>'),
-      W:500,
-      H:400,
-      cookie:'blog_activity_blog7',
-      mask:"#000",
-      ts:'21600',
-      noCBtn: true
-    }) 
-})    
+  
 </script>
  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" charset="utf-8" src="/static/js/ueditor.config.js"></script>
@@ -170,7 +156,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         </div>
         <div>
   
-    <script id="editor" type="text/plain" style="width:1265px;height:500px;margin-top:20px"></script>
+    <script id="editor" type="text/plain" style="width:1140px;height:500px;margin-top:20px"></script>
 </div>
 
 
@@ -244,8 +230,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             <div class="Page Max">
                 <div class="public-box">
                     <div class="public-radio fl">
-                                                    <input type="radio" name="is_hide" id="isHide_0" value="0" checked="checked" ><label for="isHide_0">公开</label>
-                                                    <input type="radio" name="is_hide" id="isHide_1" value="1"  ><label for="isHide_1">隐藏</label>
+                                                    
                                             </div>
                     <div class="btns fr">
                         {{csrf_field()}}

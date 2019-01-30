@@ -33,7 +33,14 @@ class LoginController extends Controller
     	}
 
     	//存入session
-    	session(['uid'=>$user->id]);
+    	session(['userid'=>$user->id]);
     	return redirect('/');
+    }
+
+    public function logout()
+    {
+        //清除session
+        session(['userid'=>'']);
+        return redirect('/');
     }
 }

@@ -10,7 +10,7 @@
 @endif
 
 @if(session('success'))
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-success" role="alert">
 		{{session('success')}}
 	</div>
 @endif
@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-body">
                     <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                    	<form action="/admin/user" method="get">
+                    	<form action="/admin/role" method="get">
                     	<div class="row">
                     		<div class="col-sm-12 col-md-6">
                     			<div class="dataTables_length" id="bootstrap-data-table_length" style="margin-top:40px">
@@ -39,7 +39,7 @@
                     		</div>
                     		<div class="col-sm-12 col-md-6">
                     			<div id="bootstrap-data-table_filter" class="dataTables_filter" style="margin-top:40px">
-                    				<label>用户名:&nbsp;<input type="search" class="form-control-sm" placeholder="" aria-controls="bootstrap-data-table" name="username" value="{{isset($_GET['username']) ? $_GET['username'] : ''}}">&nbsp;<button class="btn btn-info" >搜索</button></label>
+                    				<label>角色名:&nbsp;<input type="search" class="form-control-sm" placeholder="" aria-controls="bootstrap-data-table" name="rolename" value="{{isset($_GET['rolename']) ? $_GET['rolename'] : ''}}">&nbsp;<button class="btn btn-info" >搜索</button></label>
 	                    		</div>
 	                    	</div>
                		 	</div>
@@ -53,16 +53,7 @@
 			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;" >编号</font></font>
 			                            	</th>
 			                            	<th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 248px;">
-			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户名</font></font>
-			                            	</th>
-			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 181px;">
-			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font>
-			                            	</th>
-			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 146px;"><font style="vertical-align: inherit;">
-			                            		<font style="vertical-align: inherit;">权限</font></font>
-			                            	</th>
-			                            	<th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 248px;">
-			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">详情</font></font>
+			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">角色名</font></font>
 			                            	</th>
 			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 146px;"><font style="vertical-align: inherit;">
 			                            		<font style="vertical-align: inherit;">操作</font></font>
@@ -70,48 +61,21 @@
 			                            </tr>
 			                        </thead>
 			                        <tbody>
-									@foreach($user as $k=>$v)
+									@foreach($role as $k=>$v)
 			                        <tr role="row" class="odd">
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$id++}}</font></font></td>
-			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->username}}</font></font></td>
-
-			                            <td>
-			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-			                            		<input type="hidden" name="" value="{{$v->id}}">
-			                            		@if($v->status==0)
-			                            		<button class="btn btn-outline-info button">开启</button>
-												@else
-												<button class="btn btn-outline-danger button">禁用</button>
-												@endif
-			                            	</font></font>
-			                            </td>
-
-			                            <td>
-			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-			                            	@if($v->level == 0)
-			                            		普通用户
-			                            	@elseif($v->level == 1)
-			                            		Vip用户
-			                            	@elseif($v->level == 2)
-			                            		普通管理员
-			                            	@else
-			                            		超级管理员
-			                            	@endif
-			                            	</font></font>
-			                        	</td>
-			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="/admin/user/{{$v->id}}" class="btn btn-outline-success" >查看详情</a></font></font></td>
-
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->rolename}}</font></font></td>
 			                            <td style="width:200px">
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-			                            		<a href="/admin/user/{{$v->id}}/edit" class="btn btn-outline-info" style="display:inline">修改</a>
+			                            		<a href="/admin/role/{{$v->id}}/edit" class="btn btn-outline-info" style="display:inline">修改</a>
 												
-												<form action="/admin/user/{{$v->id}}" method="post" style="display:inline">
+												<form action="/admin/role/{{$v->id}}" method="post" style="display:inline">
 													{{csrf_field()}}
 													{{method_field('DELETE')}}
 			                            			<button class="btn btn-outline-danger" onclick="confirm('是否确认删除')">删除</button>	
 			                            		</form>
-			                            	</font>
-			                            </font></td>
+			                            	</font></font>
+			                            </td>
 			                        </tr>
 									@endforeach
 			                        </tbody>
@@ -121,7 +85,7 @@
 	                    <div class="row">
 	                    	<div class="col-sm-12 col-md-5">
 	                    		<div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite">
-	                    			<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示{{$user->total()}}个用户中的{{$user->firstItem()}}到{{$user->lastItem()}}</font></font>
+	                    			<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示{{$role->total()}}个用户中的{{$role->firstItem()}}到{{$role->lastItem()}}</font></font>
 	                    		</div>
 	                    	</div>
 	                    	<style>
@@ -175,7 +139,7 @@
 	                    	</style>
 	                    	<div class="col-sm-12 col-md-7">
 	                    		<div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate">
-	                    		{{$user->links()}}	
+	                    		{{$role->links()}}
 	                    		</div>
 	                    	</div>
 	                    </div>
@@ -192,14 +156,6 @@
 <script type="text/javascript">
 	$('.alert').delay(2000).fadeOut(1500);
 
-	$('.button').click(function(){
-		var status = $(this).text();
-		var id = $(this).prev().val();
-		// console.log(id);
-		// console.log(status);
-		$.get('/admin/ajax',{'id':id,'status':status},function(data){
-			location.reload();
-		});
-	});
+	
 </script>
 @endsection

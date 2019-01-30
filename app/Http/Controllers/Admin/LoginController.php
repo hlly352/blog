@@ -32,7 +32,11 @@ class LoginController extends Controller
     public function dologin(Request $request)
     {
     	//表单验证
-    	
+    	$this->validate($request, [
+            'password' => 'required',
+        ],[
+            'password.required' => '密码不能为空',
+        ]);
     	//获取账号
     	$uname = $request->username;
     	//通过账号查找数据库里面有没有

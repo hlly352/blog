@@ -73,17 +73,22 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-user"></i>用户管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
 
-                        	<li><i class="ti ti-pencil"></i><a href="/admin/user/create">添加用户</a></li>
-
-    
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">查看用户</a></li>
+                        <li><i class="ti ti-pencil"></i><a href="/admin/user/create">添加用户</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">浏览用户</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-id-badge"></i>角色管理</a>
+                        <ul class="sub-menu children dropdown-menu">                            
+                            <li><i class="ti ti-pencil"></i><a href="/admin/role/create">添加角色</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/role">浏览角色</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-na"></i>权限管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
-                            <li><i class="ti ti-pencil"></i><a href="/admin/user/create">添加权限</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">查看权限</a></li>
+                            <li><i class="ti ti-pencil"></i><a href="/admin/permission/create">添加权限</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/permission">浏览权限</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

@@ -57,6 +57,10 @@ Route::group(['middleware'=>'login'],function(){
 	//后台的管理员操作
 	Route::resource('/admin/user','Admin\UserController');
 	Route::any('/admin/ajax','Admin\UserController@ajax');
+	//角色管理
+	Route::resource('/admin/role','Admin\RoleController');
+	//权限管理
+	Route::resource('/admin/permission','Admin\PermissionController');
 	//修改账号密码
 	Route::get('/admin/changepass/{id}','Admin\UserController@changepass');
 	Route::post('/admin/dochangepass/{id}','Admin\UserController@dochangepass');
@@ -71,26 +75,19 @@ Route::group(['middleware'=>'login'],function(){
 	Route::any('/admin/bannerajax','Admin\BannerController@ajax');
 	//添加评论
 	Route::any('/article/comment','Home\ArticleController@comment');
-	// Route::any('/admin/index','Admin\IndexController@index');
-	Route::resource('/admin/user','Admin\UserController');
 
+	
 	Route::get('/admin/article','Admin\ArticleController@show');
-
 	//文章分类
 	Route::resource('/admin/article/type','Admin\TypeController');
-
 	//添加子分类
 	Route::get('/admin/type/add/son','Admin\TypeController@typeson');
-
 	//ajax改变状态
 	Route::get('/admin/statusajax','Admin\TypeController@status');
-
 	//文章详情
 	Route::get('/admin/article/info','Admin\ArticleController@info');
-
 	//删除文章
 	Route::get('/admin/article/del','Admin\ArticleController@del');
-
 	//查看评论
 	Route::get('admin/comment/show','Admin\CommentController@show');
 	//删除评论
@@ -105,6 +102,8 @@ Route::get('/home/remind','Home\RegController@remind');
 //前台的登录
 Route::get('/home/login','Home\LoginController@login');
 Route::post('/home/dologin','Home\LoginController@dologin');
+//前台的退出
+Route::get('/home/logout','Home\LoginController@logout');
 
 //前台的个人中心
 Route::resource('/home/center','Home\UserController');
@@ -137,7 +136,15 @@ Route::resource('/home/article','Home\ArticleController');
 Route::resource('/home/type','Home\TypeController');
 
 //前台文章分类管理
-Route::resource('home/arttype','Home\ArttypeController');
-//前台文章分类
-Route::get('home/arttype/del','Home\ArttypeController@del');
+
+Route::resource('/home/arttype','Home\ArttypeController');
+
+//前台ajax添加分类
+Route::get('/home/doajax','Home\ArttypeController@doajax');
+
+//前台查看所有文章
+Route::any('/home/total','Home\ArticleController@total');
+
+
+
 

@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $id = session('uid');
+        $id = session('userid');
         $user = User::find($id);
         $info = User::find($id)->infos;
         // dump($user);
@@ -193,7 +193,7 @@ class UserController extends Controller
         $arr['password'] = Hash::make($newpass);
         $data = User::where('id',$id)->update($arr);
         if($data){
-            session(['uid'=>'']);
+            session(['userid'=>'']);
             return redirect('/home/login');
         }       
     }

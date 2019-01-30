@@ -98,7 +98,7 @@ padding-top: 50px;
 	<li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
 		<div class="clear"></div>
 </ul>    <div class="setting-content-2">
-    <form id="cateFrom" method="post">
+  
         <table>
             <thead>
                 <tr>
@@ -115,11 +115,16 @@ padding-top: 50px;
                         	<input class="number" type="text" name="" value="{{$i++}}" disabled/>
                         </td>
                         <td>
-                        	<input class="title" type="text" name="" value="{{$v}}">
+                        	<input class="title" type="text" name="" value="{{$v->name}}">
                         </td>
-                        <td>                        	
-                         	<a href="/home/arttype/del?v={{$v}}" class="btn btn-warning">删除</a>                         	
+                        <td>  
+                            <form action="/home/arttype/{{$v->name}}" method="post">                      	
+                             	<button onclick="return confirm('确认删除')"  class="btn btn-warning">删除</button> 
+                                {{csrf_field()}}
+                                {{method_field('DELETE')}}  
+                            </form>                      	
                          </td>
+
                     </tr>
               		@endif
                   @endforeach
@@ -131,7 +136,7 @@ padding-top: 50px;
             <input type="hidden" name="_csrf" value="acr0HLqMqIWGS01_7B8oIfAyvjRQVjfbaQtK0mnxepI8Az1njDF_CnoGDEZz8s3ALT2--8LbSHVEsX9W2fEOHg=="/>
             <div class="clear"></div>
         </div>
-    </form>
+    
     </div>
 </div>
 <script>
@@ -151,7 +156,7 @@ padding-top: 50px;
         }
         var max_sort = i ? $('#cateFrom tbody tr:nth-child('+ i +')').find('.number').val() : 0;
         var new_sort = parseInt(max_sort) + 1;
-        var tr = '<tr><td><input class="number" name="sort[]" type="text" value="' + new_sort + '"/></td><td><input class="title" name="name[]" type="text" placeholder="请输入分类"></td><td><p class="close" data-id="0"></p></td></tr>';
+        var tr = '<tr><td><input class="number" name="sort[]" type="text" value="+" disabled/></td><td><input class="title" name="name[]" type="text" placeholder="请输入分类"></td><td><p class="close" data-id="0"></p></td></tr>';
         $('.setting-content-2 table').append(tr);
     })
     $('#cateFrom tbody tr td p.close').live('click',function(){//删除分类
@@ -187,8 +192,9 @@ padding-top: 50px;
     $('.save-input').click(function(){
         var errorMsg = '';
         var title_arr = new Array();
-        $('#cateFrom .title').each(function(i,v){
+        $('.title').each(function(i,v){
             var title = $.trim($(v).val());
+            
             var is_a = $.inArray(title, title_arr);
             if(is_a > 0){
                 errorMsg = '分类名称重复';
@@ -201,6 +207,7 @@ padding-top: 50px;
                 errorMsg = '分类名称不要为空';
             }
         });
+        
         if(errorMsg){
             new AutoBox({content:errorMsg,mask:"#000",autoClose:3})
             return false;
@@ -208,7 +215,13 @@ padding-top: 50px;
         if($('#cateFrom .title').length > 20){
             new AutoBox({content:'您最多可添加20个分类',mask:"#000",autoClose:3})
         }
-        $('#cateFrom').submit();
+        
+      
+      $.get('/home/doajax',{'clas':title_arr},function(data){
+                if(data){
+                    window.location.reload(true);
+                }
+                });
     });
 </script>
 </div>

@@ -88,7 +88,6 @@ padding-top: 50px;
   <ul class="setting-title">
   <li  class="on"><a href="/home/type">文章管理</a></li>
       <li ><a href="/home/arttype">文章分类</a></li>
-  <li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
     <div class="clear"></div>
 </ul> <div class="setting-content-3">
     <form action="http://blog.51cto.com/blogger/blog-manage" method="get" name="selectForm" id="selectForm">
@@ -126,7 +125,6 @@ padding-top: 50px;
           <td style="width: 70px;">选择</td>
           <td>标题</td>
           <td style="width: 70px;">类型</td>
-          <td style="width: 70px;">分类</td>
           <td style="width: 100px;">发布日期</td>
           <td style="width: 140px;">操作</td>
         </tr>
@@ -136,11 +134,11 @@ padding-top: 50px;
           @foreach($rs as $k=>$v)
                     <tr>
             <td><input type="checkbox" name="ids[]" value="2343868"></td>
-            <td>
-              <a class="title" target="_blank" href="http://blog.51cto.com/14179965/2343868">
+            <td >
+              <a style="text-align:center" class="title" target="_blank" href="/home/article/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}">
                 {{$v->title}}                                             </a>
             </td>
-            <td><p>转载</p></td>
+            
 				@if($v->person !== '0' )
             <td><p>
 					{{$v->person}}
@@ -150,11 +148,11 @@ padding-top: 50px;
 					未分类
 				 </p></td>
 				@endif
-            <td><p class="time">2019-01-17 16:57:10</p></td>
+            <td><p class="time">{{date('Y-m-d H:i:s',$v->addtime)}}</p></td>
             <td>
               <a class="edi btn btn-info" target="_blank" href="/home/type/{{$v->id}}/edit">编辑</a>
               		<form style="display:inline" action="/home/type/{{$v->id}}" method="post"> 
-                              <p class="ding dingT" value="2343868"><button onclick="confirm('确认删除')"  class="btn btn-danger">删除</button></p>
+                              <p class="ding dingT" value="2343868"><button onclick="return confirm('确认删除')"  class="btn btn-danger">删除</button></p>
 						{{csrf_field()}}
 						{{method_field('DELETE')}}
                     </form>

@@ -32,7 +32,7 @@ class User extends Model
 
 
     public function article(){
-        return $this->hasMany('App\Model\Article','uid','id');
+        return $this->hasMany('App\Model\Admin\Article','uid','id');
     }
 
 
