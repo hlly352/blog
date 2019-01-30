@@ -4,14 +4,14 @@ namespace App\Model\Home;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Clas extends Model
 {
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'user';
+    protected $table = 'clas';
     protected $primarykey = 'id';
 
     /**
@@ -28,20 +28,9 @@ class User extends Model
 	 */
 	protected $guarded = [];
 
-    /**
-     * 获得与用户表关联的详情信息 
-     */
-    public function infos()
+    //和文章表进行一对多关联
+    public function cla()
     {
-        return $this->hasOne('App\Model\Home\Userinfo','uid','id');
+        return $this->hasMany('App\Model\Admin\Article','person','id');
     }
-    //与用户的分类表关联
-    public function clas()
-    {
-
-        return $this->hasMany('App\Model\Home\Clas','uid','id');
-    
-
-    }
-
 }

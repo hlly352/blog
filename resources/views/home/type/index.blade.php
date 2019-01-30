@@ -88,7 +88,7 @@ padding-top: 50px;
   <ul class="setting-title">
   <li  class="on"><a href="/home/type">文章管理</a></li>
       <li ><a href="/home/arttype">文章分类</a></li>
-  <li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
+
     <div class="clear"></div>
 </ul> <div class="setting-content-3">
     <form action="http://blog.51cto.com/blogger/blog-manage" method="get" name="selectForm" id="selectForm">
@@ -136,7 +136,7 @@ padding-top: 50px;
                     <tr>
             <td><input type="checkbox" name="ids[]" value="2343868"></td>
             <td >
-              <a style="text-align:center" class="title" target="_blank" href="http://blog.51cto.com/14179965/2343868">
+              <a style="text-align:center" class="title" target="_blank" href="/home/article/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}">
                 {{$v->title}}                                             </a>
             </td>
             
