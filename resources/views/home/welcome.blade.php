@@ -439,12 +439,13 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <p>记录自己的技术轨迹</p>
         <a href="/home/article/create">我要写文章</a>
     </div>
+    
     <ul class="News Box">
         <li class="f" ><span>公告</span>
-            <a href="http://blog.51cto.com/51ctoblog/2069953?gongg" target="_blank"  class='blue'  >51CTO博客2.0常见问题解答&QAQ</a>
+            <a href="http://blog.51cto.com/51ctoblog/2069953?gongg" target="_blank"  class='blue'>51CTO博客2.0常见问题解答&QAQ</a>
         </li>
         <li>
-            <a href="http://blog.51cto.com/51ctoblog/2343471" target="_blank"  class='blue' >51CTO订阅专栏作者申请标准</a>
+            <a href="http://blog.51cto.com/51ctoblog/2343471" target="_blank"  class='blue'>51CTO订阅专栏作者申请标准</a>
         </li>
     </ul>
   
