@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="360-site-verification" content="11473619ba65d8ccee478771c1128394" />
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
-    <title>@yield('title')</title>
+    <title>@yield('title',$title)</title>
     <meta name="keywords" content="51CTO博客2.0,51CTO博客,IT博客,技术博客,原创技术文章,技术交流">
     <meta name="description" content="51CTO博客2.0是国内领先的IT原创文章分享及交流平台,包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    
     <link href="/static/css/base.css" rel="stylesheet">
@@ -16,9 +16,7 @@
     <link href="/static/css/list_tab.css" rel="stylesheet">
     <link href="/static/css/right.css" rel="stylesheet">
     <link href="/static/css/index.css" rel="stylesheet">    
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
+   
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/cookie.js"></script>
     <script src="/static/js/login.js"></script>
@@ -53,24 +51,17 @@
 <![endif]-->
 <div class="Header">
     <div class="Page ">
-        <h1 class="Logo"><a href="">Logo</a></h1>
+        <h1 class="Logo"><a href="/">Logo</a></h1>
         <ul class="Navigates fl">
-            <li  class="cur" ><a href="">首页</a></li>
-            <li ><a href="">文章</a></li>
-            <li ><a href="">关注</a></li>
-            <li class=""><a class="column-stress" href="">订阅专栏<b></b></a></li>
-            <li class=""><a href="">专家</a></li>
+            <li  class="/" ><a href="/">首页</a></li>
+            <li ><a href="/home/total">文章</a></li>
+           
         </ul>
         <ul class="Navigates Navigates-right fr">
             <li class="more maps">
-                <a href="javascript:void(0);">网站导航</a>
+                <a href="/home/logout">退出</a>
                 <div>
-                    <a href="" target="_blank">学院</a>
-                    <a href="" target="_blank">博客</a>
-                    <a href="" target="_blank">下载</a>
-                    <a href="" target="_blank">家园</a>
-                    <a href="" target="_blank">论坛</a>
-                    <i class="arrow"></i>
+                    
                 </div>
             </li>
             @if(session('userid'))
@@ -87,7 +78,6 @@
                 <a href="" target="_blank">我的收藏</a>
                 <a href="/home/arttype">分类管理</a>
                 <a href="/home/type">博客管理</a>
-                <a href="/home/logout">退出</a>
                 <i class="arrow"></i>
               </div>
             </li>
@@ -99,10 +89,10 @@
                 <a href="/home/login" target="_self">登录</a>
             </li>
             @endif
-            <li class="mRead"><a href="javascript:;">手机阅读</a>
+            <li class="mRead"><a href="javascript:;"></a>
                 <div>
-                    <img src="/static/picture/blog_qr.png">
-                    <p>扫一扫体验手机阅读</p>
+                    
+                   
                     <i class="arrow"></i>
                 </div>
             </li>

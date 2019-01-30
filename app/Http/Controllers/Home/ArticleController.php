@@ -8,6 +8,7 @@ use App\Model\Admin\Type;
 use App\Model\Admin\User;
 use App\Model\Admin\Article;
 use App\Model\Admin\Comment;
+use App\Model\Home\Clas;
 
 
 class ArticleController extends Controller
@@ -45,14 +46,39 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //获取需要的值
+        
+        
         $rs = $request->only('title','keywords','description');
         $rs['type_id'] = $request->input('twice');
-        $rs['person'] = $request->input('person','0');
         $rs['addtime'] = time();
-        $rs['uid'] = 1;
+        $uid = session('userid');
+        $rs['uid'] = $uid;
+        $rs['author'] = User::where('id',$uid)->first()->username;
         $rs['contents'] = $request->input('editorValue');
-        $rs['author'] = User::where('id',$rs['uid'])->first()->username;
-     
+        $clasname = $request->input('person');
+        //通过类名查询类名数据库中是否已经存在该类名
+        try{
+            $classid = Clas::where('name',$clasname)->first()->id;
+            } catch(\Exception $e) {
+
+                //向文章分类表中添加分类名
+                
+                if($clasname != null){
+                    $data = \DB::table('clas')->insertGetId(['uid'=>$uid,'name'=>$clasname]);
+                                }
+                     //判断分类表中是否插入数据
+                if(isset($data)){
+                    $rs['person'] = $data;
+                }else{
+                    $rs['person'] = '0';
+                }
+                
+            }
+            //如果没有文章表中没有文章类名时,把类名表中查到的类名id赋值给文章person
+            if(!isset($rs['person'])){
+                 $rs['person'] = $classid;
+                }
+                
       //添加文章
             
     try{
@@ -136,5 +162,14 @@ class ArticleController extends Controller
         }
 
         echo 1;
+     }
+     //前台查看所有文章方法
+     public function total()
+     {
+        //从数据库读取所有文章
+     
+        $rs = Article::get();
+        
+        return view('home.article.total',['title'=>'文章列表','rs'=>$rs]);
      }
 }
