@@ -17,7 +17,7 @@ class ArticleController extends Controller
     public function index()
     {
         //查找文章
-       
+        
 
         return redirect('/');
 
@@ -170,6 +170,20 @@ class ArticleController extends Controller
      
         $rs = Article::get();
         
-        return view('home.article.total',['title'=>'文章列表','rs'=>$rs]);
+        return view('home.article.total',['rs'=>$rs]);
+     }
+
+     //我的博客方法
+     public function myblog(Request $request)
+     {
+        $person = $request->person;
+        //查找当前用户的所有文章
+        $uid = session('userid');
+        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->get();
+
+        //查找个人的分类
+        $mytype = Clas::where('uid',$uid)->get();
+      
+        return view('home.article.myblog',['rs'=>$rs,'mytype'=>$mytype]);
      }
 }

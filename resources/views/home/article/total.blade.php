@@ -1,6 +1,6 @@
 @extends('layout.homes')
 
-@section('title',$title)
+@section('title','个人博客列表')
 
 @section('content')
 	
@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
-        <title>原创文章-51CTO博客</title>
+
     <meta name="keywords" content="原创技术文章,技术文章,技术博客,51CTO博客">
 <meta name="description" content="原创文章包含51CTO博客中的所有原创文章,包含系统运维,云计算,大数据分析,Web开发入门,PHP教程,Python入门,Java,数据库文章,网络安全文章,人工智能,移动开发技术,服务器,考试认证等。">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet"><link href="/static/css/right.css" rel="stylesheet"><link href="/static/css/blog_list.css" rel="stylesheet">
     <script>
