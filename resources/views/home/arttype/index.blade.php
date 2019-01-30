@@ -119,7 +119,7 @@ padding-top: 50px;
                         </td>
                         <td>  
                             <form action="/home/arttype/{{$v->name}}" method="post">                      	
-                             	<button  class="btn btn-warning">删除</button> 
+                             	<button onclick="return confirm('确认删除')"  class="btn btn-warning">删除</button> 
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}  
                             </form>                      	

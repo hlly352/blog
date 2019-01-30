@@ -142,6 +142,9 @@ Route::resource('/home/arttype','Home\ArttypeController');
 //前台ajax添加分类
 Route::get('/home/doajax','Home\ArttypeController@doajax');
 
+//前台查看所有文章
+Route::any('/home/total','Home\ArticleController@total');
+
 
 
 

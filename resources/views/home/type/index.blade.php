@@ -88,7 +88,6 @@ padding-top: 50px;
   <ul class="setting-title">
   <li  class="on"><a href="/home/type">文章管理</a></li>
       <li ><a href="/home/arttype">文章分类</a></li>
-
     <div class="clear"></div>
 </ul> <div class="setting-content-3">
     <form action="http://blog.51cto.com/blogger/blog-manage" method="get" name="selectForm" id="selectForm">
@@ -153,7 +152,7 @@ padding-top: 50px;
             <td>
               <a class="edi btn btn-info" target="_blank" href="/home/type/{{$v->id}}/edit">编辑</a>
               		<form style="display:inline" action="/home/type/{{$v->id}}" method="post"> 
-                              <p class="ding dingT" value="2343868"><button onclick="confirm('确认删除')"  class="btn btn-danger">删除</button></p>
+                              <p class="ding dingT" value="2343868"><button onclick="return confirm('确认删除')"  class="btn btn-danger">删除</button></p>
 						{{csrf_field()}}
 						{{method_field('DELETE')}}
                     </form>

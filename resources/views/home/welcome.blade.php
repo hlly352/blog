@@ -414,7 +414,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                         </a>
                     </div>
                     <a class="name" href="http://blog.51cto.com/cyent" target="_blank">{{$value->author}}</a>
-                    <span class="time">发布于{{date('Y-m-d H:i:s',$value->addtime)}}</span>
+                    <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
                     <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title">{{$value->title}}</a>
@@ -432,6 +432,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             
             @endforeach  
         </ul>
+        <a href="/home/total" target="_blank" class="lookMore">点击浏览更多&gt;&gt;</a>
     </div>
     <!-- new-article end-->
 </div>
