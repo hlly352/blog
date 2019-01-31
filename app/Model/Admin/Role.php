@@ -27,6 +27,13 @@ class Role extends Model
 	 * @var array
 	 */
 	protected $guarded = [];
-
+    
+    /**
+     * 获得此角色的权限。
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Model\Admin\Permission','role_per','role_id','per_id');
+    }
     
 }

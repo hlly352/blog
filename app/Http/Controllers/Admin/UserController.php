@@ -77,7 +77,6 @@ class UserController extends Controller
         $id = 1;
         // dump($user);
         return view('admin.user.index',['title'=>'用户列表','user'=>$user,'id'=>$id,'request'=>$request]);
-
     }
 
     /**
@@ -194,7 +193,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-
 
         try {
             $data = User::find($id);
@@ -324,7 +322,11 @@ class UserController extends Controller
             $info['profile'] = $filepath;
             DB::table('userinfo')->insert($info);            
         }
+    }
 
-
+    //权限的提醒信息
+    public function remind()
+    {
+        return view('admin.user.remind');
     }
 }

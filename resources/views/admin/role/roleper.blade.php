@@ -40,9 +40,15 @@
                     <div class="col col-md-7">
                         <div class="form-check form-check">
                             @foreach($permission as $k=>$v)
+                            @if(in_array($v->pername, $rp))
                             <label class="form-check-label ">
-                                <input type="checkbox" id="inline-checkbox1" name="roleid[]" value="{{$v->id}}" class="form-check-input">{{$v->pername}}&nbsp;    
+                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" checked class="form-check-input">{{$v->pername}}&nbsp;    
                             </label><br>
+                            @else
+                            <label class="form-check-label ">
+                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" class="form-check-input">{{$v->pername}}&nbsp;    
+                            </label><br>
+                            @endif
                             @endforeach
                         </div>
                     </div>

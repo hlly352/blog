@@ -91,9 +91,9 @@
 			                            $i++
 			                            @endphp
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->title}}</font></font></td>
-			                              <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->author}}</font></font></td>
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->author}}</font></font></td>
 			                    			
-			                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->comment_num}}</font></font></td>
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->collect_num}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->read_num}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->good_num}}</font></font></td>
 			                            

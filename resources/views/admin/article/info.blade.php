@@ -8,14 +8,12 @@
         	 <i class="fa fa-twitter"></i>
  		</div>
 		 <a href="#">
-         <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
+         <!-- <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg"> -->
            </a>
-                      <h2>{{$rs->title}}</h2>
+                    <h2>{{$rs->title}}</h2>
                      <p>{{$rs->description}}</p>
-                     <p>{{$rs->content}}</p>
+                     <p>{!!$rs->contents!!}</p>
                      
-                                       
-
-                 
+                                                       
     </div>
 @stop

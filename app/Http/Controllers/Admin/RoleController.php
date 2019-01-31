@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Role;
 use App\Model\Admin\Permission;
+use DB;
 
 class RoleController extends Controller
 {
@@ -19,8 +20,13 @@ class RoleController extends Controller
         //根据id查角色名
         $role = Role::find($id);
         //获取权限名
-        $permission = Permission::all();;
-        return view('admin.role.roleper',['title'=>'角色权限添加页面','role'=>$role,'permission'=>$permission]);
+        $permission = Permission::all();
+        $roleper = $role->permissions;
+        $rp = [];
+        foreach($roleper as $k=>$v){
+            $rp[] = $v->pername;
+        }
+        return view('admin.role.roleper',['title'=>'角色权限添加页面','role'=>$role,'permission'=>$permission,'rp'=>$rp]);
     }
 
     /**
@@ -28,9 +34,26 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function doroleper($id)
+    public function doroleper(Request $request)
     {
-
+        //角色的id  
+        $roleid = $request->id;
+        //权限的id
+        $perid = $request->perid;
+        DB::table('role_per')->where('role_id',$roleid)->delete();
+        $info = [];
+        foreach($perid as $k=>$v){
+            $arr = [];
+            $arr['role_id'] = $roleid;
+            $arr['per_id'] = $v;
+            $info[] = $arr;
+        }
+        $data = DB::table('role_per')->insert($info);
+        if($data){
+            return redirect('/admin/role')->with('success','添加成功');
+        } else {
+            return back()->with('error','添加失败');
+        }
     }
 
 

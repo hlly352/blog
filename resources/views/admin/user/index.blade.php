@@ -123,7 +123,7 @@
 												<form action="/admin/user/{{$v->id}}" method="post" style="display:inline">
 													{{csrf_field()}}
 													{{method_field('DELETE')}}
-			                            			<button class="btn btn-outline-danger" onclick="confirm('是否确认删除')">删除</button>	
+			                            			<button class="btn btn-outline-danger" onclick="return confirm('是否确认删除')">删除</button>	
 			                            		</form>
 			                            	</font>
 			                            </font></td>

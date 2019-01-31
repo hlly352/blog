@@ -11,33 +11,6 @@
 |
 */
 
-
-
-
-
-//验证码测试
-Route::get('captch','Admin\LoginController@captch');
-
-
-
-//后台友情链接页面
-Route::resource('/admin/link','Admin\LinkController');
-
-//后台公告页面
-Route::resource('/admin/tip','Admin\TipController');
-
-//后台广告页面
-Route::resource('admin/advert','Admin\AdvertController');
-
-
-
-
-
-
-
-
-	
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -51,7 +24,10 @@ Route::get('/admin/logout','Admin\LoginController@logout');
 //验证码测试
 Route::get('/captch','Admin\LoginController@captch');
 
-Route::group(['middleware'=>'login'],function(){
+//权限的提醒信息
+Route::get('/admin/remind','Admin\UserController@remind');
+
+Route::group(['middleware'=>['login','roleper']],function(){
 	//后台的首页
 	Route::any('/admin/index','Admin\IndexController@index');
 	//后台的管理员操作
@@ -62,9 +38,10 @@ Route::group(['middleware'=>'login'],function(){
 	//角色管理
 	Route::resource('/admin/role','Admin\RoleController');
 	Route::get('/admin/roleper/{id}','Admin\RoleController@roleper');
-	Route::get('/admin/doroleper/{id}','Admin\RoleController@doroleper');
+	Route::post('/admin/doroleper/{id}','Admin\RoleController@doroleper');
 	//权限管理
 	Route::resource('/admin/permission','Admin\PermissionController');
+	
 	//修改账号密码
 	Route::get('/admin/changepass/{id}','Admin\UserController@changepass');
 	Route::post('/admin/dochangepass/{id}','Admin\UserController@dochangepass');
@@ -96,6 +73,13 @@ Route::group(['middleware'=>'login'],function(){
 	Route::get('admin/comment/show','Admin\CommentController@show');
 	//删除评论
 	Route::get('/admin/comment/del','Admin\CommentController@del');
+
+	//后台友情链接页面
+	Route::resource('/admin/link','Admin\LinkController');
+	//后台公告页面
+	Route::resource('/admin/tip','Admin\TipController');
+	//后台广告页面
+	Route::resource('admin/advert','Admin\AdvertController');
 
 });
 
