@@ -60,8 +60,10 @@ class TypeController extends Controller
     {
         //查找要修改的文章信息
         $art = Article::where('id',$id)->first();
+
         //文章所有分类
         $rs = Type::get();
+        
         //查询文章的一二级分类
         $first = Type::where('pid','0')->first();
         $twice = Type::where('id',$art->type_id)->first();

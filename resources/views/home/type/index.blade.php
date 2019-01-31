@@ -103,7 +103,7 @@ padding-top: 50px;
                       </ul>
           <input type="hidden" name="is_hide" value="" id="is_hide"/>
         </div>
-         <input class="select-btn fl" type="text" value="请输入标题">
+         <input class="select-btn fl" type="text" placeholder="请输入标题">
         <input class="select-btn blue-btn fl" type="submit" value="查找">
         <div class="clear"></div>
       </div>

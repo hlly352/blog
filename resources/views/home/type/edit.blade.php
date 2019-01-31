@@ -187,7 +187,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                         @if($v->name == $first->name)
                         <option value="7" selected>{{$v->name}}</option>
                         @else
-                          <option value="7">{{$v->name}}</option>
+                         <option value="7">{{$v->name}}</option>
 
                         @endif
                     @endif    
@@ -199,12 +199,11 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                    @foreach($rs as $k=>$v)
                 
                     @if(substr_count($v->path,',') == 2)
-                        @if($v->name == $twice->name)
-                        <option value="8" selected>{{$v->name}}</option>
-                        @else
+                       
                         <option value="8">{{$v->name}}</option>
+                     
                         
-                        @endif
+                   
                     @endif    
                 
                 @endforeach

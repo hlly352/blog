@@ -196,10 +196,26 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 
                 @endforeach
                 </select>
-            
-            <div class="pulldown system-select myself fl cate">
+
+                @if(isset($mytype))
+                <select name="twice" id="" class="form-control cate pulldown system-select system-two fl">
+                   @foreach($rs as $k=>$v)
+                
+                    @if(substr_count($v->path,',') == 2)
+                    <option value="8">{{$v->name}}</option>
+                    @endif    
+                
+                @endforeach
+                </select>
+                @else
+                 <div class="pulldown system-select myself fl cate">
+                  <input style="font-size:30px;color:#999;margin-right: 0;" placeholder = "个人分类"/ name = "person">
+                </div>
+              @endif
+           
                                     <input style="font-size:30px;color:#999;margin-right: 0;" placeholder = "个人分类"/ name = "person">
                                 <ul class="pulldown-list" for="custom_id">
+
                                     </ul>
                 <input name="custom_id" id="custom_id" value="" type="hidden">
             </div>
