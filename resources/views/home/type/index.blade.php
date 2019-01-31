@@ -162,14 +162,8 @@ padding-top: 50px;
                         </tbody>
     </table>
     <div class="bottom">
-      <input class="fl" type="checkbox" name="check-all" id="check-all">
-      <label class="fl" for="check-all">全选</label>
-      <p class="select-name fl">移动到</p>
-      <div class="pulldown pulldown-4 fl">
-                  <p class="reprint">未分类</p>
-                <input type="hidden" name="custom_id" value="" id="custom_id"></input>
-      </div>
-      <div class="remove-btn blue-btn fl">删除</div>
+   
+   
 
       <div class="clear"></div>
         <style>
@@ -187,8 +181,7 @@ padding-top: 50px;
 </div>
 <script src="https://static1.51cto.com/edu/blog/js/blog_manage.js?v=1.0.0.1"></script>   
     <div class="rightTools">
-        <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3591348659&amp;site=qq&amp;menu=yes" class="qq"></a>
-    <a href="http://blog.51cto.com/51ctoblog/2057444" class="yy" target="_blank"></a>
+     
     <a href="javascript:void(0);" class="gotop"></a>
 </div>
 

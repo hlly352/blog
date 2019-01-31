@@ -15,8 +15,8 @@ class TypeController extends Controller
     public function index()
     {
 
-        //查找当前用户的自由分类
-        $rs = Article::where('uid',3)->paginate(8);
+        //查找当前用户的自有分类
+        $rs = Article::where('uid',session('userid'))->paginate(8);
         //申明数组用于填充文章类
      
 
