@@ -93,28 +93,17 @@ padding-top: 50px;
     <form action="http://blog.51cto.com/blogger/blog-manage" method="get" name="selectForm" id="selectForm">
       <div class="select-box">
         <div class="pulldown pulldown-1 fl">
-                      <p class="reprint">未分类</p>
-                    <input type="hidden" name="ccid" value="" id="ccid"/>
-        </div>
-        <div class="pulldown pulldown-2 fl">
-                      <p class="reprint">全部</p>
-                    <ul class="pulldown-list" for="blog_type">
-            <li>全部</li>
-                          <li value="1">原创</li>
-                          <li value="2">转载</li>
-                          <li value="3">翻译</li>
-                      </ul>
+        
+                   
           <input type="hidden" name="blog_type" value="" id="blog_type"/>
         </div>
         <div class="pulldown pulldown-3 fl">
-                      <p class="reprint">全部</p>
-                    <ul class="pulldown-list" for="is_hide">
-            <li>全部</li>
-                          <li value="0">公开</li>
-                          <li value="1">隐藏</li>
+
+         
                       </ul>
           <input type="hidden" name="is_hide" value="" id="is_hide"/>
         </div>
+         <input class="select-btn fl" type="text" value="请输入标题">
         <input class="select-btn blue-btn fl" type="submit" value="查找">
         <div class="clear"></div>
       </div>
