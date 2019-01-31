@@ -139,9 +139,9 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
         	<li class="artical-parent-li artical-parent-li-1 on">
 				<p class="title"><i></i><a href="http://blog.51cto.com/original">全部</a></p>
         	</li>
-        	
+        	@foreach($types as $ks=>$vs)
 			<li class="artical-parent-li artical-parent-li-2 ">
-				<p class="title"><i></i><a href="http://blog.51cto.com/original/27">系统/运维</a></p>
+				<p class="title"><i></i><a href="/home/total?pid={{$pid}}">{{$vs->name}}</a></p>
                 				<ul class="artical-child">
                 					<li class="artical-child-li ">
 						<a href="http://blog.51cto.com/original/44">Linux</a>
@@ -157,7 +157,7 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 					</li>
                 				</ul>
                 			</li>
-			        	
+			@endforeach       	
 			
 			        			</ul>
 	</div>
