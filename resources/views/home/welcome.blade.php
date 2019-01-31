@@ -418,20 +418,19 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             <li id="blog_2342274" class=' '>
                 <div class="userInfo clearfix">
                     <div class="is-vip-bg fl" style="margin-right:10px;">
-                        <a href="http://blog.51cto.com/cyent" target="_blank" style="margin-right:0;">
+                        <a href="javascript:void(0);"  style="margin-right:0;">
                             <img class="avatar is-vip-img is-vip-img-4" data-uid="905592" src="static/picture/noavatar_middle.gif"/>
                         </a>
                     </div>
-                    <a class="name" href="http://blog.51cto.com/cyent" target="_blank">{{$value->author}}</a>
+                    <a class="name" href="" target="_blank">{{$value->author}}</a>
                     <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
-                    
                     <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title">{{$value->title}}</a>
                 </h2>
                 <p class="con">{!!$value->contents!!}</p>
                 <div class="intro">
-                    <a class="jing" href="http://blog.51cto.com/artcommend" target="_blank">精选文章</a>                  
+                    <a class="jing" href="javascript:void(0);">精选文章</a>                  
                     <p class="">阅读&nbsp;<span class="read_num">{{$value->read_num}}</span></p>
                     <p class="">评论&nbsp;<span class="comment_num">{{getCom($value->art_id)}}</span></p>
                     <p class="">收藏&nbsp;<span class="collect_num">{{$value->collect_num}}</span></p>

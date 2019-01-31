@@ -159,14 +159,15 @@
                                         }
                                     });
                                 });
-                              
-                                   function delcom(){
+                                
+                                    function delcom(){
                                         var comid = $(this).parents('.top').next().val();
                                         $.get('/article/delcom',{comid:comid},function(data){
                                             if(data){
                                                 window.location.reload();
                                             }
-                                        }
+                                        })
+                                    }
                                 
                                 </script>
                                 <p class="msg fl"></p>
@@ -208,8 +209,7 @@
                                         <div class="time">
                                             <span class="fl">
                                                 {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}</span>
-                                            <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?');delcom()"/></span>
-                                            <span class="fr" blog_id="727805" type="2" userid="14169965"><img src="/static/images/65.png"></span>
+                                            <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?')"/></span>    
                                             <div class="clear"></div>
                                         </div>
                                         <input type="hidden" class="reply_id" value="727805">
@@ -218,8 +218,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="" value="{{$v->id}}">
-                                <div class="con msgs">{{$v->content}}</div> 
-                            </div>
+                                <div class="con msgs">{{$v->content}}</div> </div>
                         </div>
                         @endforeach          
                     </div>        
