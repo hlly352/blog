@@ -52,9 +52,9 @@
                         </div>
                         <h1 style="color:#333;">登录博客</h1>
                     </div>
-
+                    
                     @if(count($errors) > 0)
-                    <div class="alert alert-danger">
+                    <div style="background-color: #f8d7da;width: 310px;border-radius: 3px;color: #721c24;margin:0 auto;margin-top: 5px;margin-bottom: 5px">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -63,14 +63,8 @@
                     </div>
                     @endif
 
-                    @if(session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{session('success')}}
-                        </div>
-                    @endif
-
                     @if(session('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div style="background-color: #f8d7da;width: 310px;height:40px;line-height:40px;border-radius: 3px;color: #721c24;margin:0 auto;margin-top: 5px;margin-bottom: 15px;text-align: center" role="alert">
                             {{session('error')}}
                         </div>
                     @endif
