@@ -170,7 +170,14 @@ padding-top: 50px;
                 <input type="hidden" name="custom_id" value="" id="custom_id"></input>
       </div>
       <div class="remove-btn blue-btn fl">删除</div>
+
       <div class="clear"></div>
+        <style>
+            #pages li.disabled{background:white;}
+        </style>
+      <div id="pages" style="text-align:center">
+        {!!$rs->links()!!}
+      </div>
     </div>
       </div>
 </div>

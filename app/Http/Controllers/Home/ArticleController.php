@@ -17,7 +17,7 @@ class ArticleController extends Controller
     public function index()
     {
         //查找文章
-       
+        
 
         return redirect('/');
 
@@ -164,12 +164,41 @@ class ArticleController extends Controller
         echo 1;
      }
      //前台查看所有文章方法
-     public function total()
+     public function total(Request $request)
      {
+
+
+        //查找文章的一级分类
+        $types = Type::where('pid','0')->get();
+
         //从数据库读取所有文章
      
-        $rs = Article::get();
+        $rs = Article::where()->paginate(6);
         
-        return view('home.article.total',['title'=>'文章列表','rs'=>$rs]);
+        return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页','types'=>$types]);
+     }
+
+     //我的博客方法
+     public function myblog(Request $request)
+     {
+        $data = $request->person;
+        //通过分类名查询类名的id
+        try{
+            $person = Clas::where('name',$data)->first()->id;
+        } catch(\Exception $e) {
+            $person = '';
+        }
+        //查找当前用户的所有文章
+        $uid = session('userid');
+        //查找当前用户名
+        $username = getAuthor($uid);
+        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->get();
+
+
+        //查找个人的分类
+        $mytype = Clas::where('uid',$uid)->get();
+
+      
+        return view('home.article.myblog',['rs'=>$rs,'mytype'=>$mytype,'title'=>$username.'的博客']);
      }
 }

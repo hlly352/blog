@@ -133,6 +133,9 @@ Route::get('/home/doajax','Home\ArttypeController@doajax');
 //前台查看所有文章
 Route::any('/home/total','Home\ArticleController@total');
 
+//我的所有博客内容
+Route::any('/home/myblog','Home\ArticleController@myblog');
+
 
 
 
