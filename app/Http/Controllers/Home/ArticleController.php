@@ -184,10 +184,26 @@ class ArticleController extends Controller
 
         //查找文章的一级分类
         $types = Type::where('pid','0')->get();
+        $info = [];
+        foreach($types as $k=>$v){
+            $info[$v->id] = $v->name;
+            //通过一级分类的id查找二级分类的类名                                                                     
+            $s_types = Type::where('pid',$v->id)->get();
+            $t_type = [];
+            foreach($s_types as $ks=>$vs){
+                $t_type[] = Type::where('id',$vs->id)->first()->name;
+            }
+
+            $info[] = $t_type;
+        }
+        
+        dump($info);exit;
+        dump($types);exit;
+
 
         //从数据库读取所有文章
      
-        $rs = Article::where()->paginate(6);
+        $rs = Article::where('pid','like','%'.$request->pid.'%')->paginate(6);
         
         return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页','types'=>$types]);
      }
