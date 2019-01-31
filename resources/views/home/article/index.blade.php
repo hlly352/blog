@@ -8,423 +8,258 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
-        <title>基于QMP实现对qemu虚拟机进行交互-小慢哥Linux运维-51CTO博客</title>
+    <title></title>
     <meta name="keywords" content="qmp,qemu,hmp,kvm">
-<meta name="description" content="本文详解QMP，包含qmp、hmp、qemu-guest-agent的介绍、工作原理、配置方法、范例">    <link href="/static/css/header_2.css" rel="stylesheet"><link href="/static/css/other_2.css" rel="stylesheet"><link href="/static/css/right_2.css" rel="stylesheet"><link href="/static/css/blog_details.css" rel="stylesheet"><link href="/static/css/highlight.css" rel="stylesheet">
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
-    <script src="/static/js/jquery.min_5.js"></script><script src="/static/js/cookie_2.js"></script><script src="/static/js/login_2.js"></script><script src="/static/js/common_2.js"></script><script src="/static/js/mbox_2.js"></script><script src="/static/js/follow_2.js"></script><script src="/static/js/vip_2.js"></script><script src="/static/js/window_2.js"></script>
+    <meta name="description" content="本文详解QMP，包含qmp、hmp、qemu-guest-agent的介绍、工作原理、配置方法、范例">    
+    <link href="/static/css/header_2.css" rel="stylesheet">
+    <link href="/static/css/other_2.css" rel="stylesheet">
+    <link href="/static/css/right_2.css" rel="stylesheet">
+    <link href="/static/css/blog_details.css" rel="stylesheet">
+    <link href="/static/css/highlight.css" rel="stylesheet">
+    <script src="/static/js/jquery.min_5.js"></script>
+    <!-- <script src="/static/js/jquery-3.2.1.min.js"></script> -->
+    <script src="/static/js/cookie_2.js"></script>
+    <script src="/static/js/login_2.js"></script>
+    <script src="/static/js/common_2.js"></script>
+    <script src="/static/js/mbox_2.js"></script>
+    <script src="/static/js/follow_2.js"></script>
+    <script src="/static/js/vip_2.js"></script>
+    <script src="/static/js/window_2.js"></script>
 
-<img src="/static/picture/share_default_2.jpg" border="0" style="width:0; height:0; position:absolute;">
-<style type="text/css">
-  .service-btn{
-    width: 53px;
-height: 36px;
-color: #1ac6fe;
-line-height: 16px;
-padding-top: 50px;
-    display: inline-block;
-    background: url(/static/images/463350acf4c693cfb3dc248bc8a2a0eb_5.png) no-repeat center;
-  }
-  .service-btn:hover{
-    background: url(/static/images/2d5fa2ff4eb9ef66847aff20ba4c8bae_5.png) no-repeat center;
-height: 36px;
-color: #fff;
-line-height: 16px;
-padding-top: 50px;
-  }
-</style>
-<script src="/static/js/box_2.js"></script> 
-<script>
-    var isLogin = '0';
-    var userId = '';
-    var imgpath = 'https://s1.51cto.com/';
-    var BLOG_URL = 'http://blog.51cto.com/';
-    var msg_num_url = '/index/ajax-msg-num';
-    $('.msg-follow, .msg-follow-max').eq(1).css({top: '91px'});
-    $('.msg-follow, .msg-follow-max').eq(2).css({top: '121px'});
-    setTimeout(function(){
-            $.ajax({
-                url:msg_num_url,
-                type:"get",
-                dataType:'json',
-                success:function(res){
-                    if(res.status == '0'){
-                       //
-                       var hasNewMsg = false;
-                       if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
-                            $('#myMsg i').addClass('dot');
-                            hasNewMsg = true;
-                       }
-                       if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
-                           $('#myNotify i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
-                           $('#myRecommend i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
-                           $('#myAllMsg i').addClass('dot');
-                       }
-                    }
+    <img src="/static/picture/share_default_2.jpg" border="0" style="width:0; height:0; position:absolute;">
+    <style type="text/css">
+      .service-btn{
+        width: 53px;
+        height: 36px;
+        color: #1ac6fe;
+        line-height: 16px;
+        padding-top: 50px;
+        display: inline-block;
+        background: url(/static/images/463350acf4c693cfb3dc248bc8a2a0eb_5.png) no-repeat center;
+      }
+      .service-btn:hover{
+        background: url(/static/images/2d5fa2ff4eb9ef66847aff20ba4c8bae_5.png) no-repeat center;
+        height: 36px;
+        color: #fff;
+        line-height: 16px;
+        padding-top: 50px;
+      }
+    </style>
+    <script src="/static/js/box_2.js"></script> 
+    <script src="/static/js/entrance_3.js" id="zhichiScript" class="zhiCustomBtn" data-args="manual=true"></script>
 
-                }
-            });
-    },70);
-  
-</script>
- <script src="/static/js/entrance_3.js" id="zhichiScript" class="zhiCustomBtn" data-args="manual=true"></script>
-<a href="javascript:;" class="zhiCustomBtn" style="position: fixed;z-index: 2147483583;width: 60px;height: 6px;text-align: center;bottom:275px;right:0px;">
-<span class="service-btn">在线<br/>客服</span>
-</a>
-
-<script type="text/javascript">
-var zhiManager = (getzhiSDKInstance());
-zhiManager.on("load", function() {
-    zhiManager.initBtnDOM();
-});
-//zhiManager.set('title','垃圾/广告信息举报');
-zhiManager.set('powered',false);
-zhiManager.set('color', '4285f4');
-zhiManager.set('customBtn', 'true');
-zhiManager.set('moduleType',2);
-zhiManager.set('size',{'width':360,'height':500});
-
-zhiManager.set('userinfo', {partnerId:'',uname:'',params:'{"用户名":""}'});
-zhiManager.set('customMargin', 20);
-zhiManager.set('horizontal', 20);
-zhiManager.set('vertical', 90);
-zhiManager.set('preVisitArgs',{'preVisitUrl': document.referrer?document.referrer:''});
-zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:document.title,});
-</script>
-<div class="Content-box">
-      <link rel="stylesheet" href="/static/css/mdeshow.css">
-<link rel="stylesheet" href="/static/css/tinyscrollbar.css"/>
-<script type="text/javascript" src="/static/js/jquery.tinyscrollbar.js"></script>
-<div class="Content Index" style="padding-bottom: 50px;">
-  <div class="Page M764">
-    <!-- left start -->
-    <div class="artical-Left-blog">
-      <div class="status">
-                    <a class="tab_name original">原创</a>
-        <a class="tab_name translation" >推荐</a>     </div>
-      <h1 class="artical-title">{{$rs->title}}</h1>
-      <div class="artical-title-list">
-        <div class="is-vip-bg-6 fl">
-          <a href="http://blog.51cto.com/cyent" class="a-img" target="_blank"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="/static/picture/noavatar_middle_2.gif"></a>
-        </div>
-        <a href="http://blog.51cto.com/cyent" class="name fl" target="_blank" style="margin-right:0;">{{$rs->author}}</a>
-                                                        <a id="checkFollow1_905592" class="checkFollow-btn on fl" style="margin-left:8px;">关注</a>
-                                        <a class="comment comment-num fr"><font class="comment_number">{{$comment}}</font>人评论</a>
-        <span class="fr"></span>
-        <a href="javascript:;" class="read fr">{{$read}}人阅读</a>
-        <a href="javascript:;" class="time fr">{{date('Y-m-d H:is',$rs->addtime)}}</a>
-        <div class="clear"></div>
-      </div>
-              <div class="artical-content-bak main-content">
-          <div class="con artical-content editor-preview-side"><p><img src="/static/picture/cover.png" alt="基于QMP实现对qemu虚拟机进行交互" /></p>
-<blockquote>
-<p>{{$rs->description}}</p>
-</blockquote>
-<p><strong>{{$rs->author}}的原创文章，欢迎转载</strong></p>
-<hr />
-{!!$rs->contents!!}
-</div>
-        </div>
-                          <div class="artical-copyright mt26">©著作权归作者所有：来自51CTO博客作者{{$rs->author}}的原创作品，如需转载，请注明出处，否则将追究法律责任</div>
-                    <div class="appreciate-box">
-          <h2>好知识，才能预见未来</h2>
-                      <p class="appreciate-btn appreciate-open">赞赏</p>
-                    <p class="appreciate-txt">0人进行了赞赏支持</p>
-                  </div>
-            <div class="for-tag mt26">
-                                            <a href="http://blog.51cto.com/search/result?q=qmp" target="_blank">qmp</a>
-                                                <a href="http://blog.51cto.com/search/result?q=qemu" target="_blank">qemu</a>
-                                                <a href="http://blog.51cto.com/search/result?q=hmp" target="_blank">hmp</a>
-      </div>
-      <div class="more-list">
-        <p class="is-praise fl "><span type="1" blog_id="2342274" userid='905592'>1</span></p>
-        <div class="share-box fr">
-          <p class="share"><i></i>分享</p>
-          <div class="bdsharebuttonbox">
-            <span></span>
-            <a class="bds_tsina" data-cmd="tsina" >微博</a>
-            <a class="bds_sqq" data-cmd="sqq" >QQ</a>
-            <a class="bds_weixin" data-cmd="weixin" >微信</a>
-            <img src="/static/picture/768001fc752c4f0188d139c55aebd970.gif">
-          </div>
-        </div>
-        <p class="favorites favorites-opt fr"><i></i>收藏</p>
-                <div class="clear"></div>
-      </div>
-              <div class="artical-list">
-                        <a class="fl" href="http://blog.51cto.com/cyent/2332161" title="基于RHEL8/CentOS8的nmcli常用命令总结">
-            上一篇：基于RHEL8/CentOS8的...</a>
-                                      <div class="clear"></div>
-        </div>
-            <div class="author-module">
-        <div class="is-vip-bg-6 fl">
-          <a href="http://blog.51cto.com/cyent" class="a-img" target="_blank">
-            <img class="is-vip-img is-vip-img-4" data-uid="905592" src="/static/picture/noavatar_middle_2.gif">
-          </a>
-        </div>
-        <div class="author-module-center fl">
-          <a class="h2" href="http://blog.51cto.com/cyent" target="_blank" style="display:inline-block;">小慢哥</a>
-                    <h3>17篇文章，8W+人气，6粉丝</h3>
-          <h4>当前从事云计算虚拟化架构及运维</h4>        </div>
-                  <div class="author-module-right author-checkFollow fr">
-                              <a id="checkFollow2_905592" class="follow-1 checkFollow on">关注</a>
+    <div class="Content-box">
+        <link rel="stylesheet" href="/static/css/mdeshow.css">
+        <link rel="stylesheet" href="/static/css/tinyscrollbar.css"/>
+        <script type="text/javascript" src="/static/js/jquery.tinyscrollbar.js"></script>
+        <div class="Content Index" style="padding-bottom: 50px;">
+            <div class="Page M764">
+                <!-- left start -->
+                <div class="artical-Left-blog">
+                    <div class="status">
+                        <a class="tab_name original">原创</a>
+                        <a class="tab_name translation" >推荐</a>     
+                    </div>
+                    <h1 class="artical-title">{{$rs->title}}</h1>
+                    <div class="artical-title-list">
+                        <div class="is-vip-bg-6 fl" style="height: 100px">
+                            <a href="" class="a-img" target="_blank"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="{{$img}}"></a>
                         </div>
-                <div class="clear"></div>
-      </div>
-    </div>
-    <div class="artical-Left" id="comment">
-      <!-- 发布评论 -->
-      <div class="comment-creat">
-        <div class="is-vip-bg-6 fl">
-          <a href="http://blog.51cto.com/cyent" class="header-img" target="_blank">
-            <img  src="/static/picture/noavatar_middle_2.gif"/>
-          </a>
-        </div>
-        <div class="first-publish fr publish_user_id">
-          <textarea class="textareadiv textareadiv-publis" name="" id="" placeholder="用心的回复会被更多人看到和认可"  maxlength="500"></textarea>
-          <div class="comment-push">
-            <input type="hidden" id="artid" value="{{$rs->id}}"/>
-            <script>
-            
-               $(function(){
-                $('.cancel-btn-1').click(function(){
-                  $('.textareadiv').val('');
-                });
-         
-                });
-               $(function(){
-                       $('.blue-btn').click(function(){
-                  var mes = $('.textareadiv').val();
-                  if(mes == ''){
-                    alert('内容不能为空');
-                  }else{
-                    var id = $('#artid').val();
+                        <a href="" class="name fl" target="_blank" style="margin-right:0;">{{$rs->author}}</a>
+                        <a class="comment comment-num fr"><font class="comment_number">{{$comment}}</font>人评论</a>
+                        <span class="fr"></span>
+                        <a href="javascript:;" class="read fr">{{$read}}人阅读</a>
+                        <a href="javascript:;" class="time fr">{{date('Y-m-d H:is',$rs->addtime)}}</a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="artical-content-bak main-content">
+                        <div class="con artical-content editor-preview-side">
+                            
+                            <blockquote>
+                            <p>{{$rs->description}}</p>
+                            </blockquote>
+                            <p><strong>{{$rs->author}}的原创文章，欢迎转载</strong></p>
+                            <hr />
+                            {!!$rs->contents!!}
+                        </div>
+                    </div>
+                    <div class="artical-copyright mt26">©著作权归作者所有：来自51CTO博客作者{{$rs->author}}的原创作品，如需转载，请注明出处，否则将追究法律责任</div>
+                    <div class="appreciate-box">
+                        <h2>好知识，才能预见未来</h2>
+                        <p class="appreciate-btn appreciate-open">赞赏</p>
+                        <p class="appreciate-txt">0人进行了赞赏支持</p>
+                    </div>
                     
-                    $.get('/article/comment',{id:id,mes:mes},function(data){
-                        if(data){
-                          window.location.reload();
-                        }
-                    });
-                  }
-                });
-               });
-            </script>
-            <p class="msg fl">Ctrl+Enter&nbsp;发布</p>
-                          <p class="blue-btn fr" style="padding:0 20px;cursor:pointer" >发布</p>
-                        <p class="cancel-btn cancel-btn-1 fr">取消</p>
-            <div class="clear"></div>
-          </div>
-          <input type="hidden" class="user_id" value="905592" display>
-          <input type="hidden" class="reply_id" value="2342274">
-          <input type="hidden" class="first_pid" value="">
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="comment-number" id="comment_pl">
-          <p class="number fl"><span class="comment_number">
-          {{$comment == 0?'0':$comment}}
-        </span>条评论</p>
-          <a class="time-last time fr comment-sort" id="sort-desc" flag="desc" page="1">按时间倒序</a>
-            <a class="time-first time fr comment-sort on" id="sort-asc" flag="asc" page="2"></a>
-            <div class="clear"></div>
-        </div>
-     <div class="commentLists" style="margin-top:36px">
-          <!--显示评论-->
-        @foreach($info as $k=>$v)
-          <div class="commentList-box cbox-727805" id="727805" style="background: rgb(255, 255, 255);">
-              <div class="comment-1 publish_user_id reply_id_box comment_number-list"
-              rid="727805">
-                  <div class="top">
-                      <div class="is-vip-bg-6 fl header-con">
-                          <a href="http://blog.51cto.com/14179965" class="header-img">
-                              <img class="is-vip-img-bg is-vip-img-4" src="http://ucenter.51cto.com/images/noavatar_middle.gif">
-                          </a>
-                      </div>
-                      <div class="head-right jf-list-box">
-                          <p class="name">
-                              <a href="http://blog.51ctocom/14179965">
-                                  {{getAuthor($v->uid)}}
-                              </a>
-                          </p>
-                          <div class="time">
-                              <span class="fl">
-                                  {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}
-                              </span>
-                              <span class="fr remove">
-                              </span>
-                              <span class="zan fr" blog_id="727805" type="2" userid="14169965">
-                              </span>
-                              <div class="clear">
-                              </div>
-                          </div>
-                          <input type="hidden" class="reply_id" value="727805">
-                          <input type="hidden" class="user_id" value="14169965">
-                          <input type="hidden" class="first_pid" value="727805">
-                      </div>
-                  </div>
-                  <div class="con">
-                      {{$v->content}}
-                  </div>
-              </div>
-          </div>
-        @endforeach
-        
-          
-</div>
-        
-      <!-- page -->
-      <div class="act_pageList_box"></div>
-    </div>
-    <!-- end left -->
-    <!-- right start -->
-    <div class="Blog-Right artical-Right">
-      <a class="catalog"></a>
-      <a class="scrollTop" href="javascript:void(0);" onclick="$(window).scrollTop(0);"></a>
-    </div>
-    <!-- end right  -->
-  </div>
-      <div class="special-column">
-      <div class="Page M764">
-                  <div class="column-1">
-            <h2 class="column-tit">推荐专栏</h2>
-                          <div class="column-box">
-                <a href="http://blog.51cto.com/cloumn/detail/13" class="a-img fl cloumn-tab-par" target="_blank">
-                  <img src="/static/picture/a940c66317ecbe58436a2ad3831c2d7d.png">
-                                          </a>
-                <div class="center fl">
-                  <a class="h2 white-space" href="http://blog.51cto.com/cloumn/detail/13" target="_blank"> 基于Python的DevOps实战</a>
-                  <h3 class="white-space">自动化运维开发新概念</h3>
-                  <h4 class="white-space">共20章&nbsp;|&nbsp;<a href="http://blog.51cto.com/yuhongchun" target="_blank">抚琴煮酒</a></h4>
-                  <h5><span class="price">
-                                    ￥51.00
-                                    </span><span>326人订阅</span></h5>
+                    <div class="more-list">
+                        <p class="is-praise fl "><span type="1" blog_id="2342274" userid='905592'>1</span></p>
+                        <div class="share-box fr">
+                            <p class="share"><i></i>分享</p>
+                            <div class="bdsharebuttonbox">
+                                <span></span>
+                                <a class="bds_tsina" data-cmd="tsina" >微博</a>
+                                <a class="bds_sqq" data-cmd="sqq" >QQ</a>
+                                <a class="bds_weixin" data-cmd="weixin" >微信</a>
+                                <img src="/static/picture/768001fc752c4f0188d139c55aebd970.gif">
+                            </div>
+                        </div>
+                        <p class="favorites favorites-opt fr"><i></i>收藏</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="artical-list">
+                        <a class="fl" href="" title="基于RHEL8/CentOS8的nmcli常用命令总结">上一篇：基于RHEL8/CentOS8的...</a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="author-module">
+                        <div class="is-vip-bg-6 fl">
+                            <a href="http://blog.51cto.com/cyent" class="a-img" target="_blank">
+                                <img class="is-vip-img is-vip-img-4" data-uid="905592" src="/static/picture/noavatar_middle_2.gif">
+                            </a>
+                        </div>
+                        <div class="author-module-center fl">
+                            <a class="h2" href="http://blog.51cto.com/cyent" target="_blank" style="display:inline-block;">小慢哥</a>
+                            <h3>17篇文章，8W+人气，6粉丝</h3>
+                            <h4>当前从事云计算虚拟化架构及运维</h4>        
+                        </div>
+                        <div class="author-module-right author-checkFollow fr">
+                            <a id="checkFollow2_905592" class="follow-1 checkFollow on">关注</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
                 </div>
-                <div class="right fr">
-                                                                    <a class="cloumn-subscribe" cid="13" href="/cloumn/detail/13" ask='1' target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
-                                                          </div>
-                <div class="clear"></div>
-              </div>
-                          <div class="column-box">
-                <a href="http://blog.51cto.com/cloumn/detail/30" class="a-img fl cloumn-tab-par" target="_blank">
-                  <img src="/static/picture/5353379fc95da1d7d34fd243b9ace17f.jpg">
-                                          </a>
-                <div class="center fl">
-                  <a class="h2 white-space" href="http://blog.51cto.com/cloumn/detail/30" target="_blank"> 全局视角看大型园区网</a>
-                  <h3 class="white-space">路由交换+安全+无线+优化+运维</h3>
-                  <h4 class="white-space">共40章&nbsp;|&nbsp;<a href="http://blog.51cto.com/weilan2222" target="_blank">51CTO夏杰</a></h4>
-                  <h5><span class="price">
-                                    ￥51.00
-                                    </span><span>857人订阅</span></h5>
+                <div class="artical-Left" id="comment" style="margin:0 auto">
+                    <!-- 发布评论 -->
+                    <div class="comment-creat">
+                        <div class="is-vip-bg-6 fl">
+                            <a href="http://blog.51cto.com/cyent" class="header-img" target="_blank">
+                                <img  src="{{$profile}}"/>
+                            </a>
+                        </div>
+                        <div class="first-publish fr publish_user_id">
+                            <textarea class="textareadiv textareadiv-publis" name="" id="" placeholder="用心的回复会被更多人看到和认可"  maxlength="500"></textarea>
+                            <div class="comment-push">
+                                <input type="hidden" id="artid" value="{{$rs->id}}"/>
+                                <script>           
+                                $(function(){
+                                    $('.cancel-btn-1').click(function(){
+                                        $('.textareadiv').val('');
+                                    });        
+                                });
+                                $(function(){
+                                    $('.blue-btn').click(function(){
+                                        var mes = $('.textareadiv').val();
+                                        if(mes == ''){
+                                            alert('内容不能为空');
+                                        }else{
+                                            var id = $('#artid').val();                   
+                                            $.get('/article/comment',{id:id,mes:mes},function(data){
+                                                if(data){
+                                                    window.location.reload();  
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
+                              
+                                   function delcom(){
+                                        var comid = $(this).parents('.top').next().val();
+                                        $.get('/article/delcom',{comid:comid},function(data){
+                                            if(data){
+                                                window.location.reload();
+                                            }
+                                        }
+                                
+                                </script>
+                                <p class="msg fl"></p>
+                                <p class="blue-btn fr" style="padding:0 20px;cursor:pointer" >发布</p>
+                                <p class="cancel-btn cancel-btn-1 fr">取消</p>
+                                <div class="clear"></div>
+                            </div>
+                            <input type="hidden" class="user_id" value="905592" display>
+                            <input type="hidden" class="reply_id" value="2342274">
+                            <input type="hidden" class="first_pid" value="">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="comment-number" id="comment_pl" style="margin:0px;margin-top:30px;margin-bottom:30px">
+                        <p class="number fl"><span class="comment_number">
+                          {{$num}}
+                        </span>条评论</p>
+                        <a class="time-last time fr comment-sort" id="sort-desc" flag="desc" page="1">按时间倒序</a>
+                        <a class="time-first time fr comment-sort on" id="sort-asc" flag="asc" page="2"></a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="commentLists" style="margin-top:36px">
+                        <!--显示评论-->
+                        @foreach($info as $k=>$v)
+                        <div class="commentList-box cbox-727805" id="727805" style="background: rgb(255, 255, 255);">
+                            <div class="comment-1 publish_user_id reply_id_box comment_number-list" rid="727805">
+                                <div class="top">
+                                    <div class="is-vip-bg-6 fl header-con">
+                                        <a href="http://blog.51cto.com/14179965" class="header-img">
+                                            <img class="is-vip-img-bg is-vip-img-4" src="{{getImg($v->uid)}}">
+                                        </a>
+                                    </div>
+                                    <div class="head-right jf-list-box">
+                                        <p class="name">
+                                            <a href="http://blog.51ctocom/14179965">
+                                                {{getAuthor($v->uid)}}
+                                            </a>
+                                        </p>
+                                        <div class="time">
+                                            <span class="fl">
+                                                {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}</span>
+                                            <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?');delcom()"/></span>
+                                            <span class="fr" blog_id="727805" type="2" userid="14169965"><img src="/static/images/65.png"></span>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <input type="hidden" class="reply_id" value="727805">
+                                        <input type="hidden" class="user_id" value="14169965">
+                                        <input type="hidden" class="first_pid" value="727805">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="" value="{{$v->id}}">
+                                <div class="con msgs">{{$v->content}}</div> 
+                            </div>
+                        </div>
+                        @endforeach          
+                    </div>        
+                    <!-- page -->
+                    <div class="act_pageList_box"></div>
                 </div>
-                <div class="right fr">
-                                                                    <a class="cloumn-subscribe" cid="30" href="/cloumn/detail/30" ask='1' target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
-                                                          </div>
-                <div class="clear"></div>
-              </div>
-                          <div class="column-box">
-                <a href="http://blog.51cto.com/cloumn/detail/18" class="a-img fl cloumn-tab-par" target="_blank">
-                  <img src="/static/picture/45862f289339dc922ffda669fd74ad9b.jpg">
-                                              <span class="cloumn-tab-new cloumn-tab-new-1 cloumn-tab1 f12">最近更新</span>
-                                          </a>
-                <div class="center fl">
-                  <a class="h2 white-space" href="http://blog.51cto.com/cloumn/detail/18" target="_blank"> 网工2.0晋级攻略 ——零基础入门Python/Ansible</a>
-                  <h3 class="white-space">网络工程师2.0进阶指南</h3>
-                  <h4 class="white-space">共30章&nbsp;|&nbsp;<a href="http://blog.51cto.com/gingerbeer" target="_blank">姜汁啤酒</a></h4>
-                  <h5><span class="price">
-                                    ￥51.00
-                                    </span><span>1232人订阅</span></h5>
+                <!-- end left -->
+                <!-- right start -->
+                <div class="Blog-Right artical-Right">
+                    <a class="catalog"></a>
+                    <a class="scrollTop" href="javascript:void(0);" onclick="$(window).scrollTop(0);"></a>
                 </div>
-                <div class="right fr">
-                                                                    <a class="cloumn-subscribe" cid="18" href="/cloumn/detail/18" ask='1' target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
-                                                          </div>
-                <div class="clear"></div>
-              </div>
-                          <div class="column-box">
-                <a href="http://blog.51cto.com/cloumn/detail/6" class="a-img fl cloumn-tab-par" target="_blank">
-                  <img src="/static/picture/629650e188ddde78b213e564c2e9ebff.jpg">
-                                          </a>
-                <div class="center fl">
-                  <a class="h2 white-space" href="http://blog.51cto.com/cloumn/detail/6" target="_blank"> 负载均衡高手炼成记</a>
-                  <h3 class="white-space">高并发架构之路</h3>
-                  <h4 class="white-space">共15章&nbsp;|&nbsp;<a href="http://blog.51cto.com/sery" target="_blank">sery</a></h4>
-                  <h5><span class="price">
-                                    ￥51.00
-                                    </span><span>426人订阅</span></h5>
-                </div>
-                <div class="right fr">
-                                                                    <a class="cloumn-subscribe" cid="6" href="/cloumn/detail/6" ask='1' target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
-                                                          </div>
-                <div class="clear"></div>
-              </div>
-                          <div class="column-box">
-                <a href="http://blog.51cto.com/cloumn/detail/5" class="a-img fl cloumn-tab-par" target="_blank">
-                  <img src="/static/picture/dc6736c5fd50474b5df8b76b040e3d03.jpg">
-                                          </a>
-                <div class="center fl">
-                  <a class="h2 white-space" href="http://blog.51cto.com/cloumn/detail/5" target="_blank"> 带你玩转高可用</a>
-                  <h3 class="white-space">前百度高级工程师的架构高可用实战</h3>
-                  <h4 class="white-space">共15章&nbsp;|&nbsp;<a href="http://blog.51cto.com/13527416" target="_blank">曹林华</a></h4>
-                  <h5><span class="price">
-                                    ￥51.00
-                                    </span><span>410人订阅</span></h5>
-                </div>
-                <div class="right fr">
-                                                                    <a class="cloumn-subscribe" cid="5" href="/cloumn/detail/5" ask='1' target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
-                                                          </div>
-                <div class="clear"></div>
-              </div>
-                      </div>
-                          <div class="column-2" style="margin-top: 76px;">
-            <h2 class="column-tit">猜你喜欢</h2>
-            <div class="column-box">
-                              <a class="white-space" href="http://blog.51cto.com/cyent/2332161?source=dra" target="_blank">基于RHEL8/CentOS8的nmcli常用命令总结</a>
-                              <a class="white-space" href="http://blog.51cto.com/cyent/2331719?source=dra" target="_blank">基于RHEL8/CentOS8的网络IP配置详解</a>
-                              <a class="white-space" href="http://blog.51cto.com/12643266/2343070?source=drh" target="_blank">Linux自动化运维之Cobbler（快速入门）</a>
-                              <a class="white-space" href="http://blog.51cto.com/sery/2342085?source=drh" target="_blank">proxmox超融合集群挂接nfs出错删除挂接点操作备忘</a>
-                              <a class="white-space" href="http://blog.51cto.com/bigboss/2341986?source=drh" target="_blank">Centos7 搭建LDAP并启用TLS加密</a>
-                              <a class="white-space" href="http://blog.51cto.com/13701082/2341944?source=drh" target="_blank">Centos7 haproxy动静分离</a>
-                              <a class="white-space" href="http://blog.51cto.com/zpf666/2340863?source=drh" target="_blank">一次JDBC与MySQL因“CST”时区协商误解导致时间差了13或14个小时</a>
-                              <a class="white-space" href="http://blog.51cto.com/dashui/2340204?source=drh" target="_blank">初创团队持续集成的落地与实现（gitlab+python）</a>
-                            <div class="clear"></div>
+                <!-- end right  -->
             </div>
-          </div>
-              </div>
-    </div>
- 
-      
-  <div class="the-lowest-bg">
-    <div class="the-lowest Page M764">
-      <p class="is-praise fl "><span type="1" blog_id="2342274" userid='905592'>1</span></p>
-      <p class="b-favorites favorites-opt fl"><i></i><b>0</b></p>
-      <a class="b-reply fl"><i></i><font class="comment_number"></font></a>
-      <div class="b-share fl">
-        <i></i>分享
-        <div class="bdsharebuttonbox">
-          <a class="bds_tsina p2" data-cmd="tsina"></a>
-          <a class="bds_sqq p3" data-cmd="sqq"></a>
-          <a class="bds_weixin p1" data-cmd="weixin"><em class="code-icon"></em><img class="code-img" src="/static/picture/768001fc752c4f0188d139c55aebd970.gif"></a>
-        </div>
-      </div>
-              <div class="b-fllow author-checkFollow fr" style="margin-left: 20px;">
-                        <a id="checkFollow3_905592" class="follow-1 checkFollow on">关注</a>
-                  </div>
-                  <a href="http://blog.51cto.com/cyent" class="b-name fr">小慢哥</a>
-      <div class="is-vip-bg-6 fr">
-        <a href="http://blog.51cto.com/cyent" class="b-img"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="/static/picture/noavatar_middle_2.gif"></a>
-      </div>
-      <div class="clear"></div>
 
-    </div>
-  </div>
-</div>
+            <div class="the-lowest-bg">
+                <div class="the-lowest Page M764">
+                    <p class="is-praise fl "><span type="1" blog_id="2342274" userid='905592'>1</span></p>
+                    <p class="b-favorites favorites-opt fl"><i></i><b>0</b></p>
+                    <a class="b-reply fl"><i></i><font class="comment_number"></font></a>
+                    <div class="b-share fl">
+                        <i></i>分享
+                        <div class="bdsharebuttonbox">
+                            <a class="bds_tsina p2" data-cmd="tsina"></a>
+                            <a class="bds_sqq p3" data-cmd="sqq"></a>
+                            <a class="bds_weixin p1" data-cmd="weixin"><em class="code-icon"></em><img class="code-img" src="/static/picture/768001fc752c4f0188d139c55aebd970.gif"></a>
+                        </div>
+                    </div>
+                    <div class="b-fllow author-checkFollow fr" style="margin-left: 20px;">
+                        <a id="checkFollow3_905592" class="follow-1 checkFollow on">关注</a>
+                    </div>
+                    <a href="" class="b-name fr">小慢哥</a>
+                    <div class="is-vip-bg-6 fr">
+                        <a href="" class="b-img"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="/static/picture/noavatar_middle_2.gif"></a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div></div>
+
 <!-- 老博文美观处理 -->
 <script src="/static/js/countdown.js"></script>
 <script>
@@ -577,7 +412,12 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
     })  
 </script>
 </div>
-<script src="/static/js/marked.min.js"></script><script src="/static/js/highlight.js"></script><script src="/static/js/detail_mp.js"></script><script src="/static/js/detail.js"></script><script src="/static/js/details_new.js"></script><script src="/static/js/copy.js"></script>   <!--  <script src="/static/js/pvlog_1.js"></script> -->
+<script src="/static/js/marked.min.js"></script>
+<script src="/static/js/highlight.js"></script>
+<script src="/static/js/detail_mp.js"></script>
+<script src="/static/js/detail.js"></script>
+<script src="/static/js/details_new.js"></script>
+<script src="/static/js/copy.js"></script>   <!--  <script src="/static/js/pvlog_1.js"></script> -->
 <script>
   $(".gotop").click(function(){$(window).scrollTop(0)})
 </script>

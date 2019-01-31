@@ -59,9 +59,6 @@
         <ul class="Navigates Navigates-right fr">
             <li class="more maps">
                 <a href="/home/logout">退出</a>
-                <div>
-                    
-                </div>
             </li>
             @if(session('userid'))
             <li class="more user">
@@ -88,12 +85,8 @@
                 <a href="/home/login" target="_self">登录</a>
             </li>
             @endif
-            <li class="mRead"><a href="javascript:;"></a>
-                <div>
-                    
-                   
-                    <i class="arrow"></i>
-                </div>
+            <li class="mRead">
+                
             </li>
             <li class="search">
                 <a href=""  target="_self">搜索</a>
@@ -104,84 +97,7 @@
     </div>
 </div>
 <script src="/static/js/box.js"></script> 
-<script>
-    var isLogin = '0';
-    var userId = '';
-    var imgpath = 'https://s1.51cto.com/';
-    var BLOG_URL = 'http://blog.51cto.com/';
-    var msg_num_url = '/index/ajax-msg-num';
-    $('.msg-follow, .msg-follow-max').eq(1).css({top: '91px'});
-    $('.msg-follow, .msg-follow-max').eq(2).css({top: '121px'});
-    setTimeout(function(){
-            $.ajax({
-                url:msg_num_url,
-                type:"get",
-                dataType:'json',
-                success:function(res){
-                    if(res.status == '0'){
-                       //
-                       var hasNewMsg = false;
-                       if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
-                            $('#myMsg i').addClass('dot');
-                            hasNewMsg = true;
-                       }
-                       if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
-                           $('#myNotify i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
-                           $('#myRecommend i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
-                           $('#myAllMsg i').addClass('dot');
-                       }
-                    }
 
-                }
-            });
-    },70);
-    //广告图
-</script>
-<script src="/static/js/entrance.js" id="zhichiScript" class="zhiCustomBtn" data-args="manual=true"></script>
-
-
-<script type="text/javascript">
-var zhiManager = (getzhiSDKInstance());
-zhiManager.on("load", function() {
-    zhiManager.initBtnDOM();
-});
-//zhiManager.set('title','垃圾/广告信息举报');
-zhiManager.set('powered',false);
-zhiManager.set('color', '4285f4');
-zhiManager.set('customBtn', 'true');
-zhiManager.set('moduleType',2);
-zhiManager.set('size',{'width':360,'height':500});
-
-zhiManager.set('userinfo', {partnerId:'',uname:'',params:'{"用户名":""}'});
-zhiManager.set('customMargin', 20);
-zhiManager.set('horizontal', 20);
-zhiManager.set('vertical', 90);
-zhiManager.set('preVisitArgs',{'preVisitUrl': document.referrer?document.referrer:''});
-zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:document.title,});
-</script>
-<script>
-  function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
-    if(e==2||e==3){
-        $.post('/index/wxbind',{uid:userId},function(res){
-            if(res.status==1){
-                if(res.data.wxBind == 0){//没绑定
-                    if(getCookie('follow1'))return false;
-                    box1()
-                }else{
-                    if(getCookie('follow2'))return false;
-                    box2()
-                }
-            }
-        },'json')
-    }
-  }
-</script>
 @section('content')
 
 @show
@@ -251,134 +167,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
 </script>
 
 
-    <script type="text/javascript">
-    //百度统计代码
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?2283d46608159c3b39fc9f1178809c21";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-
-    //自动推送链接
-    (function(){
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bd/static.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-    </script>
-
-    <script type='text/javascript'>
-      var _vds = _vds || [];
-      window._vds = _vds;
-      (function(){
-        _vds.push(['setAccountId', '8c51975c40edfb67']);
-        (function() {
-          var vds = document.createElement('script');
-          vds.type='text/javascript';
-          vds.async = true;
-          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'assets.growingio.com/vds.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(vds, s);
-        })();
-      })();
-      //document.write(decodeURI("%3Cscript src='https://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E"));
-    </script>
     
-<script>
-  var uid = '';
-  var BLOG_URL = 'http://blog.51cto.com/';
-</script>
-<script src="/static/js/jquery.cookie.js"></script>
-<script src="/static/js/time-on-page.js" charset="utf-8"></script>
-<script>
-    var praise_url = 'http://blog.51cto.com/praise/praise';
-    var blog_ids = '2342274,2341986,2343515,2343452,2343316,2343070,2342980,2342504,2342284,2342085,2341944,2341911,2341658,2341541,2341273,2340863,2340777,2340750,2340464,2340378,2340204,2340038,2340024,2340022,2340015,2339960,2339755,2339601,2339589,2339520';
-    var blog_stat_url = '/index/ajax-blog-stat';
-    setTimeout(function(){
-            $.ajax({
-                url:blog_stat_url,
-                type:"get",
-                data:{
-                   ids:blog_ids,
-                },
-                dataType:'json',
-                success:function(res){
-                    if(res.status == '0'){
-                       $.each(res.data, function(index, item){
-                           var blog_id = item.blog_id;
-                           var li_id_name = 'blog_' + blog_id;
-                           $('#'+li_id_name).find('.read_num').html(item.pv);
-                           $('#'+li_id_name).find('.collect_num').html(item.favorite_num);
-                           if(item.pv == '10000+'){
-                              $('#'+li_id_name).find('.read_num').append('<i></i>')
-                              $('#'+li_id_name).find('.read_num').parent().addClass('hasdot')
-                           }
-                           $('#'+li_id_name).find('.comment_num').html(item.comments_num);
-                           if(item.admire_user_num > '0'){
-                               $('#'+li_id_name).find('.admire_num').html(item.admire_user_num);
-                               $('#'+li_id_name).find('.admire_num_p').show();
-                           }
-                           $('#'+li_id_name).find('.zan').html(item.apraise_num);
-                           if(item.isPraise == '1'){
-                               $('#'+li_id_name).find('.zan').addClass('ed');
-                           }
-                       });
-                    }
-                }
-            });
-    },100);
-     updatePage()
-//倒计时
-  function updatePage() {
-    $('.timeCount').each(function(index, item) {
-    	var self =this
-      var me = $(self);
-      var end_time = $(self).data('end');
-      if (!end_time||end_time<0) {
-      	me.parents(".groups-timer-right").html("")
-        return;
-      }
-      if (me.lastTime) {
-        clearInterval(me.lastTime);
-        me.lastTime = null;
-      } else {
-      	if(end_time>0){
-         me.lastTime = setInterval(function() {
-         end_time--
-		     if (!end_time||end_time<0) {
-		     	 me.parents(".groups-timer-right").html("")
-		     	 	 window.location.reload()
-		        return "";
-		     }else{
-        var hour, minute, seconds,
-        hour = Math.floor(end_time  / (60 * 60) % 60),
-        minute = Math.floor(end_time  / 60 % 60),
-        seconds = Math.floor(end_time  % 60);
-        me.html((hour < 10 ? '0' + hour : hour) + ':' +(minute < 10 ? '0' + minute : minute) + ':' +
-        (seconds < 10 ? '0' + seconds : seconds) );
-            }
-        }, 1000);
-
-      	}
-
-      }
-    });
-  }
-	//拼团按钮
-	$(".jion-group-btn").hover(function(){
-		$(this).find(".group-qrcode-box").show()
-	},function(){
-		$(this).find(".group-qrcode-box").hide()
-	})
 </script>
 @section('js')
 

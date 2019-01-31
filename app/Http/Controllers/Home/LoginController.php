@@ -17,18 +17,26 @@ class LoginController extends Controller
 
     public function dologin(Request $request)
     {
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
+        ],[
+            'username.required' => '用户名不能为空',
+            'password.required' => '密码不能为空',
+        ]);
     	$res = $request->except('_csrf','_token','show_qr','login-button');
     	$username = $request->username;
     	$user = DB::table('user')->where('username',$username)->first();
     	$pass = $request->password;
     	// dd($pass);
-        if($user->status){
-            return back()->with('error','你已被禁止登录!!');
-        }
         
     	if(!$user){
     		return back()->with('error','用户名或密码不正确');
     	}
+
+        if($user->status){
+            return back()->with('error','你已被禁止登录!!');
+        }
 
     	//解密
     	if(!Hash::check($pass,$user->password)){

@@ -89,7 +89,7 @@
 			                            {{gettitle($v->art_id)}} 
 			                            </font></font></td>
 			                             <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->content}}</font></font></td>
-			                              <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{date('Y-m-d H:i:s',$v->name)}}</font></font></td>
+			                              <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{date('Y-m-d H:i:s',$v->addtime)}}</font></font></td>
 			                            
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
 			                            		  {{getAuthor($v->uid)}} 

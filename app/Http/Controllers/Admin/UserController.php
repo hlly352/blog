@@ -71,7 +71,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //获取表单传过来的数据
-        
+
         $user = User::
         where('username','like','%'.$request->username.'%')->orderBy('level','desc')->orderBy('addtime','desc')->paginate($request->input('nums',10));
         $id = 1;
@@ -115,8 +115,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return back();
         }
-
-
     }
 
     /**
@@ -127,7 +125,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
         
         $res = User::find($id)->infos;
         // dump($res);
@@ -168,8 +165,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-
         //表单验证
+        $this->validate($request, [
+            'username' => 'required|unique:user|regex:/.{2,10}/',
+        ],[
+            'username.unique' => '该用户名已存在',
+            'username.required' => '用户名不能为空',
+            'username.regex' => '用户名格式不正确',
+        ]);
 
         $res = $request->except('_token','_method');
         try {

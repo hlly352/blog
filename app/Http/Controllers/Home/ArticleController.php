@@ -9,7 +9,7 @@ use App\Model\Admin\User;
 use App\Model\Admin\Article;
 use App\Model\Admin\Comment;
 use App\Model\Home\Clas;
-
+use DB;
 
 class ArticleController extends Controller
 {
@@ -57,6 +57,7 @@ class ArticleController extends Controller
         $rs['contents'] = $request->input('editorValue');
         $clasname = $request->input('person');
         //通过类名查询类名数据库中是否已经存在该类名
+        
         try{
             $classid = Clas::where('name',$clasname)->first()->id;
             } catch(\Exception $e) {
@@ -80,7 +81,7 @@ class ArticleController extends Controller
                 }
                 
       //添加文章
-            
+           
     try{
       
              $res = Article::create($rs);
@@ -102,15 +103,28 @@ class ArticleController extends Controller
        
         //通过id查找文章内容
         // $rs = Article::with('artinfo')->where('id',$id)->first();
+        // dump($request->all());
         $rs = Article::where('id',$id)->first();
         $read = $request->read;
         $comment = $request->comment;
         //查询评论表
         $info = Comment::where('art_id',$id)->orderBy('addtime','desc')->get();
+        // dump($id);
+        // dump($info);
+        $num = 0;
+        foreach($info as $k=>$v){
+            // dump($v->art_id);
+            $num++;
+        }
+        // dump($num);
+        
         $i = 1;
-        $users = getAuthor(1);
-
-        return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users]);
+        $users = getAuthor($rs->uid);
+        $img = DB::table('userinfo')->where('uid',$rs->uid)->first()->profile;
+        // dump($img);
+        $userid = session('userid');
+        $profile = DB::table('userinfo')->where('uid',$userid)->first()->profile;
+        return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'profile'=>$profile,'num'=>$num]);
     }
 
     /**
@@ -152,7 +166,7 @@ class ArticleController extends Controller
         //接收数据
         $rs['content'] = $_GET['mes'];
         $rs['art_id'] = $_GET['id'];
-        $rs['uid'] = 1;
+        $rs['uid'] = session('userid');
         $rs['addtime'] = time();
         //添加评论
         try{
@@ -200,5 +214,19 @@ class ArticleController extends Controller
 
       
         return view('home.article.myblog',['rs'=>$rs,'mytype'=>$mytype,'title'=>$username.'的博客']);
+     }
+
+     //删除评论的方法
+     public function delcom()
+     {
+        $comid =  $_GET['comid'];
+        //删除评论
+        $data = Comment::destroy($comid);
+        if($data){
+            return 1;
+        } else {
+            return 0;
+        }
+        
      }
 }

@@ -59,7 +59,9 @@ $(document).ready(function(){
 <form action="/home/register/add" method="post" name="">
     <!-- <input type="hidden" name="token" id="token" value=""> -->
     <div class="zczh">
-        <dl class="tit_wx clearfix"></dl>
+        <dl class="tit_wx clearfix">
+            
+        </dl>
         <div class="tab_wxzh">
             <div class="tab_wxzh_in">                
                 <span class="cur" onclick="changeBindType(0)">创建新账号</span>
@@ -69,9 +71,11 @@ $(document).ready(function(){
             .icon_name{ background:url(/image/name.png) no-repeat 6px center;}
             .icon_pass{ background:url(/image/pass.png) no-repeat 6px center;}
             .icon_mail{ background:url(/image/mail.png) no-repeat 6px center;}
+            .tips{background-color: #f8d7da;width: 322px;border-radius: 3px;color: #721c24;margin:0 auto;margin-top: 5px;margin-bottom: 5px}
+            .tab_wxform_in{padding-top: 10px}
         </style>
             @if(count($errors) > 0)
-            <div class="alert alert-danger">
+            <div class="tips">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -81,16 +85,17 @@ $(document).ready(function(){
             @endif
 
             @if(session('success'))
-                <div class="alert alert-success" role="alert">
+                <div class="" role="alert">
                     {{session('success')}}
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="alert alert-danger" role="alert">
+                <div class="" role="alert">
                     {{session('error')}}
                 </div>
             @endif
+            
         <div class="tab_wxform" >
             <div class="tab_wxform_in" style="display:block;">
                 

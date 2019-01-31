@@ -426,6 +426,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
+                    
                     <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title">{{$value->title}}</a>
                 </h2>
                 <p class="con">{!!$value->contents!!}</p>
