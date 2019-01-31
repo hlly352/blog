@@ -196,35 +196,34 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 
                 @endforeach
                 </select>
+             
 
                 @if(isset($mytype))
                 <select name="twice" id="" class="form-control cate pulldown system-select system-two fl">
-                   @foreach($rs as $k=>$v)
+    
+                    
+           
+                   @foreach($mytype as $ks=>$vs)
+                    <option value={{$vs->id}}>{{$vs->name}}</option>
+                   @endforeach
+        
                 
-                    @if(substr_count($v->path,',') == 2)
-                    <option value="8">{{$v->name}}</option>
-                    @endif    
-                
-                @endforeach
                 </select>
                 @else
                  <div class="pulldown system-select myself fl cate">
-                  <input style="font-size:30px;color:#999;margin-right: 0;" placeholder = "个人分类"/ name = "person">
+                  <input disabled style="font-size:29px;color:#999;background:white;margin-right: 0;" placeholder = "请在博客分类中添加" name = "person">
                 </div>
               @endif
            
-                                    <input style="font-size:30px;color:#999;margin-right: 0;" placeholder = "个人分类"/ name = "person">
-                                <ul class="pulldown-list" for="custom_id">
-
-                                    </ul>
+                                 
                 <input name="custom_id" id="custom_id" value="" type="hidden">
             </div>
             <div class="clear">烦烦烦</div>
             <p class="publish-msg">分类</p>
         </div>
         <div class="select-tab-bg">
-            <div class="select-tab">
-                <div class="show-select-tab fl">
+            <div class="select-tab" style="width:88%;margin-left:60px;margin-top:-10px">
+                <div class="show-select-tab fl" >
                                     </div>
                 <input type="text" id="for-tag" placeholder="标签最多设置5个，用，或；间隔" maxlength="20" name="keywords">
                 <input name="" id="tag" type="hidden" value="">
@@ -232,7 +231,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             </div>
             <p class="publish-msg">标签</p>
         </div>
-        <div class="textarea-box">
+        <div class="textarea-box" style="margin-left:60px;width:90%">
             <textarea name="description" id="abstract" cols="150" rows="1" maxlength="500" placeholder="文章摘要，最多支持500个字，不填摘要默认提取正文前200个字展示"></textarea>
         </div>
                 <div class="advanced-options">
