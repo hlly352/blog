@@ -21,8 +21,11 @@ class LoginController extends Controller
     	$username = $request->username;
     	$user = DB::table('user')->where('username',$username)->first();
     	$pass = $request->password;
-    	// dd($res);
     	// dd($pass);
+        if($user->status){
+            return back()->with('error','你已被禁止登录!!');
+        }
+        
     	if(!$user){
     		return back()->with('error','用户名或密码不正确');
     	}

@@ -34,7 +34,8 @@
             "app/Function/getParent.php",
             "app/Function/gettitle.php",
             "app/Function/getAuthor.php",
-            "app/Function/getCom.php"
+            "app/Function/getCom.php",
+            "app/Function/getImg.php"
 
         ]
     },

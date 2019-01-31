@@ -7,11 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\Articel;
 use App\Model\Admin\Type;
 use App\Model\Admin\User;
+use DB;
 
 class IndexController extends Controller
 {
     //显示首页方法
-    public function index(){
+    public function index(User $user){
     	//从数据库中查找优质文章
     	$rs = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->orderBy('read_num','desc')->limit(8)->get();
         
@@ -30,16 +31,7 @@ class IndexController extends Controller
         //显示轮播图
         $banner = \DB::table('banner')->get();
 
-    	if(session('userid')){
-            $id = session('userid');
-            $img = User::find($id)->infos;
-            // dump($img);
-            return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'banner'=>$banner,'img'=>$img]);
-        } else {
-    	    return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'banner'=>$banner]);
-        }
+        return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'i'=>$i,'k'=>$k,'info'=>$info,'banner'=>$banner]);
+        
     }
-    
-    
-
 }

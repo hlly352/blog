@@ -71,9 +71,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //获取表单传过来的数据
-
+        
         $user = User::
-        where('username','like','%'.$request->username.'%')->paginate($request->input('nums',10));
+        where('username','like','%'.$request->username.'%')->orderBy('level','desc')->orderBy('addtime','desc')->paginate($request->input('nums',10));
         $id = 1;
         // dump($user);
         return view('admin.user.index',['title'=>'用户列表','user'=>$user,'id'=>$id,'request'=>$request]);

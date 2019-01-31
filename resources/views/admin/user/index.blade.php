@@ -64,6 +64,9 @@
 			                            	<th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 248px;">
 			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">详情</font></font>
 			                            	</th>
+			                            	<th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 248px;">
+			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加时间</font></font>
+			                            	</th>
 			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 146px;"><font style="vertical-align: inherit;">
 			                            		<font style="vertical-align: inherit;">操作</font></font>
 			                            	</th>
@@ -84,6 +87,7 @@
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">超级管理员</font></font>
 			                        	</td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="/admin/user/{{$v->id}}" class="btn btn-outline-success" >查看详情</a></font></font></td>
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{date('Y-m-d H:i:s',$v->addtime)}}</font></font></td>
 			                            <td style="width:400px">   </td>
 			                        </tr>
 									@else
@@ -114,7 +118,7 @@
 			                            	</font></font>
 			                        	</td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="/admin/user/{{$v->id}}" class="btn btn-outline-success" >查看详情</a></font></font></td>
-
+										<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{date('Y-m-d H:i:s',$v->addtime)}}</font></font></td>
 			                            <td style="width:400px">
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
 			                            		<a href="/admin/userrole?id={{$v->id}}" class="btn btn-outline-info" style="display:inline">添加角色</a>

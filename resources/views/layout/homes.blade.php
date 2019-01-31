@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -67,8 +66,8 @@
             @if(session('userid'))
             <li class="more user">
               <a class="is-vip-bg-1" href="/home/center" target="_blank">
-                @if(isset($img))
-                <img class="is-vip-img is-vip-img-5" data-uid="14175912" src="{{$img->profile}}">
+                @if(getImg(session('userid')))
+                <img class="is-vip-img is-vip-img-5" data-uid="14175912" src="{{getImg(session('userid'))}}">
                 @else
                 <img class="is-vip-img is-vip-img-5" data-uid="14175912" src="/uploads/profile.jpg">
                 @endif
