@@ -164,13 +164,18 @@ class ArticleController extends Controller
         echo 1;
      }
      //前台查看所有文章方法
-     public function total()
+     public function total(Request $request)
      {
+
+
+        //查找文章的一级分类
+        $types = Type::where('pid','0')->get();
+
         //从数据库读取所有文章
      
-        $rs = Article::paginate(6);
+        $rs = Article::where()->paginate(6);
         
-        return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页']);
+        return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页','types'=>$types]);
      }
 
      //我的博客方法
