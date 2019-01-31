@@ -33,6 +33,8 @@ class ArticleController extends Controller
     {
         //从数据库中取出分类
         $rs = Type::get();
+        //查找个人分类
+        $mytype = Clas::where('uid',session('userid'))->get();
 
         return view('home.article.add',['title'=>'写文章','rs'=>$rs]);
     }

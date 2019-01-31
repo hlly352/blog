@@ -10,9 +10,7 @@
 
 
 <meta name="description" content="wx5c4042f13be00的博客(http://blog.51cto.com/14179969)">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet"><link href="/static/css/right.css" rel="stylesheet"><link href="/static/css/blog_my.css" rel="stylesheet">
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
+
     <script src="/static/js/jquery.min_1.js"></script><script src="/static/js/cookie.js"></script><script src="/static/js/login.js"></script><script src="/static/js/common.js"></script><script src="/static/js/mbox.js"></script><script src="/static/js/follow.js"></script><script src="/static/js/vip.js"></script><script src="/static/js/window.js"></script>
 
 <img src="/static/picture/share_default.jpg" border="0" style="width:0; height:0; position:absolute;">
@@ -115,12 +113,12 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
       				</a>
                 </div>
     				<div class="right">
-					<a href="javascript:;" class="name">wx5c4042f13be00的博客</a>
+					<a href="javascript:;" class="name">{{$title}}</a>
 					<ul class="number-list">
-						<li><span>3</span><p>人气</p></li>
-						<li><span>0</span><p>文章</p></li>
-                                                    <li><span>0</span><p>评论</p></li>
-                            <li><span>0</span><p>点赞</p></li>
+				
+						<li><span>{{getArticle(session('userid'))}}</span><p>文章</p></li>
+                                                    <li><span>{{getComnum(session('userid'))}}</span><p>评论</p></li>
+                            <li><span>{{getGood(session('userid'))}}</span><p>点赞</p></li>
                         						<div class="clear"></div>
 					</ul>
 					<ul class="icon-list">
@@ -128,24 +126,17 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 					</ul>
 				</div>
 				<div class="right-msg">
-                    					<a class="siMsg" href="http://home.51cto.com/space?uid=14169969" target="_blank">私信</a>
+                    					
 				</div>
 				<div class="clear"></div>
 			</div>
 
 			<div class="header-bottom">
-				<ul class="left-list fl">
-					<li>原创&nbsp;0</li>
-					<li>翻译&nbsp;0</li>
-					<li>转载&nbsp;0</li>
+				
                     					<div class="clear"></div>
 				</ul>
 				<div class="bdsharebuttonbox right-list fr">
-				  <p>分享：</p>
-				  <a href="javascript:;" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-				  <a href="javascript:;" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-				  <a href="javascript:;" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-				</div>
+			
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -156,9 +147,8 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
         <div class="Left" id="Tab">
         	<!-- tab -->
         	<ul class="blog-my-tab">
-        		<li class="on"><a href="http://blog.51cto.com/14179969?type=1">文章</a></li>
-        		<li ><a href="http://blog.51cto.com/14179969?type=2">关注</a></li>
-        		<li ><a href="http://blog.51cto.com/14179969?type=3">粉丝</a></li>
+        		<li class="on"><a href="javascript:void(0);">文章</a></li>
+        
         		<div class="clear"></div>
         	</ul>
 			<!-- title -->
@@ -226,7 +216,7 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
                             <div class="clear"></div>
                         </div>
                         <a class="tit" href="http://blog.51cto.com/14179965/2347317">
-                          {!!$val->contents!!}
+                          @php echo strip_tags($val->contents) @endphp
                                                                                                            </a>
                         <a href="javascript:;" class="con">fewqftr3wqfewqafewafasf</a>
                         <div class="bot">
@@ -369,9 +359,8 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 </div>
   
     <div class="rightTools">
-          <a href="http://blog.51cto.com/blogger/publish" class="aa">写文章</a>
-        <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3591348659&amp;site=qq&amp;menu=yes" class="qq"></a>
-    <a href="http://blog.51cto.com/51ctoblog/2057444" class="yy" target="_blank"></a>
+          <a href="/home/article/create" class="aa">写文章</a>
+ 
     <a href="javascript:void(0);" class="gotop"></a>
 </div>
   <!-- <script src="/static/js/pvlog.js"></script> -->
