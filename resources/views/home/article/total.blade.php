@@ -134,27 +134,26 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 <li>{!!$rs->links()!!}</li>
 
 </ul>	</div>
+	<script>
+		$('#parent').click(function(){
+			alert(($(this).children());
+			});
+	</script>
 	<div class="Right fr">
 		<ul class="artical-parent">
         	<li class="artical-parent-li artical-parent-li-1 on">
-				<p class="title"><i></i><a href="http://blog.51cto.com/original">全部</a></p>
+				<p class="title"><i></i><a href="/home/total">全部</a></p>
         	</li>
-        	@foreach($types as $ks=>$vs)
+        	@foreach($info as $ks=>$vs)
 			<li class="artical-parent-li artical-parent-li-2 ">
-				<p class="title"><i></i><a href="/home/total?pid={{$pid}}">{{$vs->name}}</a></p>
+				<p class="title"><i></i><a id="parent" href="/home/total?pid=@php echo $ks @endphp">@php echo $vs[0] @endphp</a></p>
                 				<ul class="artical-child">
+                				@foreach($vs as $k=>$v)
                 					<li class="artical-child-li ">
 						<a href="http://blog.51cto.com/original/44">Linux</a>
 					</li>
-                					<li class="artical-child-li ">
-						<a href="http://blog.51cto.com/original/45">Windows</a>
-					</li>
-                					<li class="artical-child-li ">
-						<a href="http://blog.51cto.com/original/46">Unix</a>
-					</li>
-                					<li class="artical-child-li ">
-						<a href="http://blog.51cto.com/original/6">其他</a>
-					</li>
+                			@endforeach
+					
                 				</ul>
                 			</li>
 			@endforeach       	

@@ -16,11 +16,9 @@
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
-<<<<<<< HEAD
         "vue": "^2.5.7",
         "gregwar/captcha":"^1.1"
-=======
-        "vue": "^2.5.7"
->>>>>>> 40c69d08601d8d0c757df2f68f19a42500a4dadf
+
+
     }
 }
