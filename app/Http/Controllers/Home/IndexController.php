@@ -44,7 +44,7 @@ class IndexController extends Controller
         //显示轮播图
         $banner = \DB::table('banner')->get();
 
-        return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'info'=>$info,'banner'=>$banner]);
+        return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'banner'=>$banner]);
         
     }
 }
