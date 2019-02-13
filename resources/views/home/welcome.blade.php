@@ -6,39 +6,39 @@
 <script>
     var isLogin = '0';
     var userId = '';
-    var imgpath = 'https://s1.51cto.com/';
-    var BLOG_URL = 'http://blog.51cto.com/';
+    var imgpath = '';
+    var BLOG_URL = '';
     var msg_num_url = '/index/ajax-msg-num';
     $('.msg-follow, .msg-follow-max').eq(1).css({top: '91px'});
     $('.msg-follow, .msg-follow-max').eq(2).css({top: '121px'});
     setTimeout(function(){
-            $.ajax({
-                url:msg_num_url,
-                type:"get",
-                dataType:'json',
-                success:function(res){
-                    if(res.status == '0'){
-                       //
-                       var hasNewMsg = false;
-                       if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
-                            $('#myMsg i').addClass('dot');
-                            hasNewMsg = true;
-                       }
-                       if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
-                           $('#myNotify i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
-                           $('#myRecommend i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
-                           $('#myAllMsg i').addClass('dot');
-                       }
-                    }
-
+        $.ajax({
+            url:msg_num_url,
+            type:"get",
+            dataType:'json',
+            success:function(res){
+                if(res.status == '0'){
+                   //
+                   var hasNewMsg = false;
+                   if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
+                        $('#myMsg i').addClass('dot');
+                        hasNewMsg = true;
+                   }
+                   if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
+                       $('#myNotify i').addClass('dot');
+                       hasNewMsg = true;
+                   }
+                   if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
+                       $('#myRecommend i').addClass('dot');
+                       hasNewMsg = true;
+                   }
+                   if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
+                       $('#myAllMsg i').addClass('dot');
+                   }
                 }
-            });
+
+            }
+        });
     },70);
     //广告图
 </script>
@@ -90,7 +90,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
   * non-SSL page. If this tag is to be placed on an SSL page, change the
   *   'http://gg.51cto.com/www/delivery/...'
   * to
-  *   'https://gg.51cto.com/www/delivery/...'
+  *   '1234://gg.51cto.com/www/delivery/...'
   *
   * This noscript section of this tag only shows image banners. There
   * is no width or height in these banners, so if you want these tags to
@@ -104,7 +104,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
   */-->
 
     <script type='text/javascript'>
-        var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
+        var m3_u = (location.protocol=='1234:'?'1234://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
         var m3_r = Math.floor(Math.random()*99999999999);
         if (!document.MAX_used) document.MAX_used = ',';
         document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
@@ -222,9 +222,9 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <ul class="fl aListTab" id="aListTab">
             <li class="cur"><i class="buledot"></i>优质文章</li>
         </ul>
-        <a style="float: right;" href="http://51ctoblog.blog.51cto.com/26414/1944698" target="_blank" class="iwant fr">我要上首页</a>
+        
     </div>
-      <!--普通文章-->
+    <!--普通文章-->
     <div class="aListDiv cur">
         <ul class="aList">
             <!--专栏推荐-->
@@ -243,7 +243,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
-                    <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title" class="reads">{{$value->title}}</a>
+                    <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title" class="reads" target="_blank">{{$value->title}}</a>
                     <input type="hidden" name="" value="{{$value->art_id}}">
                 </h2>
                 <p class="con">@php echo strip_tags($value->contents) @endphp</p>
@@ -306,32 +306,6 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     FollowBtn = new Follow($('#checkFollow_9167728'),'9167728','1',['on','in','mutual','off'])
                     FollowBtn.success=FollowBtnSucc
                 </script>               
-            </ul>
-        </div>
-        
-        <h3 class="BoxTil">粉丝榜TOP10<span style="font-size:14px">(专栏作者)</span></h3>
-        <div class="Box BlogerList bd">
-            <ul class="followUsers-list">
-                <li class="num-one">
-                    <span class="num-list">1</span>
-                    <div class="pic">
-                        <div class="is-vip-bg">
-                            <a class="fl" href="" target="_blank">
-                                <img class="is-vip-img is-vip-img-0" data-uid="625855" src="static/picture/avatar.php"/>
-                            </a>
-                        </div>
-                    </div>
-                    <a class="name" href="" target="_blank">姜汁啤酒</a>
-                    <div class="followUsers-right">
-                        <a class="number">3288</a>
-                        <div class="clear"></div>
-                    </div>
-                </li>
-                <script>
-                    FollowBtn = new Follow($('#checkFollow10_625855'),'625855','1',['on','in','mutual','off'])
-                      FollowBtn.success=FollowBtnSucc
-                </script>
-                <div class="clear"></div>
             </ul>
         </div>
         

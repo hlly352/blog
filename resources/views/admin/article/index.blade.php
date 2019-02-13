@@ -19,35 +19,33 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title"><font style="vertical-align:inherit;"><font style="vertical-align: inherit;">用户列表</font></font>
+                    <strong class="card-title"><font style="vertical-align:inherit;"><font style="vertical-align: inherit;">文章列表</font></font>
 
                     </strong>
                 </div>
                 <div class="card-body">
                     <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                    	<form action="/admin/article" method="get">
                     	<div class="row">
                     		<div class="col-sm-12 col-md-6">
                     			<div class="dataTables_length" id="bootstrap-data-table_length">
                     				<label>
                     					<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">每页显示 </font></font>
-                    					<select name="bootstrap-data-table_length" aria-controls="bootstrap-data-table" class="form-control form-control-sm">
-                    						<option value="10"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">10</font></font></option>
-                    						<option value="20"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20</font></font></option>
-                    						<option value="50"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">50</font></font></option>
-                    						<option value="-1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所有</font></font></option>
-                    					</select>
+                    					<select name="nums" aria-controls="bootstrap-data-table" class="form-control-sm">
+                    						<option value="10" @if($request->nums == 10) selected="selected" @endif>10</option>
+                    						<option value="20" @if($request->nums == 20) selected="selected" @endif>20</option>
+                    						<option value="50" @if($request->nums == 50) selected="selected" @endif>50</option>
+                    					</select> 条
                     				</label>
                     			</div>
                     		</div>
                     		<div class="col-sm-12 col-md-6">
                     			<div id="bootstrap-data-table_filter" class="dataTables_filter">
-                    				<label>
-                    					<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">搜索：</font></font>
-                    					<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="bootstrap-data-table">
-                    				</label>
+                    				<label>标题:&nbsp;<input type="search" class="form-control-sm" placeholder="" aria-controls="bootstrap-data-table" name="title" value="{{isset($_GET['title']) ? $_GET['title'] : ''}}">&nbsp;<button class="btn btn-info" >搜索</button></label>
                     			</div>
                     		</div>
                     	</div>
+                    	</form>
                     	<div class="row">
                     		<div class="col-sm-12">
                     			<table id="bootstrap-data-table" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="bootstrap-data-table_info">
@@ -110,34 +108,61 @@
 	                    <div class="row">
 	                    	<div class="col-sm-12 col-md-5">
 	                    		<div class="dataTables_info" id="bootstrap-data-table_info" role="status" aria-live="polite">
-	                    			<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示57个参赛作品中的1到50</font></font>
+	                    			<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示{{$res->total()}}个用户中的{{$res->firstItem()}}到{{$res->lastItem()}}</font></font>
 	                    		</div>
 	                    	</div>
+	                    	<style>
+								.pagination{
+									font-family: "Open Sans", sans-serif;
+   									font-size: 16px;
+   									font-weight: 400;
+								    line-height: 1.5;
+								    color: #212529;
+								    text-align: left;
+								}								
+								.pagination li {
+									font-family: "Open Sans", sans-serif;
+								    font-size: 16px;
+								    font-weight: 400;
+								    line-height: 1.5;
+								    color: #212529;
+									cursor: pointer;
+								}
+								.pagination .active{
+									background: #292b35;
+								    border-color: #292b35;
+								    color: #fff;
+								   	position: relative;
+								    display: block;
+								    padding: .5rem .75rem;
+								    margin-left: -1px;
+								    line-height: 1.25;
+								    border: 1px solid #292b35;
+								    text-decoration: none;
+								}
+								.pagination .disabled {
+									position: relative;
+								    display: block;
+								    padding: .5rem .75rem;
+								    margin-left: -1px;
+								    line-height: 1.25;
+								    background-color: #fff;
+								    border: 1px solid #dee2e6;
+								}
+								.pagination a{
+									position: relative;
+								    display: block;
+								    padding: .5rem .75rem;
+								    margin-left: -1px;
+								    line-height: 1.25;
+								    background-color: #fff;
+								    border: 1px solid #dee2e6;
+								}
+
+	                    	</style>
 	                    	<div class="col-sm-12 col-md-7">
 	                    		<div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table_paginate">
-	                    			<ul class="pagination">
-	                    				<li class="paginate_button page-item previous disabled" id="bootstrap-data-table_previous">
-	                    					<a href="#" aria-controls="bootstrap-data-table" data-dt-idx="0" tabindex="0" class="page-link"><font style="vertical-align: inherit;">
-	                    						<font style="vertical-align: inherit;">以前</font></font>
-	                    					</a>
-	                    				</li>
-	                    				<li class="paginate_button page-item active">
-	                    					<a href="#" aria-controls="bootstrap-data-table" data-dt-idx="1" tabindex="0" class="page-link">
-	                    						<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font>
-	                    					</a>
-	                    				</li>
-	                    				
-	                    				<li class="paginate_button page-item ">
-	                    					<a href="#" aria-controls="bootstrap-data-table" data-dt-idx="2" tabindex="0" class="page-link">
-	                    						<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font>
-	                    					</a>
-	                    				</li>
-	                    				<li class="paginate_button page-item next" id="bootstrap-data-table_next">
-	                    					<a href="#" aria-controls="bootstrap-data-table" data-dt-idx="3" tabindex="0" class="page-link">
-	                    						<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下一个</font></font>
-	                    					</a>
-	                    				</li>
-	                    			</ul>
+	                    		{{$res->links()}}	
 	                    		</div>
 	                    	</div>
 	                    </div>

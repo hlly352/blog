@@ -10,17 +10,10 @@ use App\Model\Admin\Article;
 class ArticleController extends Controller
 {
     //后台显示文章
-    public function show(){
-    	$res = Article::with('artinfo')->get();
-
-    
-
-    	
-      
-  
- 		$i = 1;
-
-    	return view('admin.article.index',['h1'=>'显示文章','res'=>$res,'i'=>$i]);
+    public function show(Request $request){
+    	$res = Article::with('artinfo')->where('title','like','%'.$request->title.'%')->paginate($request->input('nums',10));
+ 		  $i = 1;
+    	return view('admin.article.index',['h1'=>'显示文章','res'=>$res,'i'=>$i,'request'=>$request]);
     }
    	//显示文章想请
    	public function info(Request $request){
