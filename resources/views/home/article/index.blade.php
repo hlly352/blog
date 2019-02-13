@@ -100,8 +100,9 @@
                 <div class="artical-Left" id="comment" style="margin:0 auto">
                     <!-- 发布评论 -->
                     <div class="comment-creat">
+                        @if(session('userid'))
                         <div class="is-vip-bg-6 fl">
-                            <a href="http://blog.51cto.com/cyent" class="header-img" target="_blank">
+                            <a href="" class="header-img" target="_blank">
                                 <img  src="{{$profile}}"/>
                             </a>
                         </div>
@@ -150,6 +151,9 @@
                             <input type="hidden" class="reply_id" value="2342274">
                             <input type="hidden" class="first_pid" value="">
                         </div>
+                        @else
+                        <div class="is-vip-bg-6 fl"></div>
+                        @endif
                         <div class="clear"></div>
                     </div>
                     <div class="comment-number" id="comment_pl" style="margin:0px;margin-top:30px;margin-bottom:30px">

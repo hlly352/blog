@@ -143,9 +143,13 @@ class ArticleController extends Controller
         $users = getAuthor($rs->uid);
         $img = DB::table('userinfo')->where('uid',$rs->uid)->first()->profile;
         // dump($img);
-        $userid = session('userid');
-        $profile = DB::table('userinfo')->where('uid',$userid)->first()->profile;
-        return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'profile'=>$profile,'num'=>$num]);
+        if(session('userid')){     
+            $userid = session('userid');
+            $profile = DB::table('userinfo')->where('uid',$userid)->first()->profile;
+            return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'profile'=>$profile,'num'=>$num]);
+        }else{
+            return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'num'=>$num]);
+        }
     }
 
     //编辑文章方法
