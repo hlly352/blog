@@ -35,7 +35,7 @@ class LoginController extends Controller
     	}
 
         if($user->status){
-            return back()->with('error','你已被禁止登录!!');
+            return back()->with('error','您的账户未被激活或已被禁用!');
         }
 
     	//解密

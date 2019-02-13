@@ -310,4 +310,34 @@ class ArticleController extends Controller
         }
         
      }
+
+    //阅读量的方法
+     public function reads()
+     {
+        $artid = $_GET['artid'];
+        $artinfo = DB::table('art_info')->where('art_id',$artid)->first();
+        // dump($artinfo->read_num);
+        $read['read_num'] = $artinfo->read_num + 1 ;
+        // dump($read);
+        $data = DB::table('art_info')->where('art_id',$artid)->update($read);
+        if($data){
+            return 1;
+        } else {
+            return 0;
+        }
+     }
+
+     //点赞的方法
+     public function goods()
+     {
+        $artids = $_GET['artids'];
+        $artinfo = DB::table('art_info')->where('art_id',$artids)->first();
+        $good['good_num'] = $artinfo->good_num + 1 ;
+        $data = DB::table('art_info')->where('art_id',$artids)->update($good);
+        if($data){
+            return 1;
+        } else {
+            return 0;
+        }
+     }
 }

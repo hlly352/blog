@@ -98,17 +98,16 @@ $(document).ready(function(){
             
         <div class="tab_wxform" >
             <div class="tab_wxform_in" style="display:block;">
-                
                 <div class="form_list" style="position: relative">
                     <div class="form_input"><input name="username" type="text" maxlength="30" class="input_320 icon_name input_tel" placeholder="请输入用户名" style="width:322px"></div>
                     <div class="hidmail" id="hidmail-0" style="display: none;"></div>
                 </div>
                 <div class="form_list" style="position: relative">
-                    <div class="form_input"><input name="password" type="text" maxlength="30" class="input_320 icon_pass input_tel" placeholder="请输入密码" style="width:322px"></div>
+                    <div class="form_input"><input name="password" type="password" maxlength="30" class="input_320 icon_pass input_tel" placeholder="请输入密码" style="width:322px"></div>
                     <div class="hidmail" id="hidmail-0" style="display: none;"></div>
                 </div>
                 <div class="form_list" style="position: relative">
-                    <div class="form_input"><input name="repassword" type="text" maxlength="30" class="input_320 icon_pass input_tel" placeholder="请确认密码" style="width:322px"></div>
+                    <div class="form_input"><input name="repassword" type="password" maxlength="30" class="input_320 icon_pass input_tel" placeholder="请确认密码" style="width:322px"></div>
                     <div class="hidmail" id="hidmail-0" style="display: none;"></div>
                 </div>
                 <div class="form_list" style="position: relative">

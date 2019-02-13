@@ -1,47 +1,44 @@
 @extends('layout.homes')
 
-
-
-
 @section('content')
  
 <script src="static/js/box.js"></script> 
 <script>
     var isLogin = '0';
     var userId = '';
-    var imgpath = 'https://s1.51cto.com/';
-    var BLOG_URL = 'http://blog.51cto.com/';
+    var imgpath = '';
+    var BLOG_URL = '';
     var msg_num_url = '/index/ajax-msg-num';
     $('.msg-follow, .msg-follow-max').eq(1).css({top: '91px'});
     $('.msg-follow, .msg-follow-max').eq(2).css({top: '121px'});
     setTimeout(function(){
-            $.ajax({
-                url:msg_num_url,
-                type:"get",
-                dataType:'json',
-                success:function(res){
-                    if(res.status == '0'){
-                       //
-                       var hasNewMsg = false;
-                       if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
-                            $('#myMsg i').addClass('dot');
-                            hasNewMsg = true;
-                       }
-                       if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
-                           $('#myNotify i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
-                           $('#myRecommend i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
-                           $('#myAllMsg i').addClass('dot');
-                       }
-                    }
-
+        $.ajax({
+            url:msg_num_url,
+            type:"get",
+            dataType:'json',
+            success:function(res){
+                if(res.status == '0'){
+                   //
+                   var hasNewMsg = false;
+                   if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
+                        $('#myMsg i').addClass('dot');
+                        hasNewMsg = true;
+                   }
+                   if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
+                       $('#myNotify i').addClass('dot');
+                       hasNewMsg = true;
+                   }
+                   if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
+                       $('#myRecommend i').addClass('dot');
+                       hasNewMsg = true;
+                   }
+                   if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
+                       $('#myAllMsg i').addClass('dot');
+                   }
                 }
-            });
+
+            }
+        });
     },70);
     //广告图
 </script>
@@ -93,7 +90,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
   * non-SSL page. If this tag is to be placed on an SSL page, change the
   *   'http://gg.51cto.com/www/delivery/...'
   * to
-  *   'https://gg.51cto.com/www/delivery/...'
+  *   '1234://gg.51cto.com/www/delivery/...'
   *
   * This noscript section of this tag only shows image banners. There
   * is no width or height in these banners, so if you want these tags to
@@ -107,7 +104,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
   */-->
 
     <script type='text/javascript'>
-        var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
+        var m3_u = (location.protocol=='1234:'?'1234://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
         var m3_r = Math.floor(Math.random()*99999999999);
         if (!document.MAX_used) document.MAX_used = ',';
         document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
@@ -212,25 +209,29 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <ul class="fl aListTab" id="aListTab">
             <li class="cur"><i class="buledot"></i>优质文章</li>
         </ul>
-        <a style="float: right;" href="http://51ctoblog.blog.51cto.com/26414/1944698" target="_blank" class="iwant fr">我要上首页</a>
+        
     </div>
-      <!--普通文章-->
+    <!--普通文章-->
     <div class="aListDiv cur">
         <ul class="aList">
-                     <!--专栏推荐-->
+            <!--专栏推荐-->
             @foreach($rs as $k=>$value)
-            <li id="blog_2342274" class=' '>
+            @php 
+                $profile = DB::table('userinfo')->where('uid',$value->uid)->first()->profile;
+            @endphp
+            <li id="blog_2342274" class='infos'>
                 <div class="userInfo clearfix">
                     <div class="is-vip-bg fl" style="margin-right:10px;">
-                        <a href="javascript:void(0);"  style="margin-right:0;">
-                            <img class="avatar is-vip-img is-vip-img-4" data-uid="905592" src="static/picture/noavatar_middle.gif"/>
+                        <a href="" target="_blank" style="margin-right:0;">
+                            <img class="avatar is-vip-img is-vip-img-4" data-uid="905592" src="{{$profile}}"/>
                         </a>
                     </div>
                     <a class="name" href="" target="_blank">{{$value->author}}</a>
                     <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
-                    <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title">{{$value->title}}</a>
+                    <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title" class="reads" target="_blank">{{$value->title}}</a>
+                    <input type="hidden" name="" value="{{$value->art_id}}">
                 </h2>
                 <p class="con">@php echo strip_tags($value->contents) @endphp</p>
                 <div class="intro">
@@ -240,9 +241,9 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     <p class="">收藏&nbsp;<span class="collect_num">{{$value->collect_num}}</span></p>
                     <p style="display:none;" class="admire_num_p">赞赏&nbsp;<span class="admire_num">{{$value->good_num}}</span></p>
                 </div>
-                <button class="zan favour_num" data-type="1" blog_id="2342274">0</button>
-            </li>
-            
+                <button class="zan favour_num" data-type="1" blog_id="2342274">{{$value->good_num}}</button>
+                <input type="hidden" name="" value="{{$value->art_id}}">
+            </li>            
             @endforeach  
         </ul>
         <a href="/home/total" target="_blank" class="lookMore">点击浏览更多&gt;&gt;</a>
@@ -258,10 +259,10 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
     
     <ul class="News Box">
         <li class="f" ><span>公告</span>
-            <a href="http://blog.51cto.com/51ctoblog/2069953?gongg" target="_blank"  class='blue'>51CTO博客2.0常见问题解答&QAQ</a>
+            <a href="" target="_blank"  class='blue'>51CTO博客2.0常见问题解答&QAQ</a>
         </li>
         <li>
-            <a href="http://blog.51cto.com/51ctoblog/2343471" target="_blank"  class='blue'>51CTO订阅专栏作者申请标准</a>
+            <a href="" target="_blank"  class='blue'>51CTO订阅专栏作者申请标准</a>
         </li>
     </ul>
   
@@ -272,14 +273,14 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 <li style="border:0;">
                     <div class="pic">
                         <div class="is-vip-bg">
-                            <a class="fl" href="http://blog.51cto.com/suifu" target="_blank">
+                            <a class="fl" href="" target="_blank">
                                 <img class="is-vip-img is-vip-img-0" data-uid="9167728" src="static/picture/wkiol1lkq46cukwfaaasq8xix2m460.jpg"/>
                             </a>
                         </div>
                     </div>
                     <div class="main">
                         <h4>
-                            <a href="http://blog.51cto.com/suifu" target="_blank">贺磊</a>
+                            <a href="" target="_blank">贺磊</a>
                             <a id="checkFollow_9167728" class="follow-1 checkFollow on fr">关注</a>
                         </h4>
                         <dl><dt>321W+</dt><dd>人气</dd></dl>
@@ -295,38 +296,12 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             </ul>
         </div>
         
-        <h3 class="BoxTil">粉丝榜TOP10<span style="font-size:14px">(专栏作者)</span></h3>
-        <div class="Box BlogerList bd">
-            <ul class="followUsers-list">
-                <li class="num-one">
-                    <span class="num-list">1</span>
-                    <div class="pic">
-                        <div class="is-vip-bg">
-                            <a class="fl" href="http://blog.51cto.com/gingerbeer" target="_blank">
-                                <img class="is-vip-img is-vip-img-0" data-uid="625855" src="static/picture/avatar.php"/>
-                            </a>
-                        </div>
-                    </div>
-                    <a class="name" href="http://blog.51cto.com/gingerbeer" target="_blank">姜汁啤酒</a>
-                    <div class="followUsers-right">
-                        <a class="number">3288</a>
-                        <div class="clear"></div>
-                    </div>
-                </li>
-                <script>
-                    FollowBtn = new Follow($('#checkFollow10_625855'),'625855','1',['on','in','mutual','off'])
-                      FollowBtn.success=FollowBtnSucc
-                </script>
-                <div class="clear"></div>
-            </ul>
-        </div>
-        
         <!-- 热门推荐 start -->
-        <h3 class="BoxTil">热门推荐 <a class="fr" href="http://blog.51cto.com/artcommend" target="_blank">更多</a></h3>
+        <h3 class="BoxTil">热门推荐 <a class="fr" href="" target="_blank">更多</a></h3>
         <div class="Box articles">
             <div class="list">
                 <ul class="seven-list">
-                    <li class="s1"><a href="http://blog.51cto.com/cyent/2342274" target="_blank">基于QMP实现对qemu虚拟机进行交互</a></li> 
+                    <li class="s1"><a href="" target="_blank">基于QMP实现对qemu虚拟机进行交互</a></li> 
                 </ul>
             </div>
         </div>
@@ -336,11 +311,32 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <div class="Box articles">
             <div class="list">
                 <ul class="seven-list">
-                     <li class="s1"><a href="http://blog.51cto.com/13988201/2343866" target="_blank">图片侵权难题，华为云告诉你怎么办！</a></li>
+                     <li class="s1"><a href="" target="_blank">图片侵权难题，华为云告诉你怎么办！</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="clear"></div>
 </div>
+@stop
+
+@section('js')
+<script type="text/javascript">
+    $('.reads').click(function(){
+        var artid = $(this).next().val();
+        $.get('/article/reads',{artid:artid},function(data){
+            if(data){               
+                window.location.reload();
+            }
+        })
+    })
+    $('.zan').one('click',function(){
+        var artids = $(this).next().val();
+        $.get('/article/goods',{artids:artids},function(data){
+            if(data){
+                window.location.reload();
+            }
+        })
+    })
+</script>
 @stop

@@ -24,8 +24,8 @@ class FormsRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:user|regex:/.{2,10}/',
-            'password' => 'required|regex:/\w{6,12}/',
+            'username' => 'required|unique:user|regex:/^.{2,10}$/',
+            'password' => 'required|regex:/^\w{6,12}$/',
             'repassword' => 'same:password',
             'email' => 'email',
             'phone' => 'regex:/\1[3456789]\d{9}/'

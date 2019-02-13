@@ -138,9 +138,13 @@ Route::get('/home/doajax','Home\ArttypeController@doajax');
 Route::any('/home/total','Home\ArticleController@total');
 //前台评论删除
 Route::any('/article/delcom','Home\ArticleController@delcom');
+//阅读量
+Route::any('/article/reads','Home\ArticleController@reads');
+//点赞
+Route::any('/article/goods','Home\ArticleController@goods');
 //我的博客
-
 Route::get('/home/myblog','Home\ArticleController@myblog');
+
 
 
 
