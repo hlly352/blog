@@ -35,8 +35,11 @@ class ArticleController extends Controller
         $rs = Type::get();
         //查找个人分类
         $mytype = Clas::where('uid',session('userid'))->get();
-
-        return view('home.article.add',['title'=>'写文章','rs'=>$rs]);
+        if($mytype->count() == 0){
+              return view('home.article.add',['title'=>'写文章','rs'=>$rs]);
+        }else{
+             return view('home.article.add',['title'=>'写文章','rs'=>$rs,'mytype'=>$mytype]);
+         }
     }
 
     /**
