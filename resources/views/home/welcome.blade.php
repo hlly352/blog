@@ -127,50 +127,37 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
     <div class="Page">
     <div class="Left">
     <!-- category start-->
+    <style>
+        .cates li{padding-left:25px;}
+    </style>
         <ul class="fl cates">
             <li class="title">全部分类</li>
-         
-
+      
+            @foreach($info as $ks=>$vs)
             <li>
                 <div class="layer1"></div>
                 <div class="layer2">
           
-                    <a href="http://blog.51cto.com/artcommend/27" target="_blank"></a>
-                    <span></span>                
+                    <a onclick ="return false" href="/home/total?pid={{$ks}}" target="_blank">{{$vs[0]}}</a>
+                         
                  
                 </div>
                 <div class="layer3">
-                    <h3>系统/运维</h3>
+                    <h3>{{$vs[0]}}</h3>
+              @foreach($vs as $k=>$v)
                     <p>
-                        <a href="http://blog.51cto.com/artcommend/44" target="_blank">Linux</a>
-                        <a href="http://blog.51cto.com/artcommend/45" target="_blank">Windows</a>
-                        <a href="http://blog.51cto.com/artcommend/46" target="_blank">Unix</a>
-                        <a href="http://blog.51cto.com/artcommend/6" target="_blank">其他</a>
+              @if(is_array($v))
+              @foreach($v as $key=>$value)
+                        <a href="/home/total?pid={{$key}}" target="_blank">@php echo($value) @endphp</a>
+                @endforeach  
+              @endif     
                     </p>
-                    <h3>云计算</h3>
-                    <p>
-                        <a href="http://blog.51cto.com/artcommend/47" target="_blank">OpenStack</a>
-                        <a href="http://blog.51cto.com/artcommend/48" target="_blank">虚拟化</a>
-                        <a href="http://blog.51cto.com/artcommend/49" target="_blank">云平台</a>
-                        <a href="http://blog.51cto.com/artcommend/50" target="_blank">Office 365</a>
-                        <a href="http://blog.51cto.com/artcommend/51" target="_blank">云服务</a>
-                        <a href="http://blog.51cto.com/artcommend/52" target="_blank">Docker</a>
-                        <a href="http://blog.51cto.com/artcommend/53" target="_blank">其他</a>
-                    </p>
-                    <h3>大数据</h3>
-                    <p>
-                        <a href="http://blog.51cto.com/artcommend/54" target="_blank">Hadoop</a>
-                        <a href="http://blog.51cto.com/artcommend/55" target="_blank">Spark</a>
-                        <a href="http://blog.51cto.com/artcommend/56" target="_blank">Storm</a>
-                        <a href="http://blog.51cto.com/artcommend/57" target="_blank">Hive</a>
-                        <a href="http://blog.51cto.com/artcommend/58" target="_blank">Yarn</a>
-                        <a href="http://blog.51cto.com/artcommend/59" target="_blank">其他</a>
-                    </p>
+            @endforeach
                 </div>
             </li>
 
 
- 
+            @endforeach
   
         
         </ul>

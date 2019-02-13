@@ -6,12 +6,9 @@
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
     <meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="mQiidwMZ1I_jK7MUtaabGmVGv4p3Vqlb0IHEyRMu4FnrGGwTLzY9PtJ-PY37KQ3nu0D1LY-dw7Oz2gnR-ZvWJg==">
+    <meta name="keywords" content="IT博客,技术博客,原创技术文章,技术交流">
+<meta name="description" content="包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    <link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/publish.css" rel="stylesheet">
     
-    <meta name="keywords" content="51CTO博客2.0,51CTO博客,IT博客,技术博客,原创技术文章,技术交流">
-<meta name="description" content="51CTO博客2.0是国内领先的IT原创文章分享及交流平台,包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    <link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/publish.css" rel="stylesheet">
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
     <script src="/static/js/jquery.min.js"></script><script src="/static/js/cookie.js"></script><script src="/static/js/login.js"></script><script src="/static/js/common.js"></script><script src="/static/js/mbox.js"></script><script src="/static/js/follow.js"></script><script src="/static/js/vip.js"></script><script src="/static/js/window.js"></script>
 <body>
 <img src="/static/image/share.png" border="0" style="width:0; height:0; position:absolute;">
@@ -91,7 +88,7 @@ padding-top: 50px;
                 }
             });
     },70);
-    
+  
 </script>
  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" charset="utf-8" src="/static/js/ueditor.config.js"></script>
@@ -132,7 +129,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
     .edui-default .edui-editor-iframeholder {width: 99.8% !important;}
 </style>
 <div class="Page Max noFooter">
-    <form action="/home/type/{{$art->id}}" method="post" name="blogForm" id="blogForm">
+    <form action="/home/article/{{$info->id}}" method="post" name="blogForm" id="blogForm">
         <div class="blog-title-bg" style="position: relative;z-index: 19;">
             <div class="blog-title">
                 <div class="pulldown pulldown-title fl">
@@ -144,7 +141,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                                             </ul>
                     <input type="hidden" name="blog_type" value="" id="blog_type"></input>
                 </div>
-                <div class="titleCon"><input class="fl" type="text" name="title" id="title" value="{{$art->title}}" autocomplete="off" placeholder="标题，支持50个字" maxlength="50"></div>
+                <div class="titleCon"><input class="fl" type="text" name="title" id="title" value={{$info->title}} autocomplete="off" placeholder="标题，支持50个字" maxlength="50"></div>
                 <div class="clear"></div>
             </div>
             <p class="publish-msg">标题</p>
@@ -152,14 +149,10 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <div class="blog-type-bg">
             <p class="publish-msg">标题</p>
         </div>
-        <div class="reprint-list">
-            <input type="radio" name="copy_code" value="1" id="source"  checked="checked"  checked="checked" ><label for="source">转载请注明出处</label>
-            <input type="radio" name="copy_code" value="2" id="authorization" ><label for="authorization">转载需作者授权</label>
-            <input type="radio" name="copy_code" value="3" id="noallow"  ><label for="noallow">谢绝转载</label>
-        </div>
+    
         <div>
   
-    <script id="editor" type="text/plain" style="width:1265px;height:500px;margin-top:20px">{!!$art->contents!!}</script>
+    <script id="editor" type="text/plain" style="width:1140px;height:500px;margin-top:20px">@php echo $info->contents @endphp</script>
 </div>
 
 
@@ -190,56 +183,24 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 @endforeach
                 </select> 
           
-                <select name="twice" id="twice" class="form-control cate pulldown system-select system-two fl">
-                   
+                <select name="twice" id="" class="form-control cate pulldown system-select system-two fl">
+                   @foreach($rs as $k=>$v)
                 
-                    
-                    <option value="">--请选择--</option>
-                    
+                    @if(substr_count($v->path,',') == 2)
+                    <option value="">{{$v->name}}</option>
+                    @endif    
+                
+                @endforeach
                 </select>
-                <script>
-                    $('#first').live('change',function(){
-                        var upid = $('#first').val();
-                        var ob = $(this);
-                       ob.next('select').empty();
-                        
-                    $.get('/homes/ajax',{'pid':upid},function(data){
-                        var twice = $('#twice');
-                  
-                        if(data.length>0){
-                        for(var i=0;i<data.length;i++){
-                            //把得到数据插入到option中
-                            if(data[i].id == {{$art->type_id}}){
-                                    var option = '<option selected value="'+data[i].id+'">'+data[i].name+'</option>';
-                                } else {
-                                    var option = '<option value="'+data[i].id+'">'+data[i].name+'</option>';
-                                }
-                           console.log(option);
-                            twice.append(option);
-
-                        }
-                        console.log(twice);
-
-                    ob.after(twice);
-                    }
-                
-              
-                     },'json');
-                        });
-                </script>
              
 
                 @if(isset($mytype))
-                <select name="other" id="" class="form-control cate pulldown system-select system-two fl">
+                <select name="twice" id="" class="form-control cate pulldown system-select system-two fl">
     
                     
            
                    @foreach($mytype as $ks=>$vs)
-                    @if($art->person == $vs->id)
-                        <option selected value={{$vs->id}}>{{$vs->name}}</option>
-                    @else
-                        <option value={{$vs->id}}>{{$vs->name}}</option>
-                    @endif
+                    <option value={{$vs->id}}>{{$vs->name}}</option>
                    @endforeach
         
                 
@@ -253,21 +214,21 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                                  
                 <input name="custom_id" id="custom_id" value="" type="hidden">
             </div>
-            <div class="clear"></div>
+            <div class="clear">烦烦烦</div>
             <p class="publish-msg">分类</p>
         </div>
-       <div class="select-tab-bg">
+        <div class="select-tab-bg">
             <div class="select-tab" style="width:88%;margin-left:60px;margin-top:-10px">
                 <div class="show-select-tab fl" >
                                     </div>
-                <input type="text" id="for-tag" placeholder="标签最多设置5个，用，或；间隔" maxlength="20" name="keywords" value="{{$art->keywords}}">
-                <input name="" id="tag" type="hidden" >
+                <input type="text" id="for-tag" placeholder="标签最多设置5个，用，或；间隔" maxlength="20" name="keywords" value={{$info->keywords}}>
+                <input name="" id="tag" type="hidden" value="">
                 <div class="clear"></div>
             </div>
             <p class="publish-msg">标签</p>
         </div>
         <div class="textarea-box" style="margin-left:60px;width:90%">
-            <textarea name="description" id="abstract" cols="150" rows="1" maxlength="500" placeholder="文章摘要，最多支持500个字，不填摘要默认提取正文前200个字展示">{{$art->description}}</textarea>
+            <textarea name="description" id="abstract" cols="150" rows="1" maxlength="500" placeholder="文章摘要，最多支持500个字，不填摘要默认提取正文前200个字展示">{{$info->description}}</textarea>
         </div>
                 <div class="advanced-options">
             <p></p>
@@ -279,7 +240,9 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <div class="SubmitBtns">
             <div class="Page Max">
                 <div class="public-box">
-                   
+                    <div class="public-radio fl">
+                                                    
+                                            </div>
                     <div class="btns fr">
                         {{csrf_field()}}
                         {{method_field('PUT')}}

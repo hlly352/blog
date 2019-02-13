@@ -90,20 +90,10 @@ padding-top: 50px;
       <li ><a href="/home/arttype">文章分类</a></li>
     <div class="clear"></div>
 </ul> <div class="setting-content-3">
-    <form action="http://blog.51cto.com/blogger/blog-manage" method="get" name="selectForm" id="selectForm">
+    <form action="/home/type" method="get" name="selectForm" id="selectForm">
       <div class="select-box">
-        <div class="pulldown pulldown-1 fl">
-        
-                   
-          <input type="hidden" name="blog_type" value="" id="blog_type"/>
-        </div>
-        <div class="pulldown pulldown-3 fl">
-
-         
-                      </ul>
-          <input type="hidden" name="is_hide" value="" id="is_hide"/>
-        </div>
-         <input class="select-btn fl" type="text" placeholder="请输入标题">
+         <input type="hidden" name="page" value={{$rs->currentPage()}} />
+         <input class="select-btn fl" type="text" name='name' placeholder="请输入标题" value={{$name}}>
         <input class="select-btn blue-btn fl" type="submit" value="查找">
         <div class="clear"></div>
       </div>
@@ -111,7 +101,7 @@ padding-top: 50px;
     <table>
       <thead>
         <tr>
-          <td style="width: 70px;">选择</td>
+          <td style="width: 70px;">编号</td>
           <td>标题</td>
           <td style="width: 70px;">类型</td>
           <td style="width: 100px;">发布日期</td>
@@ -122,7 +112,7 @@ padding-top: 50px;
            {{--分类信息--}}
           @foreach($rs as $k=>$v)
                     <tr>
-            <td><input type="checkbox" name="ids[]" value="2343868"></td>
+            <td>@php echo $i++ @endphp</td>
             <td >
               <a style="text-align:center" class="title" target="_blank" href="/home/article/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}">
                 {{$v->title}}                                             </a>
@@ -130,7 +120,7 @@ padding-top: 50px;
             
 				@if($v->person !== '0' )
             <td><p>
-					{{$v->person}}
+					{{getPerson($v->person)}}
             </p></td>
 				@else
 				 <td><p>
@@ -159,7 +149,7 @@ padding-top: 50px;
             #pages li.disabled{background:white;}
         </style>
       <div id="pages" style="text-align:center">
-        {!!$rs->links()!!}
+        {{$rs->links()}}
       </div>
     </div>
       </div>

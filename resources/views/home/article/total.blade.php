@@ -97,9 +97,8 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 <div class="Page Index artical-box">
 	<div class="Left fl">
 		<ul class="artical-title">
-			<li class="on"><a href="http://blog.51cto.com/original">最新原创</a></li>
-			<li class=""><a href="http://blog.51cto.com/artcommend">推荐文章</a></li>
-			<li class="icon-new "><a href="http://blog.51cto.com/blog/follow">关注</a></li>
+			<li class="on"><a href="#" onclick="return false">文章汇总</a></li>
+			
 			<div class="clear"></div>
 		</ul>
 			<ul class="artical-list">
@@ -117,9 +116,9 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 						<div class="clear"></div>
 					</div>
 					<a class="tit" href="/home/article/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}" target="_blank">{{$v->title}}</a>
-					<div class="con">{!!$v->contents!!}</div>
+					<div class="con">@php echo strip_tags($v->contents) @endphp</div>
 					<div class="bot">
-                                                    <span>阅读&nbsp;{{}}</span>
+                                                    <span>阅读&nbsp;{{$v->read_num}}</span>
                         						<span>评论&nbsp;0</span>
 						<span>收藏&nbsp;0</span>
                         						<div class="clear"></div>

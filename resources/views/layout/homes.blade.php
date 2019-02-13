@@ -71,7 +71,6 @@
               </a>
               <div>
                 <a href="/home/myblog">我的博客</a>
-                <a href="" target="_blank">我的收藏</a>
                 <a href="/home/arttype">分类管理</a>
                 <a href="/home/type">博客管理</a>
                 <i class="arrow"></i>

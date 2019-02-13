@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\Type;
 use App\Model\Admin\User;
 use App\Model\Admin\Article;
+use App\Model\Admin\Art_info;
 use App\Model\Admin\Comment;
 use App\Model\Home\Clas;
 use DB;
@@ -61,6 +62,121 @@ class ArticleController extends Controller
         $rs['author'] = User::where('id',$uid)->first()->username;
         $rs['contents'] = $request->input('editorValue');
         $clasname = $request->input('person');
+        //如果person的值为空,则直接接受id值
+        if(!$clasname == null){
+
+        
+        //通过类名查询类名数据库中是否已经存在该类名
+        
+        try{
+            $classid = Clas::where('name',$clasname)->first()->id;
+            } catch(\Exception $e) {
+
+                //向文章分类表中添加分类名
+                
+                if($clasname != null){
+                    $data = \DB::table('clas')->insertGetId(['uid'=>$uid,'name'=>$clasname]);
+                                }
+                     //判断分类表中是否插入数据
+                if(isset($data)){
+                    $rs['person'] = $data;
+                }else{
+                    $rs['person'] = '0';
+                }
+                
+            }
+        } else {
+            $classid = $request->input('other');
+        }
+
+            //如果没有文章表中没有文章类名时,把类名表中查到的类名id赋值给文章person
+            if(!isset($rs['person'])){
+                 $rs['person'] = $classid;
+                }
+                
+      //添加文章
+            
+    try{
+      
+             $res = Article::create($rs);
+             $id = $res->id;
+             $info['art_id'] = $id;
+             $data = Article::find($id); 
+             $data->artinfo()->insert($info);
+
+        }catch(\Exception $e){
+            $request->flash();
+            return back()->with('error','添加失败')->withInput();
+        }
+            return redirect('/home/article')->with('success','添加成功');
+    }
+    //获取文章分类信息的方法
+    public function ajax(){
+        //获取分类的id
+        $pid = $_GET['pid'];
+        //获取子分类
+        $info = Type::where('pid',$pid)->get();
+        echo json_encode($info);
+        
+    }
+    //显示文章内容方法
+    public function show(Request $request, $id)
+    {
+       
+        //通过id查找文章内容
+        // $rs = Article::with('artinfo')->where('id',$id)->first();
+        // dump($request->all());
+        $rs = Article::where('id',$id)->first();
+        $read = $request->read;
+        $comment = $request->comment;
+        //查询评论表
+        $info = Comment::where('art_id',$id)->orderBy('addtime','desc')->get();
+        
+        $num = 0;
+        foreach($info as $k=>$v){
+            // dump($v->art_id);
+            $num++;
+        }
+
+        
+        $i = 1;
+        $users = getAuthor($rs->uid);
+        $img = DB::table('userinfo')->where('uid',$rs->uid)->first()->profile;
+        // dump($img);
+        $userid = session('userid');
+        $profile = DB::table('userinfo')->where('uid',$userid)->first()->profile;
+        return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'profile'=>$profile,'num'=>$num]);
+    }
+
+    //编辑文章方法
+    public function edit($id)
+    {
+        //通过id获取文章信息
+        $info = Article::where('id',$id)->first();
+       //从数据库中取出分类
+        $rs = Type::get();
+        //查找个人分类
+        $mytype = Clas::where('uid',session('userid'))->get();
+
+        return view('home.article.edit',['info'=>$info,'rs'=>$rs,'mytype'=>$mytype,'title'=>'修改文章']);
+
+
+    }
+
+    //处理修改文章
+    public function update(Request $request, $id)
+    {
+        //获取需要的值
+        
+        
+        $rs = $request->only('title','keywords','description');
+        $rs['type_id'] = $request->input('twice');
+        $rs['addtime'] = time();
+        $uid = session('userid');
+        $rs['uid'] = $uid;
+        $rs['author'] = User::where('id',$uid)->first()->username;
+        $rs['contents'] = $request->input('editorValue');
+        $clasname = $request->input('person');
         //通过类名查询类名数据库中是否已经存在该类名
         
         try{
@@ -89,81 +205,26 @@ class ArticleController extends Controller
            
     try{
       
-             $res = Article::create($rs);
-             $id = $res->id;
-             $info['art_id'] = $id;
-             $data = Article::find($id); 
-             $data->artinfo()->insert($info);
-
-        }catch(\Exception $e){
-            $request->flash();
-            return back()->with('error','添加失败')->withInput();
+             $res = Article::where('id',$id)->update($rs);
+        } catch(\Exception $e) {
+            return back()->with('error','修改失败');
         }
-            return redirect('/home/article')->with('success','添加成功');
+        return redirect('/home/myblog');
     }
 
-    //显示文章内容方法
-    public function show(Request $request, $id)
+   //删除文章方法
+    public function delete(Request $request)
     {
+        //获取文章的id
+        $id = $request->id;
+        //删除文章及文章相关信息
+        Article::where('id',$id)->delete();
+        Art_info::where('art_id',$id)->delete();
+        Comment::where('art_id',$id)->delete();
+
+        return back();
+
        
-        //通过id查找文章内容
-        // $rs = Article::with('artinfo')->where('id',$id)->first();
-        // dump($request->all());
-        $rs = Article::where('id',$id)->first();
-        $read = $request->read;
-        $comment = $request->comment;
-        //查询评论表
-        $info = Comment::where('art_id',$id)->orderBy('addtime','desc')->get();
-        // dump($id);
-        // dump($info);
-        $num = 0;
-        foreach($info as $k=>$v){
-            // dump($v->art_id);
-            $num++;
-        }
-        // dump($num);
-        
-        $i = 1;
-        $users = getAuthor($rs->uid);
-        $img = DB::table('userinfo')->where('uid',$rs->uid)->first()->profile;
-        // dump($img);
-        $userid = session('userid');
-        $profile = DB::table('userinfo')->where('uid',$userid)->first()->profile;
-        return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'profile'=>$profile,'num'=>$num]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     //添加评论方法
@@ -206,8 +267,8 @@ class ArticleController extends Controller
 
 
         //从数据库读取所有文章
-     
-        $rs = Article::where('type_id','like','%'.$request->pid.'%')->paginate(6);
+        
+        $rs = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->where('type_id','like','%'.$request->pid.'%')->orderBy('read_num','desc')->limit(8)->paginate(6);
         
         return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页','info'=>$info]);
      }

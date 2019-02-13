@@ -8,19 +8,24 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\Article;
 use App\Model\Admin\Type;
 use App\Model\Admin\User;
+use App\Model\Home\Clas;
 
 class TypeController extends Controller
 {
     //显示分类信息
-    public function index()
+    public function index(Request $request)
     {
 
         //查找当前用户的自有分类
-        $rs = Article::where('uid',session('userid'))->paginate(8);
-        //申明数组用于填充文章类
-     
+        $rs = Article::where('uid',session('userid'))->where('title','like','%'.$request->name.'%')->paginate(1);
 
-        return view('home.type.index',['title'=>'博客管理','rs'=>$rs]);
+        $i = 1;
+        //缓存搜索条件
+        $name = $request->name;
+
+        //申明数组用于填充文章类
+
+        return view('home.type.index',['title'=>'博客管理','rs'=>$rs,'i'=>$i,'name'=>$name,'request'=>$request]);
     }
 
     /**
@@ -61,15 +66,15 @@ class TypeController extends Controller
         //查找要修改的文章信息
         $art = Article::where('id',$id)->first();
 
-        //文章所有分类
-        $rs = Type::get();
-        
-        //查询文章的一二级分类
-        $first = Type::where('pid','0')->first();
-        $twice = Type::where('id',$art->type_id)->first();
-       
       
-        return view('home.type.edit',['title'=>'修改文章','art'=>$art,'first'=>$first,'twice'=>$twice,'rs'=>$rs]);
+        
+         //从数据库中取出分类
+        $rs = Type::get();
+        //查找个人分类
+        $mytype = Clas::where('uid',session('userid'))->get();
+       
+       
+        return view('home.type.edit',['title'=>'修改文章','art'=>$art,'mytype'=>$mytype,'rs'=>$rs]);
     }
 
     //修改文章方法
@@ -78,12 +83,12 @@ class TypeController extends Controller
         //获取需要的值
         $rs = $request->only('title','keywords','description');
         $rs['type_id'] = $request->input('twice');
-        $rs['person'] = $request->input('person','0');
+        $rs['person'] = $request->input('other','0');
         $rs['addtime'] = time();
         $rs['uid'] = 3;
         $rs['contents'] = $request->input('editorValue');
         $rs['author'] = User::where('id',$rs['uid'])->first()->username;
-
+        dump($rs);exit;
         try{
             Article::where('id',$id)->update($rs);
             

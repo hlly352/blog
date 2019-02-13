@@ -177,29 +177,54 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <div class="select-box">
             
             
-            <select name="first" id="oneselect" class="form-control cate pulldown system-select system-two fl">   
+            <select name="first" id="first" class="form-control cate pulldown system-select system-two fl">   
                 @foreach($rs as $k=>$v)
                 
                     @if($v->path == '0,')
-                    <option value="7">{{$v->name}}</option>
+                    <option value={{$v->id}}>{{$v->name}}</option>
                     @endif    
                 
                 @endforeach
                 </select> 
-
-                <select name="twice" id="" class="form-control cate pulldown system-select system-two fl">
-                   @foreach($rs as $k=>$v)
+          
+                <select name="twice" id="twice" class="form-control cate pulldown system-select system-two fl">
+                   
                 
-                    @if(substr_count($v->path,',') == 2)
-                    <option value="8">{{$v->name}}</option>
-                    @endif    
-                
-                @endforeach
+                    
+                    <option value="">--请选择--</option>
+                    
                 </select>
+                <script>
+                    $('#first').live('change',function(){
+                        var upid = $('#first').val();
+                        var ob = $(this);
+                       ob.next('select').empty();
+                        
+                    $.get('/homes/ajax',{'pid':upid},function(data){
+                        var twice = $('#twice');
+                  
+                        if(data.length>0){
+                        for(var i=0;i<data.length;i++){
+                            //把得到数据插入到option中
+                            var option = '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+
+                           console.log(option);
+                            twice.append(option);
+
+                        }
+                        console.log(twice);
+
+                    ob.after(twice);
+                    }
+                
+              
+                     },'json');
+                        });
+                </script>
              
 
                 @if(isset($mytype))
-                <select name="twice" id="" class="form-control cate pulldown system-select system-two fl">
+                <select name="other" id="" class="form-control cate pulldown system-select system-two fl">
     
                     
            
@@ -211,14 +236,14 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 </select>
                 @else
                  <div class="pulldown system-select myself fl cate">
-                  <input disabled style="font-size:29px;color:#999;background:white;margin-right: 0;" placeholder = "请在博客分类中添加" name = "person">
+                  <input style="font-size:29px;color:#999;background:white;margin-right: 0;" placeholder = "请添加博客分类" name = "person">
                 </div>
               @endif
            
                                  
                 <input name="custom_id" id="custom_id" value="" type="hidden">
             </div>
-            <div class="clear">烦烦烦</div>
+            <div class="clear"></div>
             <p class="publish-msg">分类</p>
         </div>
         <div class="select-tab-bg">

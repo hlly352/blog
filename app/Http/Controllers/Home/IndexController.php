@@ -14,7 +14,7 @@ class IndexController extends Controller
     //显示首页方法
     public function index(User $user){
     	//从数据库中查找优质文章
-    	$rs = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->orderBy('read_num','desc')->limit(8)->get();
+    	$rs = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->orderBy('addtime','desc')->limit(8)->get();
         
     	//查询一级分类信息
     	$cate = Type::where('pid','0')->get();
@@ -25,15 +25,15 @@ class IndexController extends Controller
             $data = Type::where('pid',$vs->id)->get();
             //把二级分类名组成一个新数组
             $min_cate = [];
+            $info[$vs->id][0] = $vs->name; 
             foreach($data as $k=>$v){
                 $min_cate[$v->id] = $v->name;
             }
 
-            $info[][] = $vs->name; 
             
-            $info[][$vs->id] = $min_cate;               
+            $info[$vs->id][$v->id] = $min_cate;               
             }
-          
+            
           
      
             //每三个数组变为一个数组单元插入到新数组中

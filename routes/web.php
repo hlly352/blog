@@ -119,6 +119,10 @@ Route::get('/home/reminds','Home\UserController@reminds');
 Route::get('/','Home\IndexController@index');
 //处理文章
 Route::resource('/home/article','Home\ArticleController');
+//删除文章
+Route::get('/article/del','Home\ArticleController@delete');
+//添加文章时获取分类
+Route::get('/homes/ajax','Home\ArticleController@ajax');
 
 //前台文章管理
 Route::resource('/home/type','Home\TypeController');

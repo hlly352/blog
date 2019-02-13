@@ -215,17 +215,17 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
                   
                             <div class="clear"></div>
                         </div>
-                        <a class="tit" href="http://blog.51cto.com/14179965/2347317">
-                          @php echo strip_tags($val->contents) @endphp
+                        <a class="tit" href="/home/article/{{$val->id}}">
+                          {{$val->title}}
                                                                                                            </a>
-                        <a href="javascript:;" class="con">fewqftr3wqfewqafewafasf</a>
+                        <a href="javascript:;" class="con">  @php echo strip_tags($val->contents) @endphp</a>
                         <div class="bot">
                                                             <p class="tab original fl">原创</p>
                                                                                                 <p class="read fl">阅读&nbsp;4</p>
                                                                 <p class="comment fl">评论&nbsp;0</p>
                                 <p class="collect fl">收藏&nbsp;0</p>
-                                                                                            <p class="remove fr" data-id="2347317" data-url="/blogger/operation">删除</p>
-                                <a class="edit fr" href="http://blog.51cto.com/blogger/publish/2347317" target="_blank">编辑</a>
+                                                                                            <a onclick="return confirm('确认删除')" href="/article/del?id={{$val->id}}" class="edit fr" data-id="2347317" data-url="/blogger/operation">删除</a>
+                                <a class="edit fr" href="/home/article/{{$val->id}}/edit" target="_blank">编辑</a>
                                                         <div class="clear"></div>
                         </div>
                     </li>
@@ -253,48 +253,17 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
             			<!-- 发布博文 -->
             			<!-- 博客名称 -->
 			<div class="Box articles blogger-name">
-				<div class="list">
-					<a class="BoxTil3 fl" href="http://blog.51cto.com/14179969">wx5c4042f13be00<span><i></i>用户</span></a>
-					<div class="BoxTil2-box fr">
-						<span></span>
-						<div>
-							<img src="/static/picture/91d8b5e7499849b0a737897bb88eef21.gif">
-							<p>分享到朋友圈</p>
-						</div>
-					</div>
+				
 					<div class="clear"></div>
 					<div class="num-arctic">共<span>0</span>篇文章</div>
 					<div class="bottom">
-						<div class="msg-title">
-                            <i class="l"></i>
-                            <p class="msg-1">
-                                                                                                            这个家伙比较懒，还没有个人介绍
-                                                                                                </p>
-                            <i class="r"></i>
-                        </div>
-						<h4 class="title"><a href="javascript:;">用户个人信息</a></h4>
-						<ul class="my-list">
-                            							<li>无忧币：40</li>
-							<li>注册日期：2019-01-17 0天</li>
-                        </ul>
-                        <div class="my-crouse-box">
-                                                    </div>
+						
 					</div>
 				</div>
 			</div>
 			<!-- 七日热门 -->
-            				<h3 class="BoxTil">七日热门</h3>
-				<div class="Box articles">
-					<div class="list">
-					  <ul class="seven-list">
-					    					    	<li class="s1"><a href="http://blog.51cto.com/12643266/2343070" target="_blank">Linux自动化运维之Cobbler（快速入门）</a></li>
-					    					    	<li class="s2"><a href="http://blog.51cto.com/bigboss/2341986" target="_blank">Centos7 搭建LDAP并启用TLS加密</a></li>
-					    					    	<li class="s3"><a href="http://blog.51cto.com/sery/2342085" target="_blank">proxmox超融合集群挂接nfs出错删除挂接点操作备忘</a></li>
-					    					    	<li class="s4"><a href="http://blog.51cto.com/bearlovecat/2342980" target="_blank">Oracle的十八般武艺</a></li>
-					    					    	<li class="s5"><a href="http://blog.51cto.com/14031893/2342504" target="_blank">如何打通CMDB，实现就近访问</a></li>
-					    					  </ul>
-					</div>
-				</div>
+            			
+				
             		    <!-- 最近来访 -->
 	        		</div>
 		<div class="clear"></div>
