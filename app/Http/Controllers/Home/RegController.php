@@ -23,8 +23,8 @@ class RegController extends Controller
    	{
    		//表单验证
    		$this->validate($request, [
-            'username' => 'required|unique:user|regex:/\w{2,10}/',
-            'password' => 'required|regex:/\w{6,12}/',
+            'username' => 'required|unique:user|regex:/^\w{2,10}$/',
+            'password' => 'required|regex:/^\w{6,12}$/',
             'repassword' => 'same:password',
             'email' => 'email',
         ],[
