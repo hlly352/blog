@@ -55,7 +55,7 @@ class RegController extends Controller
    			$rs = DB::table('userinfo')->insert($email);
    			if($rs){  				
 	   			//发送邮件
-	   			Mail::send('home.remind', ['uname'=>$res,'id'=>$baseid,'token'=>$res['token']], function ($m) use ($res,$email) {
+	   			Mail::send('home.register.remind', ['uname'=>$res,'id'=>$baseid,'token'=>$res['token']], function ($m) use ($res,$email) {
 		            $m->from(env('MAIL_USERNAME'), '二郎巷博客');
 		            $m->to($email['email'], $res['username'])->subject('激活信息!');
 	        	});
