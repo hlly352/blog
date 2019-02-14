@@ -1,6 +1,7 @@
 @extends('layout.centers')
 @section('title',$title)
 @section('content')
+
 <div class="setbox">
     <div class="Ftitle_all mb25">
         <span class="titxet t18">个人资料</span>                

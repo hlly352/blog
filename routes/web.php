@@ -140,6 +140,7 @@ Route::any('/home/total','Home\PubartController@total');
 Route::get('/article/delcom','Home\ArticleController@delcom');
 //阅读量
 Route::any('/article/reads','Home\PubartController@reads');
+
 //点赞
 Route::any('/article/goods','Home\ArticleController@goods');
 //我的博客
@@ -147,6 +148,7 @@ Route::get('/home/myblog','Home\ArticleController@myblog');
 
 //显示公共文章信息的方法
 Route::resource('home/pubart','Home\PubartController');
+
 
 
 

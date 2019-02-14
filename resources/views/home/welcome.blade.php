@@ -134,10 +134,8 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             <li>
                 <div class="layer1"></div>
                 <div class="layer2">
-          
                     <a href="/home/total?pid={{$ks}}" target="_blank">{{$vs[0]}}</a>
-                         
-                 
+                                         
                 </div>
                 <div class="layer3">
                     <h3>{{$vs[0]}}</h3>
@@ -254,6 +252,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
 <div class="Right">
     <div class="iWantWrite yes">
         <p>记录自己的技术轨迹</p>
+
         <a href="/home/article/create">我要写文章</a>
     </div>
     
@@ -283,8 +282,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         </div>
         <!-- 热门推荐 end -->
         
-        
-     
+
     </div>
     <div class="clear"></div>
 </div>

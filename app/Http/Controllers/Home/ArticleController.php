@@ -25,6 +25,7 @@ class ArticleController extends Controller
         
     }
 
+
     //添加文章方法
     public function create()
     {
@@ -107,7 +108,6 @@ class ArticleController extends Controller
             return redirect('/home/article')->with('success','添加成功');
     }
 
-
     //获取文章分类信息的方法
     public function ajax(){
         //获取分类的id
@@ -117,7 +117,7 @@ class ArticleController extends Controller
         echo json_encode($info);
         
     }
-  
+
     //编辑文章方法
     public function edit($id)
     {
@@ -197,7 +197,37 @@ class ArticleController extends Controller
        
     }
 
-          //我的博客方法
+     //前台查看所有文章方法
+     public function total(Request $request)
+     {
+
+
+        //查找文章的一级分类
+        $types = Type::where('pid','0')->where('status','0')->get();
+        $info = [];
+        foreach($types as $k=>$v){
+            $info[$v->id][] = $v->name;
+            //通过一级分类的id查找二级分类的类名                                                                     
+            $s_types = Type::where('pid',$v->id)->get();
+            $t_type = [];
+            foreach($s_types as $ks=>$vs){
+                $t_type[$vs->id] = Type::where('id',$vs->id)->first()->name;
+            }
+
+            $info[$v->id][] = $t_type;
+        }
+
+        
+
+
+        //从数据库读取所有文章
+        
+        $rs = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->where('type_id','like','%'.$request->pid.'%')->orderBy('read_num','desc')->limit(8)->paginate(6);
+        
+        return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页','info'=>$info]);
+     }
+
+    //我的博客方法
      public function myblog(Request $request)
      {
         $data = $request->person;
@@ -211,6 +241,7 @@ class ArticleController extends Controller
         $uid = session('userid');
         //查找当前用户名
         $username = getAuthor($uid);
+
         $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->paginate(10);
 
 
@@ -238,7 +269,6 @@ class ArticleController extends Controller
         echo 1;
      }
 
-
      //删除评论的方法
      public function delcom()
      {
@@ -253,7 +283,6 @@ class ArticleController extends Controller
         
      }
 
- 
 
      //点赞的方法
      public function goods()
