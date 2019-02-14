@@ -114,7 +114,7 @@ padding-top: 50px;
                     <tr>
             <td>@php echo $i++ @endphp</td>
             <td >
-              <a style="text-align:center" class="title" target="_blank" href="/home/article/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}">
+              <a style="text-align:center" class="title" target="_blank" href="/home/pubart/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}">
                 {{$v->title}}                                             </a>
             </td>
             

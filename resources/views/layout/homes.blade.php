@@ -88,7 +88,7 @@
                 
             </li>
             <li class="search">
-                <a href=""  target="_self">搜索</a>
+                <a href="/home/search"  target="_self">搜索</a>
             </li>
             <li class="write"><a href="/home/article/create" onClick="Login()">写文章</a></li>
         </ul>

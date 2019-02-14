@@ -66,10 +66,11 @@
                             <a href="" class="a-img" target="_blank"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="{{$img}}"></a>
                         </div>
                         <a href="" class="name fl" target="_blank" style="margin-right:0;">{{$rs->author}}</a>
-                        <a class="comment comment-num fr"><font class="comment_number">{{$comment}}</font>人评论</a>
+
+                        <a class="comment comment-num fr"><font class="comment_number"></font></a>
                         <span class="fr"></span>
-                        <a href="javascript:;" class="read fr">{{$read}}人阅读</a>
-                        <a href="javascript:;" class="time fr">{{date('Y-m-d H:is',$rs->addtime)}}</a>
+                        <a href="javascript:;" class="read fr"></a>
+                        <a href="javascript:;" class="time fr">{{date('Y-m-d H:i:s',$rs->addtime)}}</a>
                         <div class="clear"></div>
                     </div>
                     <div class="artical-content-bak main-content">
@@ -133,7 +134,8 @@
                                 });
                                 
                                     function delcom(){
-                                        var comid = $(this).parents('.top').next().val();
+
+                                        var comid =  $(this).next().val();
                                         $.get('/article/delcom',{comid:comid},function(data){
                                             if(data){
                                                 window.location.reload();
@@ -160,7 +162,8 @@
                         <p class="number fl"><span class="comment_number">
                           {{$num}}
                         </span>条评论</p>
-                        <a class="time-last time fr comment-sort" id="sort-desc" flag="desc" page="1">按时间倒序</a>
+
+                        <a class="time-last time fr comment-sort" id="sort-desc" flag="desc" page="1"></a>
                         <a class="time-first time fr comment-sort on" id="sort-asc" flag="asc" page="2"></a>
                         <div class="clear"></div>
                     </div>
@@ -177,16 +180,32 @@
                                     </div>
                                     <div class="head-right jf-list-box">
                                         <p class="name">
-                                            <a href="http://blog.51ctocom/14179965">
+
+                                            <a href="">
                                                 {{getAuthor($v->uid)}}
                                             </a>
                                         </p>
                                         <div class="time">
                                             <span class="fl">
                                                 {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}</span>
-                                            <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?')"/></span>    
+
+                                            <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?')"/></span>
+                                                <input type="hidden" value={{$v->id}} />    
                                             <div class="clear"></div>
                                         </div>
+                                        <script>
+                                            $('.del').click(function(){
+                                                //获取评论的id                 
+                                                 var comid =  $(this).next().val();
+                                                //通过ajax动态删除评论
+                                               $.get('/article/delcom',{'comid':comid},function(data){
+                                                alert(data);
+                                                      if(data){
+                                                window.location.reload();
+                                                    }
+                                                    });
+                                                });
+                                        </script>
                                         <input type="hidden" class="reply_id" value="727805">
                                         <input type="hidden" class="user_id" value="14169965">
                                         <input type="hidden" class="first_pid" value="727805">
@@ -223,11 +242,11 @@
                         </div>
                     </div>
                     <div class="b-fllow author-checkFollow fr" style="margin-left: 20px;">
-                        <a id="checkFollow3_905592" class="follow-1 checkFollow on">关注</a>
+
+                        <a id="checkFollow3_905592" class="follow-1 checkFollow on"></a>
                     </div>
-                    <a href="" class="b-name fr">小慢哥</a>
+                    <a href="" class="b-name fr"></a>
                     <div class="is-vip-bg-6 fr">
-                        <a href="" class="b-img"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="/static/picture/noavatar_middle_2.gif"></a>
                     </div>
                     <div class="clear"></div>
                 </div>

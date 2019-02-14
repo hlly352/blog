@@ -25,11 +25,8 @@ class ArticleController extends Controller
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    //添加文章方法
     public function create()
     {
         //从数据库中取出分类
@@ -110,6 +107,7 @@ class ArticleController extends Controller
         }
             return redirect('/home/article')->with('success','添加成功');
     }
+
     //获取文章分类信息的方法
     public function ajax(){
         //获取分类的id
@@ -118,38 +116,6 @@ class ArticleController extends Controller
         $info = Type::where('pid',$pid)->get();
         echo json_encode($info);
         
-    }
-    //显示文章内容方法
-    public function show(Request $request, $id)
-    {
-       
-        //通过id查找文章内容
-        // $rs = Article::with('artinfo')->where('id',$id)->first();
-        // dump($request->all());
-        $rs = Article::where('id',$id)->first();
-        $read = $request->read;
-        $comment = $request->comment;
-        //查询评论表
-        $info = Comment::where('art_id',$id)->orderBy('addtime','desc')->get();
-        
-        $num = 0;
-        foreach($info as $k=>$v){
-            // dump($v->art_id);
-            $num++;
-        }
-
-        
-        $i = 1;
-        $users = getAuthor($rs->uid);
-        $img = DB::table('userinfo')->where('uid',$rs->uid)->first()->profile;
-        // dump($img);
-        if(session('userid')){     
-            $userid = session('userid');
-            $profile = DB::table('userinfo')->where('uid',$userid)->first()->profile;
-            return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'profile'=>$profile,'num'=>$num]);
-        }else{
-            return view('home.article.index',['title'=>$rs->title,'rs'=>$rs,'read'=>$read,'comment'=>$comment,'info'=>$info,'i'=>$i,'users'=>$users,'img'=>$img,'num'=>$num]);
-        }
     }
 
     //编辑文章方法
@@ -231,22 +197,6 @@ class ArticleController extends Controller
        
     }
 
-    //添加评论方法
-    public function comment(){
-        //接收数据
-        $rs['content'] = $_GET['mes'];
-        $rs['art_id'] = $_GET['id'];
-        $rs['uid'] = session('userid');
-        $rs['addtime'] = time();
-        //添加评论
-        try{
-            Comment::create($rs);
-        } catch(\Exception $e) {
-            echo 0; return;
-        }
-
-        echo 1;
-     }
      //前台查看所有文章方法
      public function total(Request $request)
      {
@@ -277,7 +227,7 @@ class ArticleController extends Controller
         return view('home.article.total',['rs'=>$rs,'title'=>'博客列表页','info'=>$info]);
      }
 
-     //我的博客方法
+    //我的博客方法
      public function myblog(Request $request)
      {
         $data = $request->person;
@@ -291,7 +241,8 @@ class ArticleController extends Controller
         $uid = session('userid');
         //查找当前用户名
         $username = getAuthor($uid);
-        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->get();
+
+        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->paginate(10);
 
 
         //查找个人的分类
@@ -299,6 +250,23 @@ class ArticleController extends Controller
 
       
         return view('home.article.myblog',['rs'=>$rs,'mytype'=>$mytype,'title'=>$username.'的博客']);
+     }
+
+    //添加评论方法
+    public function comment(){
+        //接收数据
+        $rs['content'] = $_GET['mes'];
+        $rs['art_id'] = $_GET['id'];
+        $rs['uid'] = session('userid');
+        $rs['addtime'] = time();
+        //添加评论
+        try{
+            Comment::create($rs);
+        } catch(\Exception $e) {
+            echo 0; return;
+        }
+
+        echo 1;
      }
 
      //删除评论的方法
@@ -315,21 +283,6 @@ class ArticleController extends Controller
         
      }
 
-    //阅读量的方法
-     public function reads()
-     {
-        $artid = $_GET['artid'];
-        $artinfo = DB::table('art_info')->where('art_id',$artid)->first();
-        // dump($artinfo->read_num);
-        $read['read_num'] = $artinfo->read_num + 1 ;
-        // dump($read);
-        $data = DB::table('art_info')->where('art_id',$artid)->update($read);
-        if($data){
-            return 1;
-        } else {
-            return 0;
-        }
-     }
 
      //点赞的方法
      public function goods()

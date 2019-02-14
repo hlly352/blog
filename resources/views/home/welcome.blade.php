@@ -134,10 +134,8 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             <li>
                 <div class="layer1"></div>
                 <div class="layer2">
-          
-                    <a onclick ="return false" href="/home/total?pid={{$ks}}" target="_blank">{{$vs[0]}}</a>
-                         
-                 
+                    <a href="/home/total?pid={{$ks}}" target="_blank">{{$vs[0]}}</a>
+                                         
                 </div>
                 <div class="layer3">
                     <h3>{{$vs[0]}}</h3>
@@ -230,7 +228,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
-                    <a href="/home/article/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title" class="reads" target="_blank">{{$value->title}}</a>
+                    <a href="/home/pubart/{{$value->art_id}}?read={{$value->read_num}}&comment={{getCom($value->art_id)}}" title="title" class="reads" target="_blank">{{$value->title}}</a>
                     <input type="hidden" name="" value="{{$value->art_id}}">
                 </h2>
                 <p class="con">@php echo strip_tags($value->contents) @endphp</p>
@@ -254,67 +252,37 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
 <div class="Right">
     <div class="iWantWrite yes">
         <p>记录自己的技术轨迹</p>
+
         <a href="/home/article/create">我要写文章</a>
     </div>
     
-    <ul class="News Box">
-        <li class="f" ><span>公告</span>
-            <a href="" target="_blank"  class='blue'>51CTO博客2.0常见问题解答&QAQ</a>
+  <ul class="News Box">
+    <span>公告</span>
+        @foreach($tips as $k=>$v)
+        <li class="f" >
+            <a href="" target="_blank"  class='blue'>{{$v->content}}</a>
         </li>
-        <li>
-            <a href="" target="_blank"  class='blue'>51CTO订阅专栏作者申请标准</a>
-        </li>
+       @endforeach 
     </ul>
+
   
     <!-- 订阅专栏 end -->
-    <h3 class="BoxTil">推荐作者 <a class="fr" href="/expert" target="_blank">更多</a></h3>
-        <div class="Box BlogerList bd">
-            <ul>
-                <li style="border:0;">
-                    <div class="pic">
-                        <div class="is-vip-bg">
-                            <a class="fl" href="" target="_blank">
-                                <img class="is-vip-img is-vip-img-0" data-uid="9167728" src="static/picture/wkiol1lkq46cukwfaaasq8xix2m460.jpg"/>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="main">
-                        <h4>
-                            <a href="" target="_blank">贺磊</a>
-                            <a id="checkFollow_9167728" class="follow-1 checkFollow on fr">关注</a>
-                        </h4>
-                        <dl><dt>321W+</dt><dd>人气</dd></dl>
-                        <dl><dt>694</dt><dd>评论</dd></dl>
-                        <dl><dt>889</dt><dd>点赞</dd></dl>
-                        <div class="clear"></div>
-                    </div>
-                </li>
-                <script>
-                    FollowBtn = new Follow($('#checkFollow_9167728'),'9167728','1',['on','in','mutual','off'])
-                    FollowBtn.success=FollowBtnSucc
-                </script>               
-            </ul>
-        </div>
+   
         
         <!-- 热门推荐 start -->
-        <h3 class="BoxTil">热门推荐 <a class="fr" href="" target="_blank">更多</a></h3>
+        <h3 class="BoxTil">热门推荐 <a class="fr" href="/home/total" target="_blank">更多</a></h3>
         <div class="Box articles">
             <div class="list">
                 <ul class="seven-list">
-                    <li class="s1"><a href="" target="_blank">基于QMP实现对qemu虚拟机进行交互</a></li> 
+                    @foreach($res as $k=>$v)
+                         <li style="list-style-type:none" class="s1"><a href="/home/pubart/{{$v->art_id}}" target="_blank">{{$v->title}}</a></li> 
+                    @endforeach
                 </ul>
             </div>
         </div>
         <!-- 热门推荐 end -->
         
-        <h3 class="BoxTil">博文动态</h3>
-        <div class="Box articles">
-            <div class="list">
-                <ul class="seven-list">
-                     <li class="s1"><a href="" target="_blank">图片侵权难题，华为云告诉你怎么办！</a></li>
-                </ul>
-            </div>
-        </div>
+
     </div>
     <div class="clear"></div>
 </div>

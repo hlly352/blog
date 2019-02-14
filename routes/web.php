@@ -135,17 +135,19 @@ Route::resource('/home/arttype','Home\ArttypeController');
 Route::get('/home/doajax','Home\ArttypeController@doajax');
 
 //前台查看所有文章
-Route::any('/home/total','Home\ArticleController@total');
+Route::any('/home/total','Home\PubartController@total');
 //前台评论删除
-Route::any('/article/delcom','Home\ArticleController@delcom');
+Route::get('/article/delcom','Home\ArticleController@delcom');
 //阅读量
-Route::any('/article/reads','Home\ArticleController@reads');
+Route::any('/article/reads','Home\PubartController@reads');
+
 //点赞
 Route::any('/article/goods','Home\ArticleController@goods');
 //我的博客
 Route::get('/home/myblog','Home\ArticleController@myblog');
 
-
+//显示公共文章信息的方法
+Route::resource('home/pubart','Home\PubartController');
 
 
 

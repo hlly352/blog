@@ -88,7 +88,7 @@ class TypeController extends Controller
         $rs['uid'] = 3;
         $rs['contents'] = $request->input('editorValue');
         $rs['author'] = User::where('id',$rs['uid'])->first()->username;
-        dump($rs);exit;
+        // dump($rs);exit;
         try{
             Article::where('id',$id)->update($rs);
             

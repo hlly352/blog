@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\Articel;
 use App\Model\Admin\Type;
 use App\Model\Admin\User;
+use App\Model\Admin\Tip;
 use DB;
 
 class IndexController extends Controller
@@ -15,7 +16,8 @@ class IndexController extends Controller
     public function index(User $user){
     	//从数据库中查找优质文章
     	$rs = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->orderBy('addtime','desc')->limit(8)->get();
-        
+
+        $res = \DB::table('article')->join('art_info','article.id','=','art_info.art_id')->select('*')->orderBy('read_num','desc')->limit(8)->get();
     	//查询一级分类信息
     	$cate = Type::where('pid','0')->get();
 
@@ -44,7 +46,11 @@ class IndexController extends Controller
         //显示轮播图
         $banner = \DB::table('banner')->get();
 
-        return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'banner'=>$banner,'info'=>$info]);
+       
+        //获取公告数据
+        $tips = Tip::limit(4)->where('status','0')->get();
+
+        return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'banner'=>$banner,'info'=>$info,'res'=>$res,'tips'=>$tips]);
         
     }
 }

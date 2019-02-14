@@ -28,28 +28,13 @@
     <div class="center clearfix">
         <div class="Fheader_l left clearfix"  style="width:610px;" >
             <ul class="clearfix">
-                <li><a href="">二郎巷博客</a><b class="line"></b></li>
-                <li>
-                    <a href="" target="_blank">技术频道<em class="pub_icon"></em></a>
-                    <b class="line"></b>
-                    <dl class="hidchannel">
-                        <dd><a href="" target="_blank">组网</a></dd>
-                    </dl>
-                </li>    
+                <li><a href="/">二郎巷博客</a><b class="line"></b></li>   
             </ul>
         </div>
         <div style="width:590px;" class="Fheader_r right clearfix" id ="login_status">
             <ul class="clearfix">               
                 <li><a href="" style="padding-right:0;"><strong class="usericon">
                 	<img  src="{{$info->profile}}"   alt="头像" /></strong>{{$user->username}}</a>&nbsp;
-                </li>
-                <li>
-                    <a href="javascript:void(0)">消息<strong class="mesdot mesdot_first"></strong><em class="pub_icon"></em></a>
-                    <dl class="hidchannel">
-                        <dd><a href="" class="position_r">通知</a></dd>
-                        <dd><a href="" class="position_r">私信</a></dd>
-                        <dd><a href="" class="position_r">活动<strong class="mesdot"></strong></a></dd>
-                    </dl>
                 </li>
                 <li><a href="/home/logout">退出</a></li>
             </ul>
@@ -62,12 +47,12 @@
     <div class="center clearfix">
         <div class="Fnav_l left">
             <dl class="clearfix">
-                <dt><a href="/home">二郎巷博客</a></dt>
-                <dd class=""><a href="">首页</a></dd>
-                <dd class="curr" ><a href="">个人主页</a></dd>
-                <dd class=""><a href="" class="position_r">消息中心<b class="dot position_a"></b></a></dd>
+                <dt><a href="/home"><font size="5px">二郎巷博客</font></a></dt>
+                <dd class=""><a href="/">首页</a></dd>
+                <dd class="curr" ><a href="Javascript:void(0)">个人主页</a></dd>
+               <!--  <dd class=""><a href="" class="position_r">消息中心<b class="dot position_a"></b></a></dd> -->
                 <!-- <dd class=""><a target="_blank" href="">充值中心</a>
-                <dd class=""><a style=" position:relative;" target="_blank" href="">会员中心<img width="41" height="39" style=" position:absolute; bottom:10px;" alt="" src="https://static1.51cto.com/home/web/images/vip.png"></a>
+                <dd class=""><a style=" position:relative;" target="_blank" href="">会员中心<img width="41" height="39" style=" position:absolute; bottom:10px;" alt="" src="1234://static1.51cto.com/home/web/images/vip.png"></a>
                 </dd> -->
             </dl>
         </div>
@@ -90,38 +75,34 @@
 		                </a>
 		            </div>
             		<div class="datas clearfix">
-                		<div class="num left tc">
-                    		<a href=""><span>0</span><br/><strong>粉丝</strong></a>
-                		</div>
-	                	<div class="line left"></div>
-	                	<div class="num right tc">
-                		<a href=""><span>1</span><br/><strong>关注</strong></a>
-                	</div>
-            	</div>
-        	</div>
-        	<div class="port_m_box left  ml20" >
-            	<div class="name">
-            		<a href="" class="left">{{$user->username}}</a>          
-                </div>
-                <div class="my_messages">
-                    <span class="Mes_num">性别：
-                    	@if($info->sex)
-                    	<b>{{$info->sex==0?'男':'女'}}</b>
-                    	@else
-                    	<b>暂无</b>
-                    	@endif
-                    </span>
-                    
-                </div>
-                <div class="my_messages">
-                	<span  class="Mes_num">使用邮箱：<b>{{$info->email}}</b></span>  
-                </div>
-                <div class="my_messages">
-                	<span  class="Mes_num"><a href="/home/center/{{$info->id}}/edit">修改资料</a></b></span>  
-                </div>
-	            <div class="my_title" id="jsUserHonor"></div>
-        	</div>        
-   		</div>
+                		<div class="num left tc"></div>
+	                	<!-- <div class="line left"></div> -->
+	                	<div class="num right tc"></div>
+            	    </div>
+        	    </div>
+            	<div class="port_m_box left  ml20" >
+                	<div class="name">
+                		<a href="" class="left">{{$user->username}}</a>          
+                    </div>
+                    <div class="my_messages">
+                        <span class="Mes_num">性别：
+                        	@if($info->sex !=2)
+                        	<b>{{$info->sex==0?'男':'女'}}</b>
+                        	@else
+                        	<b>暂无</b>
+                        	@endif
+                        </span>
+                        
+                    </div>
+                    <div class="my_messages">
+                    	<span  class="Mes_num">使用邮箱：<b>{{$info->email}}</b></span>  
+                    </div>
+                    <div class="my_messages">
+                    	<span  class="Mes_num"><a href="/home/center/{{$info->id}}/edit">修改资料</a></b></span>  
+                    </div>
+    	            <div class="my_title" id="jsUserHonor"></div>
+            	</div>        
+   		    </div>
 		<!--用户发送私信-->
 		<div style = "display:none" class ="jsFansSendMsg">
 		    <dl class="dl_340 pl20 mb10 clearfix">
@@ -141,10 +122,6 @@
             <div class="tab_sub white_box">
 	            <ul class="clearfix">
 	                <li class="first cur_tab"><a href="">我的动态</a></li>
-	                <li class=""><a href="">我的关注</a></li>
-	                <li class=""><a href="">我的文章</a></li>
-	                <li class=""><a href="">我的收藏</a></li>
-	                <li class=""><a href="">我的订阅</a></li>
 	            </ul>
         	</div>
         	<input type="hidden" name="uid" id ="jsUserId" value="14169969">
@@ -175,24 +152,14 @@
     </div>   
 	<div class="mainindex_r right">
     <!-- 我的个人中心入口 -->
-        <div class="Operation white_box mb20">
+        <div class="Operation white_box mb20" style="width: 100px;">
 	        <ul class="clearfix">
-	            <li class="left"><a target="_blank" href="" class="bke">写博文</a></li>
-	            <li class="left"><a target="_blank" href="" class="ftie">发帖</a>
-	            </li>
+	            <li class="left"><a target="_blank" href="/home/article/create" class="bke">写博文</a></li>
+	            <!-- <li class="left"><a target="_blank" href="" class="ftie">发帖</a></li> -->
 	        </ul>
     	</div>
 	    <!-- 我的快捷入口 -->
-	    <div class="white_box mb20 p20">
-	        <div class="my_blank" id="my_blank">
-	            <ul class="clearfix">
-	                <li class="left"><a target="_blank" href=""><span class="icon_bke"></span>我的博客</a></li>
-	                <li class="left"><a target="_blank" href=""><span class="icon_ltan"></span>我的论坛</a></li>
-	                <li class="left"><a target="_blank" href=""><span class="icon_xzai"></span>我的下载</a></li>
-	                <li class="left"><a target="_blank" href=""><span class="icon_xyuan"></span>我的学院</a></li>
-	            </ul>
-	        </div>
-	    </div>	    
+	    	    
 	</div>
 	<div class = "jsEditFollowRemark" style="display: none">
 	    <div class="tl t12 mb15 pl20 validation_or">
@@ -212,7 +179,7 @@
 <!--底部开始-->
 <div class="Ffooter">
     <div class="center">
-        <p>Copyright © 2005-2019 51CTO.COM 京ICP证060544号 版权所有 未经许可 请勿转载</p>
+        <p>Copyright © 2005-2019 二郎巷博客 京ICP证060544号 版权所有 未经许可 请勿转载</p>
     </div>
 </div>
 <!--底部开始-->
@@ -247,17 +214,17 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?844390da7774b6a92b34d40f8e16f5ac";
+      hm.src = "1234://hm.baidu.com/hm.js?844390da7774b6a92b34d40f8e16f5ac";
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
 
-    //document.write(decodeURI("%3Cscript src='https://tongji.51cto.com/cto.js/3d7ca8d8c01f7e7b50250ff1c15bdae3' type='text/javascript'%3E%3C/script%3E"));
+    //document.write(decodeURI("%3Cscript src='1234://tongji.51cto.com/cto.js/3d7ca8d8c01f7e7b50250ff1c15bdae3' type='text/javascript'%3E%3C/script%3E"));
     </script>
-    <script src="https://logs.51cto.com/rizhi/count/count.js"></script>
-    <script type="text/javascript"> document.write(unescape("%3Cscript src='https://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E")); </script>
+    <script src="1234://logs.51cto.com/rizhi/count/count.js"></script>
+    <script type="text/javascript"> document.write(unescape("%3Cscript src='1234://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E")); </script>
 </div>
-<!-- <script src="https://static1.51cto./com/home/web/js/activity_pop.js"></script> -->
+<!-- <script src="1234://static1.51cto./com/home/web/js/activity_pop.js"></script> -->
 <!-- <style type="text/css">
 	.service-btn{
 		width: 53px;
@@ -266,10 +233,10 @@ color: #1ac6fe;
 line-height: 16px;
 padding-top: 50px;
 		display: inline-block;
-		background: url(http://i2.51cto.com/images/blog/201811/02/463350acf4c693cfb3dc248bc8a2a0eb.png) no-repeat center;
+		background: url(1234://i2.51cto.com/images/blog/201811/02/463350acf4c693cfb3dc248bc8a2a0eb.png) no-repeat center;
 	}
 	.service-btn:hover{
-		background: url(http://i2.51cto.com/images/blog/201811/02/2d5fa2ff4eb9ef66847aff20ba4c8bae.png) no-repeat center;
+		background: url(1234://i2.51cto.com/images/blog/201811/02/2d5fa2ff4eb9ef66847aff20ba4c8bae.png) no-repeat center;
 height: 36px;
 color: #fff;
 line-height: 16px;
