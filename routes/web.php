@@ -55,7 +55,7 @@ Route::group(['middleware'=>['login','roleper']],function(){
 	Route::resource('/admin/banner','Admin\BannerController');
 	Route::any('/admin/bannerajax','Admin\BannerController@ajax');
 	//添加评论
-	Route::any('/article/comment','Home\ArticleController@comment');
+	Route::get('/article/comment','Home\ArticleController@comment');
 
 	
 	Route::get('/admin/article','Admin\ArticleController@show');

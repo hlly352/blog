@@ -66,6 +66,7 @@
                             <a href="" class="a-img" target="_blank"><img class="is-vip-img is-vip-img-4" data-uid="905592" src="{{$img}}"></a>
                         </div>
                         <a href="" class="name fl" target="_blank" style="margin-right:0;">{{$rs->author}}</a>
+
                         <a class="comment comment-num fr"><font class="comment_number"></font></a>
                         <span class="fr"></span>
                         <a href="javascript:;" class="read fr"></a>
@@ -133,6 +134,7 @@
                                 });
                                 
                                     function delcom(){
+
                                         var comid =  $(this).next().val();
                                         $.get('/article/delcom',{comid:comid},function(data){
                                             if(data){
@@ -160,6 +162,7 @@
                         <p class="number fl"><span class="comment_number">
                           {{$num}}
                         </span>条评论</p>
+
                         <a class="time-last time fr comment-sort" id="sort-desc" flag="desc" page="1"></a>
                         <a class="time-first time fr comment-sort on" id="sort-asc" flag="asc" page="2"></a>
                         <div class="clear"></div>
@@ -177,6 +180,7 @@
                                     </div>
                                     <div class="head-right jf-list-box">
                                         <p class="name">
+
                                             <a href="">
                                                 {{getAuthor($v->uid)}}
                                             </a>
@@ -184,6 +188,7 @@
                                         <div class="time">
                                             <span class="fl">
                                                 {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}</span>
+
                                             <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?')"/></span>
                                                 <input type="hidden" value={{$v->id}} />    
                                             <div class="clear"></div>
@@ -237,11 +242,11 @@
                         </div>
                     </div>
                     <div class="b-fllow author-checkFollow fr" style="margin-left: 20px;">
+
                         <a id="checkFollow3_905592" class="follow-1 checkFollow on"></a>
                     </div>
                     <a href="" class="b-name fr"></a>
                     <div class="is-vip-bg-6 fr">
-                       
                     </div>
                     <div class="clear"></div>
                 </div>

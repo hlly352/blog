@@ -238,7 +238,7 @@ class ArticleController extends Controller
         echo 1;
      }
 
-  
+
      //删除评论的方法
      public function delcom()
      {

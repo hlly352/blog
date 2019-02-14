@@ -95,7 +95,6 @@ padding-top: 50px;
     <ul class="setting-title">
 	<li ><a href="/home/type">文章管理</a></li>
     	<li  class="on"><a href="/home/arttype">文章分类</a></li>
-	<li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
 		<div class="clear"></div>
 </ul>    <div class="setting-content-2">
   

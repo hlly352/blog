@@ -254,7 +254,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
 <div class="Right">
     <div class="iWantWrite yes">
         <p>记录自己的技术轨迹</p>
-        <a href="/home/pubart/create">我要写文章</a>
+        <a href="/home/article/create">我要写文章</a>
     </div>
     
   <ul class="News Box">
