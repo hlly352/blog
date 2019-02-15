@@ -9,14 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
         <title>@yield('title')</title>
-    <meta name="keywords" content="51CTO博客2.0,51CTO博客,IT博客,技术博客,原创技术文章,技术交流">
-<meta name="description" content="51CTO博客2.0是国内领先的IT原创文章分享及交流平台,包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet">
+    <meta name="keywords" content="IT博客,技术博客,原创技术文章,技术交流">
+<meta name="description" content="包含系统运维,云计算,大数据分析,Web开发入门,高可用架构,微服务,架构设计,PHP教程,Python入门,Java,数据库,网络安全,人工智能,区块链,移动开发技术,服务器,考试认证等文章。">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet">
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <link href="/static/css/setting.css" rel="stylesheet">
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
+   
     <script src="https://static1.51cto.com/edu/center/js/jquery.min.js"></script><script src="https://static1.51cto.com/edu/blog/js/cookie.js"></script><script src="https://static1.51cto.com/edu/blog/js/login.js?v=1.0.0.7"></script><script src="https://static1.51cto.com/edu/blog/js/common.js?v=1.0.0.8"></script><script src="https://static1.51cto.com/edu/blog/js/mbox.js"></script><script src="https://static1.51cto.com/edu/blog/js/follow.js?v=1.0.0.8"></script><script src="https://static1.51cto.com/edu/blog/js/vip.js?v=1.0.0.1"></script><script src="https://static1.51cto.com/edu/blog/js/window.js?v=1.0.0.2"></script>
 	
 <img src="https://static1.51cto.com/edu/blog/mobile/images/share_default.jpg" border="0" style="width:0; height:0; position:absolute;">

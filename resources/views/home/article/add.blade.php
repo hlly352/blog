@@ -178,11 +178,11 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             
             
             <select name="first" id="first" class="form-control cate pulldown system-select system-two fl">   
+                       
                 @foreach($rs as $k=>$v)
-                
                     @if($v->path == '0,')
                     <option value={{$v->id}}>{{$v->name}}</option>
-                    @endif    
+                    @endif   
                 
                 @endforeach
                 </select> 
