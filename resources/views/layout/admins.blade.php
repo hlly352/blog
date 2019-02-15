@@ -136,7 +136,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon ti ti-announcement"></i>广告管理</a>
                         <ul class="sub-menu children dropdown-menu">                            
                             <li><i class="ti ti-pencil"></i><a href="/admin/advert/create">添加广告</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="/admin/user">浏览广告</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/admin/advert">浏览广告</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

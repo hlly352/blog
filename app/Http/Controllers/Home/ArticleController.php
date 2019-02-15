@@ -273,12 +273,24 @@ class ArticleController extends Controller
      public function delcom()
      {
         $comid =  $_GET['comid'];
-        //删除评论
-        $data = Comment::destroy($comid);
-        if($data){
-            return 1;
+        //查找用户id
+        $uid = Comment::where('id',$comid)->first()->uid;
+        //查找文章id
+        $artid = Comment::where('id',$comid)->first()->art_id;
+        //通过文章id查找文章的作者id
+        $auid = Article::where('id',$artid)->first()->uid;
+        
+        //判断该评论是本人或者文章作者才可以删除
+        if(session('userid') == $uid || $auid == session('userid')){            
+            //删除评论
+            $data = Comment::destroy($comid);
+            if($data){
+                return '删除成功!';
+            } else {
+                return '删除失败!';
+            }
         } else {
-            return 0;
+            return '无法删除他人评论!';
         }
         
      }

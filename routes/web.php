@@ -151,7 +151,3 @@ Route::get('/home/myblog','Home\ArticleController@myblog');
 //显示公共文章信息的方法
 Route::resource('home/pubart','Home\PubartController');
 
-
-
-
-

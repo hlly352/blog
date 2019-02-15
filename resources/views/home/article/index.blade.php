@@ -204,21 +204,21 @@
                                                 {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}</span>
 
                                             <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?')"/></span>
-                                                <input type="hidden" value={{$v->id}} />    
+                                                <input type="hidden" value="{{$v->id}}" />    
                                             <div class="clear"></div>
                                         </div>
                                         <script>
-                                            $('.del').click(function(){
-                                                //获取评论的id                 
-                                                 var comid =  $(this).next().val();
-                                                //通过ajax动态删除评论
-                                               $.get('/article/delcom',{'comid':comid},function(data){
+                                        $('.del').click(function(){
+                                            //获取评论的id                 
+                                            var comid =  $(this).next().val();
+                                            //通过ajax动态删除评论
+                                            $.get('/article/delcom',{'comid':comid},function(data){
                                                 alert(data);
-                                                      if(data){
-                                                window.location.reload();
-                                                    }
-                                                    });
-                                                });
+                                                if(data){
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        });
                                         </script>
                                         <input type="hidden" class="reply_id" value="727805">
                                         <input type="hidden" class="user_id" value="14169965">
