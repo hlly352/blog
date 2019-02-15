@@ -20,12 +20,11 @@ class TypeController extends Controller
         $rs = Article::where('uid',session('userid'))->where('title','like','%'.$request->name.'%')->paginate(1);
 
         $i = 1;
-        //缓存搜索条件
-        $name = $request->name;
+       
 
         //申明数组用于填充文章类
 
-        return view('home.type.index',['title'=>'博客管理','rs'=>$rs,'i'=>$i,'name'=>$name,'request'=>$request]);
+        return view('home.type.index',['title'=>'博客管理','rs'=>$rs,'i'=>$i,'request'=>$request]);
     }
 
     /**
@@ -65,16 +64,18 @@ class TypeController extends Controller
     {
         //查找要修改的文章信息
         $art = Article::where('id',$id)->first();
-
-      
-        
          //从数据库中取出分类
         $rs = Type::get();
+        //通过文章类型id查询文章的父级id
+        $type_id = $art->type_id;
+        $pid = Type::where('id',$type_id)->first()->pid;
+        //查询当前分类的同级分类
+        $min_type = Type::where('pid',$pid)->get();
         //查找个人分类
         $mytype = Clas::where('uid',session('userid'))->get();
        
        
-        return view('home.type.edit',['title'=>'修改文章','art'=>$art,'mytype'=>$mytype,'rs'=>$rs]);
+        return view('home.type.edit',['title'=>'修改文章','art'=>$art,'mytype'=>$mytype,'rs'=>$rs,'type_id'=>$type_id,'pid'=>$pid,'min_type'=>$min_type]);
     }
 
     //修改文章方法

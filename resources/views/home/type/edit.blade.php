@@ -184,7 +184,11 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 @foreach($rs as $k=>$v)
                 
                     @if($v->path == '0,')
-                    <option value={{$v->id}}>{{$v->name}}</option>
+                        @if($pid == $v->id)
+                            <option selected value={{$v->id}}>{{$v->name}}</option>
+                        @else
+                            <option value={{$v->id}}>{{$v->name}}</option>
+                        @endif
                     @endif    
                 
                 @endforeach
@@ -192,10 +196,13 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
           
                 <select name="twice" id="twice" class="form-control cate pulldown system-select system-two fl">
                    
-                
-                    
-                    <option value="">--请选择--</option>
-                    
+                    @foreach($min_type as $ks=>$vs)
+                        @if($type_id == $vs->id)
+                            <option selected value="{{$vs->id}}">{{$vs->name}}</option>
+                        @else    
+                            <option value="{{$vs->id}}">{{$vs->name}}</option>
+                        @endif    
+                    @endforeach
                 </select>
                 <script>
                     $('#first').live('change',function(){
@@ -209,7 +216,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                         if(data.length>0){
                         for(var i=0;i<data.length;i++){
                             //把得到数据插入到option中
-                            if(data[i].id == {{$art->type_id}}){
+                            if(data[i].id == 38){
                                     var option = '<option selected value="'+data[i].id+'">'+data[i].name+'</option>';
                                 } else {
                                     var option = '<option value="'+data[i].id+'">'+data[i].name+'</option>';

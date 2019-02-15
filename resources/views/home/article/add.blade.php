@@ -186,23 +186,41 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 
                 @endforeach
                 </select> 
-          
+                <script>
+                    var pid = $(':selected').val();
+                    //通过ajax获取当前父级分类的子分类
+                    $.get('/article/addajax',{pid:pid},function(data){
+                                var twice = $('#twice');
+                  
+                        if(data.length>0){
+                        for(var i=0;i<data.length;i++){
+                            //把得到数据插入到option中
+                            var option = '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+
+                           console.log(option);
+                            twice.append(option);
+
+                        }
+                        console.log(twice);
+
+                    ob.after(twice);
+                    }
+                
+                        },'json');
+                </script>
                 <select name="twice" id="twice" class="form-control cate pulldown system-select system-two fl">
                    
-                
-                    
-                    <option value="">--请选择--</option>
                     
                 </select>
                 <script>
                     $('#first').live('change',function(){
                         var upid = $('#first').val();
                         var ob = $(this);
-                       ob.next('select').empty();
-                        
+                        ob.next('select').empty();
+                        $('#twice').empty();
                     $.get('/homes/ajax',{'pid':upid},function(data){
                         var twice = $('#twice');
-                  
+                        
                         if(data.length>0){
                         for(var i=0;i<data.length;i++){
                             //把得到数据插入到option中

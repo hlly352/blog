@@ -10,9 +10,7 @@
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
     <meta name="keywords" content="原创技术文章,技术文章,技术博客,51CTO博客">
 <meta name="description" content="云计算,大数据分析,Web开发入门,PHP教程,Python入门,Java,数据库文章,网络安全文章,人工智能,移动开发技术,服务器,考试认证等。">    <link href="/static/css/base.css" rel="stylesheet"><link href="/static/css/header.css" rel="stylesheet"><link href="/static/css/other.css" rel="stylesheet"><link href="/static/css/list_tab.css" rel="stylesheet"><link href="/static/css/right.css" rel="stylesheet"><link href="/static/css/blog_list.css" rel="stylesheet">
-    <script>
-        var HOME_URL = 'http://home.51cto.com/';
-    </script>
+
     <script src="/static/js/jquery.min.js"></script><script src="/static/js/cookie.js"></script><script src="/static/js/login.js"></script><script src="/static/js/common.js"></script><script src="/static/js/mbox.js"></script><script src="/static/js/follow.js"></script><script src="/static/js/vip.js"></script><script src="/static/js/window.js"></script>
 <img src="/static/picture/share_default.jpg" border="0" style="width:0;height:0;position:absolute;">
 <style type="text/css">
@@ -115,7 +113,7 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 						<p class="zan fr" type="1" blog_id="2347769">0</p>
 						<div class="clear"></div>
 					</div>
-					<a class="tit" href="/home/article/{{$v->id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}" target="_blank">{{$v->title}}</a>
+					<a class="tit" href="/home/pubart/{{$v->art_id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}" target="_blank">{{$v->title}}</a>
 					<div class="con">@php echo strip_tags($v->contents) @endphp</div>
 					<div class="bot">
                                                     <span>阅读&nbsp;{{$v->read_num}}</span>

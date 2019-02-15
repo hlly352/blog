@@ -17,12 +17,14 @@
   <script src="/static/js/jquery.min_1.js"></script>
   <script src="/static/js/cookie.js"></script>
   <script src="/static/js/login.js"></script>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
   <script src="/static/js/common.js"></script>
   <script src="/static/js/mbox.js"></script>
   <script src="/static/js/follow.js"></script>
   <script src="/static/js/vip.js"></script>
   <script src="/static/js/window.js"></script>
-  <img src="/static/picture/share_default.jpg" border="0" style="width:0; height:0; position:absolute;">
+  <img src="/static/picture/share_default.jpg" border="0" style="width:0; height:0; position:absolute">
   <style type="text/css">
   	.service-btn{
   		width: 53px;
@@ -222,15 +224,18 @@
               <p>暂无文章</p>
           </div>
           @endif
-          {{$rs->links()}}          
-            <!--关注和粉丝的显示-->
-            
+          <div class="clear"></div>
+        
             <!-- page -->
         </div>
+        <style>
+            .page li.disabled{background:white;}
+            .page{text-align:center;}
+            .Right{margin-right:125px;margin-top:-2280px}
+        </style>
 		<!-- right -->
 		<div class="Right">
-            			<!-- 发布博文 -->
-            			<!-- 博客名称 -->
+            
 			<div class="Box articles blogger-name">
 				
 					<div class="clear"></div>
@@ -240,12 +245,15 @@
 					</div>
 				</div>
 			</div>
-			<!-- 七日热门 -->
-            			
+        
 			<!-- 最近来访 -->
 	    </div>
 		<div class="clear"></div>
 	</div>
+  <div class="page">
+            {{$rs->appends(['person'=>(isset($_GET['person']))?$_GET['person']:''])->links()}}          
+          </div>
+                  
 	<!-- end content -->
 </div>
 <script>
