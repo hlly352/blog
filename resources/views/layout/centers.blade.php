@@ -5,13 +5,14 @@
 	<meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="eUw5QmZUN0kMGloUJDFoPzUUTycUFWUoKiNodFIhcz0PeFdwPwZnGw==">
 	<title>@yield('title')</title>
-	<link rel="shortcut icon" href="https://static2.51cto.com/home/web/images/favicon.ico" type="image/x-icon">
 	<meta name="keywords" content="51CTO技术家园">
     <meta name="description" content="51CTO技术家园">
     <link href="/homes/center/static/CSS/datepicker.css" rel="stylesheet">
     <link href="/homes/center/static/CSS/fset.css" rel="stylesheet">
     <link href="/homes/center/static/CSS/jquery-ui.css" rel="stylesheet">
     <link href="/homes/center/static/CSS/public.css" rel="stylesheet">
+    <link href="/homes/center/css/public.css" rel="stylesheet">
+    <link href="/homes/center/css/myzy.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/js/jquery-3.2.1.min.js"></script>
@@ -25,12 +26,61 @@
     <script src="/homes/center/static/JS/msg.js"></script>
     <script src="/homes/center/static/JS/public.js"></script>
     <script src="/homes/center/static/JS/ts_common.js"></script>
-    <script src="/homes/center/static/JS/yii.js"></script>	</head>
+    <script src="/homes/center/static/JS/yii.js"></script>
+    <script src="/homes/center/js/jquery.min.js"></script>
+    <script src="/homes/center/js/system/yii.js"></script>
+    <script src="/homes/center/js/51cto.js"></script>
+    <script src="/homes/center/js/jquery.message.js"></script>
+    <script src="/homes/center/js/public.js"></script>
+    <script src="/homes/center/js/imgscal.js"></script>
+    <script src="/homes/center/js/jquery.masonry.min.js"></script>
+    <script src="/homes/center/js/tip/jquery.cluetip.js"></script>	
+    <script src="/homes/center/js/public/ts_common.js"></script>
+    <script src="/homes/center/js/public/space.js"></script>
+    <script src="/homes/center/js/public/follow.js"></script>
+    <script src="/homes/center/js/public/msg.js"></script>
+</head>
 <!--简导航开始-->
 <body>
+    @php
+        $uid = session('userid');
+        $profile = \DB::table('userinfo')->where('uid',$uid)->first();
+    @endphp
+<div class="Fheader">
+    <div class="center clearfix">
+        <div class="Fheader_l left clearfix"  style="width:610px;" >
+            <ul class="clearfix">
+                <li><a href="/" style="border:0px">二郎巷博客</a><b class="line"></b></li>   
+            </ul>
+        </div>
+        <div style="width:590px;" class="Fheader_r right clearfix" id ="login_status">
+            <ul class="clearfix">               
+                <li><a href="" style="padding-right:0;border:0px"><strong class="usericon">
+                    <img  src="{{$profile->profile}}"   alt="头像" /></strong>{{$user->username}}</a>&nbsp;
+                </li>
+                <li><a href="/home/logout" style="border:0px">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <!--简导航结束-->
 <!--导航开始-->
+<div class="Fnav" style="border-bottom: 0px">
+    <div class="center clearfix">
+        <div class="Fnav_l left">
+            <dl class="clearfix">
+                <dt><a href="/home"><font size="5px">二郎巷博客</font></a></dt>
+                <dd class=""><a href="/">首页</a></dd>
+                <dd class="curr" ><a href="">个人主页</a></dd>
+               <!--  <dd class=""><a href="" class="position_r">消息中心<b class="dot position_a"></b></a></dd> -->
+                <!-- <dd class=""><a target="_blank" href="">充值中心</a>
+                <dd class=""><a style=" position:relative;" target="_blank" href="">会员中心<img width="41" height="39" style=" position:absolute; bottom:10px;" alt="" src="1234://static1.51cto.com/home/web/images/vip.png"></a>
+                </dd> -->
+            </dl>
+        </div>
+    </div>
+</div>
 <!--导航结束-->
 <!--主体开始-->
 @if(session('success'))
@@ -67,11 +117,7 @@
                         </table>
                     </a>
                 </div>
-                <div class="datas clearfix">
-                    <div class="num left tc"><a href="/user-follow-fans/fans"><span>0</span><br /><strong>粉丝</strong></a></div>
-                    <div class="line left"></div>
-                    <div class="num right tc"><a href="/space/feed?uid=14169969"><span>1</span><br /><strong>关注</strong></a></div>
-                </div>
+                <div class="datas clearfix"></div>
             </div>
             <div class="set_fgline"></div>
             <div class="set_box">
@@ -111,7 +157,7 @@
 <!--主体结束-->
 <!--底部开始-->
 <!--底部结束-->
-<script src="https://static2.51cto.com/home/web/js/WdatePicker.js?v=10002"></script>
+<script src="1234://static2.51cto.com/home/web/js/WdatePicker.js?v=10002"></script>
 @section('js')
 
 @show

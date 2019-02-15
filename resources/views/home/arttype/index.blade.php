@@ -5,7 +5,7 @@
 @section('content')
 	
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta 1234-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="favicon" rel="shortcut icon" href="/favicon.ico" />
         
@@ -35,10 +35,10 @@ color: #1ac6fe;
 line-height: 16px;
 padding-top: 50px;
 		display: inline-block;
-		background: url(http://i2.51cto.com/images/blog/201811/02/463350acf4c693cfb3dc248bc8a2a0eb.png) no-repeat center;
+		background: url(1234://i2.51cto.com/images/blog/201811/02/463350acf4c693cfb3dc248bc8a2a0eb.png) no-repeat center;
 	}
 	.service-btn:hover{
-		background: url(http://i2.51cto.com/images/blog/201811/02/2d5fa2ff4eb9ef66847aff20ba4c8bae.png) no-repeat center;
+		background: url(1234://i2.51cto.com/images/blog/201811/02/2d5fa2ff4eb9ef66847aff20ba4c8bae.png) no-repeat center;
 height: 36px;
 color: #fff;
 line-height: 16px;
@@ -46,47 +46,47 @@ padding-top: 50px;
 	}
 </style>
 <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <script src="1234://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="1234://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
 
 <script src="/static/js/box.js"></script> 
 <script>
     var isLogin = '1';
     var userId = '14169969';
-    var imgpath = 'https://s1.51cto.com/';
-    var BLOG_URL = 'http://blog.51cto.com/';
+    var imgpath = '1234://s1.51cto.com/';
+    var BLOG_URL = '1234://blog.51cto.com/';
     var msg_num_url = '/index/ajax-msg-num';
     $('.msg-follow, .msg-follow-max').eq(1).css({top: '91px'});
     $('.msg-follow, .msg-follow-max').eq(2).css({top: '121px'});
     setTimeout(function(){
-            $.ajax({
-                url:msg_num_url,
-                type:"get",
-                dataType:'json',
-                success:function(res){
-                    if(res.status == '0'){
-                       //
-                       var hasNewMsg = false;
-                       if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
-                            $('#myMsg i').addClass('dot');
-                            hasNewMsg = true;
-                       }
-                       if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
-                           $('#myNotify i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
-                           $('#myRecommend i').addClass('dot');
-                           hasNewMsg = true;
-                       }
-                       if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
-                           $('#myAllMsg i').addClass('dot');
-                       }
-                    }
-
+        $.ajax({
+            url:msg_num_url,
+            type:"get",
+            dataType:'json',
+            success:function(res){
+                if(res.status == '0'){
+                   //
+                   var hasNewMsg = false;
+                   if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
+                        $('#myMsg i').addClass('dot');
+                        hasNewMsg = true;
+                   }
+                   if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
+                       $('#myNotify i').addClass('dot');
+                       hasNewMsg = true;
+                   }
+                   if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
+                       $('#myRecommend i').addClass('dot');
+                       hasNewMsg = true;
+                   }
+                   if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
+                       $('#myAllMsg i').addClass('dot');
+                   }
                 }
-            });
+
+            }
+        });
     },70);
   
 </script>
@@ -95,7 +95,7 @@ padding-top: 50px;
     <ul class="setting-title">
 	<li ><a href="/home/type">文章管理</a></li>
     	<li  class="on"><a href="/home/arttype">文章分类</a></li>
-	<li ><a href="http://blog.51cto.com/blogger/setting#D">基本设置</a></li>
+	   
 		<div class="clear"></div>
 </ul>    <div class="setting-content-2">
   
@@ -226,11 +226,6 @@ padding-top: 50px;
 </script>
 </div>
 
-    <div class="rightTools">
-        <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3591348659&amp;site=qq&amp;menu=yes" class="qq"></a>
-    <a href="http://blog.51cto.com/51ctoblog/2057444" class="yy" target="_blank"></a>
-    <a href="javascript:void(0);" class="gotop"></a>
-</div>
 <script>
   $(".gotop").click(function(){$(window).scrollTop(0)})
 </script>
@@ -241,7 +236,7 @@ padding-top: 50px;
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?2283d46608159c3b39fc9f1178809c21";
+      hm.src = "1234://hm.baidu.com/hm.js?2283d46608159c3b39fc9f1178809c21";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -250,7 +245,7 @@ padding-top: 50px;
     (function(){
         var bp = document.createElement('script');
         var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
+        if (curProtocol === '1234') {
             bp.src = '/static/js/push.js';
         }
         else {
@@ -270,17 +265,17 @@ padding-top: 50px;
           var vds = document.createElement('script');
           vds.type='text/javascript';
           vds.async = true;
-          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'assets.growingio.com/vds.js';
+          vds.src = ('1234:' == document.location.protocol ? '1234://' : '1234://') + 'assets.growingio.com/vds.js';
           var s = document.getElementsByTagName('script')[0];
           s.parentNode.insertBefore(vds, s);
         })();
       })();
-      //document.write(decodeURI("%3Cscript src='https://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E"));
+      //document.write(decodeURI("%3Cscript src='1234://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E"));
     </script>
     
 <script>
   var uid = '14169969';
-  var BLOG_URL = 'http://blog.51cto.com/';
+  var BLOG_URL = '1234://blog.51cto.com/';
 </script>
 <script src="/static/js/jquery.cookie.js"></script>
 <script src="/static/js/time-on-page.js?v=1.0.2" charset="utf-8"></script>

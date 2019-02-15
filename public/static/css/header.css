@@ -10,7 +10,7 @@
 .gray-btn {color: #333;background: #fff;border: 1px solid #ccc;cursor: pointer;}
 .gray-btn:hover {background: #e6e6e6;}
 .Header {background: #FFF;border-bottom:1px solid #DDD;height: 60px;position: relative;z-index: 21;min-width: 1000px;}
-  .Header .Logo {width: 150px;background: url(../images/logo2.0.1.png) no-repeat center;height: 60px;float: left;}
+  .Header .Logo {width: 150px;/*background: url(../images/logo2.0.1.png) no-repeat center;*/height: 60px;float: left;}
     .Header .Logo a {display: block;height: 100%;text-indent: -9999px;overflow: hidden;}
   .Header .Navigates  {display: inline-block;list-style: none;}
     .Header .Navigates li {height: 61px;position: relative;}

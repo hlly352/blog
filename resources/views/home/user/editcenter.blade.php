@@ -1,7 +1,6 @@
 @extends('layout.centers')
 @section('title',$title)
 @section('content')
-
 <div class="setbox">
     <div class="Ftitle_all mb25">
         <span class="titxet t18">个人资料</span>                
@@ -94,7 +93,7 @@
                     <dt class="left w_110 tr">通讯地址：</dt>
                     <dd class="left w_325 ml10">
                         <span>
-                            <input type="text" require="false" datatype="limit"  max="150"  msg ="通讯地址，最多支持50个字" placeholder="请输入通讯地址，最多支持50个字" value="{{$res->phone}}" name="address"  class="form-control" />
+                            <input type="text" require="false" datatype="limit"  max="150"  msg ="通讯地址，最多支持50个字" placeholder="请输入通讯地址，最多支持50个字" value="{{$res->address}}" name="address"  class="form-control" />
                         </span>
                     </dd>
                 </dl>

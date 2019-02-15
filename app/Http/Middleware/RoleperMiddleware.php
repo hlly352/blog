@@ -42,13 +42,47 @@ class RoleperMiddleware
         if($res == 'App\Http\Controllers\Admin\IndexController@index'){
             return $next($request);
         }
-        // dump($res);
 
+        $perr = [
+            'App\Http\Controllers\Admin\UserController@store',
+            'App\Http\Controllers\Admin\UserController@update',
+            'App\Http\Controllers\Admin\UserController@show',
+            'App\Http\Controllers\Admin\UserController@dochangepass',
+            'App\Http\Controllers\Admin\UserController@profile',
+            'App\Http\Controllers\Admin\UserController@profiles',
+            'App\Http\Controllers\Admin\UserController@doprofile',
+            'App\Http\Controllers\Admin\UserController@douserrole',
+            'App\Http\Controllers\Admin\RoleController@store',
+            'App\Http\Controllers\Admin\RoleController@update',
+            'App\Http\Controllers\Admin\RoleController@store',
+            'App\Http\Controllers\Admin\RoleController@doroleper',
+            'App\Http\Controllers\Admin\PermissionController@store',
+            'App\Http\Controllers\Admin\PermissionController@update',
+            'App\Http\Controllers\Admin\TypeController@store',
+            'App\Http\Controllers\Admin\TypeController@update',
+            'App\Http\Controllers\Admin\TypeController@typeson',
+            'App\Http\Controllers\Admin\BannerController@store',
+            'App\Http\Controllers\Admin\BannerController@update',
+            'App\Http\Controllers\Admin\LinkController@store',
+            'App\Http\Controllers\Admin\LinkController@update',
+            'App\Http\Controllers\Admin\TipController@store',
+            'App\Http\Controllers\Admin\TipController@update',
+            'App\Http\Controllers\Admin\AdvertController@store',
+            'App\Http\Controllers\Admin\AdvertController@update'
+        ];
+
+        if(in_array($res, $perr)){
+            return $next($request);
+        }
+
+        // dump($res);exit;
         if(in_array($res, $pers)){
-            return $next($request);            
+            return $next($request);
         } else {
             return redirect('/admin/remind');
         }
+
         // return $next($request);
+        
     }
 }

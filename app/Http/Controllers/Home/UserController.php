@@ -70,7 +70,7 @@ class UserController extends Controller
         //
         $res = DB::table('userinfo')->where('id',$id)->first();
         $user = DB::table('user')->where('id',$res->uid)->first();
-        return view('home.user.editcenter',['title'=>'修改个人中心','res'=>$res,'user'=>$user]);
+        return view('home.user.editcenter',['title'=>'个人中心','res'=>$res,'user'=>$user]);
     }
 
     /**

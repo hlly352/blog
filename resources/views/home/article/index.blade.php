@@ -88,10 +88,13 @@
                     <div class="appreciate-box">
                         
                     </div>
-                    
+                    @php
+                        $artid = $rs->id;
+                        $goods = \DB::table('art_info')->where('art_id',$artid)->first();
+                    @endphp
                     <div class="more-list">
-                        <p class="is-praise fl "><span type="1" blog_id="2342274" userid='905592'>1</span></p>
-                        <p class="favorites favorites-opt fr"><i></i>收藏</p>
+                        <p class="is-praise fl "><span type="1" blog_id="2342274" userid='905592'>{{$goods->good_num}}</span></p>
+                        <input type="hidden" name="" value="{{$rs->id}}">
                         <div class="clear"></div>
                     </div>
                     <div class="author-module">
@@ -111,7 +114,18 @@
                             <textarea class="textareadiv textareadiv-publis" name="" id="" placeholder="用心的回复会被更多人看到和认可"  maxlength="500"></textarea>
                             <div class="comment-push">
                                 <input type="hidden" id="artid" value="{{$rs->id}}"/>
-                                <script>           
+                                <script>
+                                //点赞
+                                $('.is-praise').click(function(){
+                                    //获取文章的id
+                                    var artids = $(this).next().val();
+                                    $.get('/article/goods',{artids:artids},function(data){
+                                        if(data){
+                                            window.location.reload();
+                                        }
+                                    })
+                                })
+
                                 $(function(){
                                     $('.cancel-btn-1').click(function(){
                                         $('.textareadiv').val('');

@@ -50,19 +50,22 @@
 <![endif]-->
 <div class="Header">
     <div class="Page ">
-        <h1 class="Logo"><a href="/">Logo</a></h1>
+        <h1 style="width: 150px;height: 60px;float: left; text-align: center;line-height: 60px;font-size: 25px;"><a href="/" style="color:skyblue; font-family: '楷体'">二郎巷博客</a></h1>
         <ul class="Navigates fl">
             <li  class="/" ><a href="/">首页</a></li>
-            <li ><a href="/home/total">文章</a></li>
-           
+            <li ><a href="/home/total">文章</a></li>  
         </ul>
         <ul class="Navigates Navigates-right fr">
             <li class="more maps">
                 <a href="/home/logout">退出</a>
             </li>
             @if(session('userid'))
+            @php
+              $uid = session('userid');
+              $info = \DB::table('userinfo')->where('uid',$uid)->first();
+            @endphp
             <li class="more user">
-              <a class="is-vip-bg-1" href="/home/center" target="_blank">
+              <a class="is-vip-bg-1" href="/home/center/{{$info->id}}/edit" target="_blank">
                 @if(getImg(session('userid')))
                 <img class="is-vip-img is-vip-img-5" data-uid="14175912" src="{{getImg(session('userid'))}}">
                 @else
@@ -84,12 +87,7 @@
                 <a href="/home/login" target="_self">登录</a>
             </li>
             @endif
-            <li class="mRead">
-                
-            </li>
-            <li class="search">
-                <a href="/home/search"  target="_self">搜索</a>
-            </li>
+            <li class="mRead"></li>
             <li class="write"><a href="/home/article/create" onClick="Login()">写文章</a></li>
         </ul>
         <div class="clear"></div>
