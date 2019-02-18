@@ -54,10 +54,7 @@ Route::group(['middleware'=>['login','roleper']],function(){
 	//轮播图管理
 	Route::resource('/admin/banner','Admin\BannerController');
 	Route::any('/admin/bannerajax','Admin\BannerController@ajax');
-	//添加评论
-	Route::get('/article/comment','Home\ArticleController@comment');
-
-	
+	//文章
 	Route::get('/admin/article','Admin\ArticleController@show');
 	//文章分类
 	Route::resource('/admin/article/type','Admin\TypeController');
@@ -93,60 +90,58 @@ Route::post('/home/dologin','Home\LoginController@dologin');
 //前台的退出
 Route::get('/home/logout','Home\LoginController@logout');
 
-//前台的个人中心
-Route::resource('/home/center','Home\UserController');
-//修改头像
-//修改已有头像
-Route::get('/home/profile/{id}','Home\UserController@profile');
-//修改未存在头像
-Route::get('/home/profiles','Home\UserController@profiles');
-Route::post('/home/doprofile','Home\UserController@doprofile');
-//修改密码
-Route::get('/home/changepass/{id}','Home\UserController@changepass');
-Route::post('/home/dochangepass/{id}','Home\UserController@dochangepass');
-//修改邮箱
-Route::get('/home/changemail/{id}','Home\UserController@changemail');
-Route::post('/home/dochangemail/{id}','Home\UserController@dochangemail');
-Route::get('/home/reminds','Home\UserController@reminds');
-
+// 'middleware'=>'log'
+Route::group(['middleware'=>'log'],function(){
+	//前台的个人中心
+	Route::resource('/home/center','Home\UserController');
+	//修改头像
+	//修改已有头像
+	Route::get('/home/profile/{id}','Home\UserController@profile');
+	//修改未存在头像
+	Route::get('/home/profiles','Home\UserController@profiles');
+	Route::post('/home/doprofile','Home\UserController@doprofile');
+	//修改密码
+	Route::get('/home/changepass/{id}','Home\UserController@changepass');
+	Route::post('/home/dochangepass/{id}','Home\UserController@dochangepass');
+	//修改邮箱
+	Route::get('/home/changemail/{id}','Home\UserController@changemail');
+	Route::post('/home/dochangemail/{id}','Home\UserController@dochangemail');
+	Route::get('/home/reminds','Home\UserController@reminds');
+	//处理文章
+	Route::resource('/home/article','Home\ArticleController');
+	//添加文章时获取子分类
+	Route::get('/article/addajax','Home\ArticleController@ajax');
+	//删除文章
+	Route::get('/article/del','Home\ArticleController@delete');
+	//添加文章时获取分类
+	Route::get('/homes/ajax','Home\ArticleController@ajax');
+	//前台文章管理
+	Route::resource('/home/type','Home\TypeController');
+	//前台文章分类管理
+	Route::resource('/home/arttype','Home\ArttypeController');
+	//前台ajax添加分类
+	Route::get('/home/doajax','Home\ArttypeController@doajax');
+	//前台评论删除
+	Route::get('/article/delcom','Home\ArticleController@delcom');
+	//我的博客
+	Route::get('/home/myblog','Home\ArticleController@myblog');	
+	//点赞
+	Route::get('/article/goods','Home\ArticleController@goods');
+	//添加评论
+	Route::get('/article/comment','Home\ArticleController@comment');
+});
 
 //激活提醒页面
 // Route::get('/home/reminds','Home\RegController@reminds');
 
-
-
 //前台首页
 Route::get('/','Home\IndexController@index');
-//处理文章
-Route::resource('/home/article','Home\ArticleController');
-//添加文章时获取子分类
-Route::get('/article/addajax','Home\ArticleController@ajax');
-//删除文章
-Route::get('/article/del','Home\ArticleController@delete');
-//添加文章时获取分类
-Route::get('/homes/ajax','Home\ArticleController@ajax');
-
-//前台文章管理
-Route::resource('/home/type','Home\TypeController');
-
-//前台文章分类管理
-
-Route::resource('/home/arttype','Home\ArttypeController');
-
-//前台ajax添加分类
-Route::get('/home/doajax','Home\ArttypeController@doajax');
 
 //前台查看所有文章
 Route::any('/home/total','Home\PubartController@total');
-//前台评论删除
-Route::get('/article/delcom','Home\ArticleController@delcom');
+
 //阅读量
 Route::any('/article/reads','Home\PubartController@reads');
-
-//点赞
-Route::any('/article/goods','Home\ArticleController@goods');
-//我的博客
-Route::get('/home/myblog','Home\ArticleController@myblog');
 
 //显示公共文章信息的方法
 Route::resource('home/pubart','Home\PubartController');

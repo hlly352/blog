@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Advert;
 use DB;
 use Hash;
 
@@ -12,7 +13,9 @@ class LoginController extends Controller
     //
     public function login()
     {
-    	return view('home.login',['title'=>'登录页面']);
+        //获取广告图
+        $res = Advert::limit(1)->first();
+    	return view('home.login',['title'=>'登录页面','res'=>$res]);
     }
 
     public function dologin(Request $request)

@@ -137,7 +137,7 @@
                                         if(mes == ''){
                                             alert('内容不能为空');
                                         }else{
-                                            var id = $('#artid').val();                   
+                                            var id = $('#artid').val();                  
                                             $.get('/article/comment',{id:id,mes:mes},function(data){
                                                 if(data){
                                                     window.location.reload();  
@@ -146,16 +146,6 @@
                                         }
                                     });
                                 });
-                                
-                                    function delcom(){
-
-                                        var comid =  $(this).next().val();
-                                        $.get('/article/delcom',{comid:comid},function(data){
-                                            if(data){
-                                                window.location.reload();
-                                            }
-                                        })
-                                    }
                                 
                                 </script>
                                 <p class="msg fl"></p>
@@ -202,22 +192,23 @@
                                         <div class="time">
                                             <span class="fl">
                                                 {{$i++}}楼&nbsp;&nbsp;{{date('Y-m-d H:i:s',$v->addtime)}}</span>
-
-                                            <span class="fr del"><img src="/static/images/54s.png" onclick="return confirm('是否确认删除?')"/></span>
+                                            <span class="fr del" ><img src="/static/images/54s.png" /></span>
                                                 <input type="hidden" value="{{$v->id}}" />    
                                             <div class="clear"></div>
                                         </div>
                                         <script>
-                                        $('.del').click(function(){
+                                        $('.del').unbind('click').on('click',function(event){   
                                             //获取评论的id                 
                                             var comid =  $(this).next().val();
-                                            //通过ajax动态删除评论
-                                            $.get('/article/delcom',{'comid':comid},function(data){
-                                                alert(data);
-                                                if(data){
-                                                    window.location.reload();
-                                                }
-                                            });
+                                            if(confirm('确认删除')){
+                                                //通过ajax动态删除评论
+                                                $.get('/article/delcom',{'comid':comid},function(data){
+                                                    alert(data);
+                                                    if(data){
+                                                        window.location.reload();
+                                                    }      
+                                                });
+                                            }
                                         });
                                         </script>
                                         <input type="hidden" class="reply_id" value="727805">
@@ -235,7 +226,7 @@
                 </div>
                 <!-- end left -->
                 <!-- right start -->
-                <div class="Blog-Right artical-Right">
+                <div clasarts="Blog-Right artical-Right">
                     <a class="catalog"></a>
                     <a class="scrollTop" href="javascript:void(0);" onclick="$(window).scrollTop(0);"></a>
                 </div>
@@ -272,7 +263,7 @@
 <script>
   var praise_url = 'http://blog.51cto.com/praise/praise'
       addReply_url = 'http://blog.51cto.com/comments/add'
-      removeUrl = 'http://blog.51cto.com/comments/del'
+
       blog_id = '2342274'
       pv_log_info = {
             'pv_type':'blog',
@@ -381,14 +372,7 @@
       updatePage();
     });
    })
-  // 定时刷新现在时间
-  setInterval(function () {
-    zDate.getServerTime(function (e) {
-      var updateResult = new Date(e).getTime();
-      now_time = +updateResult.toString().substr(0, 10);
-      updatePage();
-    });
-  }, 1000*60*2);
+
   // 页面刷新
   function updatePage() {
     $('.presell').each(function(index, item) {
