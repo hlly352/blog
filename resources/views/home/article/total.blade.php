@@ -100,30 +100,33 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 			<div class="clear"></div>
 		</ul>
 			<ul class="artical-list">
-			   @foreach($rs as $k=>$v)
+         @foreach($rs as $k=>$v)
+          @php
+            $profile = \DB::table('userinfo')->where('uid',$v->uid)->first()->profile;
+            $comment = \DB::table('comment')->where('art_id',$v->art_id)->get();
+          @endphp
 			    <li>
 					<div class="top " >
-	                    <div class="is-vip-bg fl">
-							<a href="http://blog.51cto.com/14148276" class="a-img" target="_blank">
-	                            <img class="avatar is-vip-img is-vip-img-4" data-uid="14138276" src="/static/picture/noavatar_middle.gif"/>
-		                    </a>
-	                    </div>
-						<a href="http://blog.51cto.com/14148276" class="name fl" target="_blank">{{getAuthor($v->uid)}}</a>
-            						<p href="javascript:;" class="time fl">发布于：{{date('Y-m-d',$v->addtime)}}</p>
-						<p class="zan fr" type="1" blog_id="2347769">0</p>
+	          <div class="is-vip-bg fl">
+							<a href="" class="a-img" target="_blank">
+	              <img class="avatar is-vip-img is-vip-img-4" data-uid="14138276" src="{{$profile}}"/>
+		          </a>
+	          </div>
+						<a href="" class="name fl" target="_blank">{{getAuthor($v->uid)}}</a>
+            	<p href="javascript:;" class="time fl">发布于：{{date('Y-m-d',$v->addtime)}}</p>
+						  <!-- <p class="zan fr" type="1" blog_id="2347769">{{$v->good_num}}</p> -->
 						<div class="clear"></div>
 					</div>
 					<a class="tit" href="/home/pubart/{{$v->art_id}}?read={{$v->read_num}}&comment={{getCom($v->id)}}" target="_blank">{{$v->title}}</a>
 					<div class="con">@php echo strip_tags($v->contents) @endphp</div>
 					<div class="bot">
-                                                    <span>阅读&nbsp;{{$v->read_num}}</span>
-                        						<span>评论&nbsp;0</span>
-						<span>收藏&nbsp;0</span>
-                        						<div class="clear"></div>
+            <span>阅读&nbsp;{{$v->read_num}}</span>
+            <span>评论&nbsp;{{count($comment)}}</span>
+            <div class="clear"></div>
 					</div>
 				</li>
-			    @endforeach	
-			    			</ul>
+			  @endforeach	
+			</ul>
             		
         
 		<!-- page -->
@@ -167,10 +170,8 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 </div>
 
     <div class="rightTools">
-          <a href="http://blog.51cto.com/blogger/publish" class="aa">写文章</a>
-        <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3591348659&amp;site=qq&amp;menu=yes" class="qq"></a>
-    <a href="http://blog.51cto.com/51ctoblog/2057444" class="yy" target="_blank"></a>
-    <a href="javascript:void(0);" class="gotop"></a>
+      <a href="/home/article/create" class="aa" target="_blank">写文章</a>
+      <a href="javascript:void(0);" class="gotop"></a>
 </div>
  
 <script>

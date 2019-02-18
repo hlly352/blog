@@ -186,6 +186,10 @@
             @if($rs->count() != 0)
             <ul class="artical-list">
               @foreach($rs as $key=>$val)
+              @php
+                $read = \DB::table('art_info')->where('art_id',$val->id)->first()->read_num;
+                $comment = \DB::table('comment')->where('art_id',$val->id)->get();
+              @endphp
               <li id="userblog">
                 <div class="top ">
                   <div class="is-vip-bg fl">
@@ -202,9 +206,8 @@
                 <a href="javascript:;" class="con">  @php echo strip_tags($val->contents) @endphp</a>
                 <div class="bot">
                   <p class="tab original fl">原创</p>
-                  <p class="read fl">阅读&nbsp;4</p>
-                  <p class="comment fl">评论&nbsp;0</p>
-                  <p class="collect fl">收藏&nbsp;0</p>
+                  <p class="read fl">阅读&nbsp;{{$read}}</p>
+                  <p class="comment fl">评论&nbsp;{{count($comment)}}</p>
                   <a onclick="return confirm('确认删除')" href="/article/del?id={{$val->id}}" class="edit fr" data-id="2347317" data-url="/blogger/operation">删除</a>
                   <a class="edit fr" href="/home/article/{{$val->id}}/edit" target="_blank">编辑</a>
                   <div class="clear"></div>
