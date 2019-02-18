@@ -241,6 +241,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                 </div>
                 <button class="zan favour_num" data-type="1" blog_id="2342274">{{$value->good_num}}</button>
                 <input type="hidden" name="" value="{{$value->art_id}}">
+                <input type="hidden" name="" value="{{session('userid')}}">
             </li>            
             @endforeach  
         </ul>
@@ -300,11 +301,21 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
     })
     $('.zan').one('click',function(){
         var artids = $(this).next().val();
-        $.get('/article/goods',{artids:artids},function(data){
-            if(data){
-                window.location.reload();
-            }
-        })
+        var userid = $(this).next().next().val();
+        if(userid){
+            $.ajax({
+                type:'GET',
+                url:'/article/goods',
+                data:{artids:artids},
+                success:function(data){
+                    if(data){
+                        window.location.reload();
+                    }
+                }
+            });
+        } else {
+            location.href = '/home/login';
+        }
     })
 </script>
 @stop

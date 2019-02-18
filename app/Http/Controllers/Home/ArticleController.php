@@ -259,6 +259,7 @@ class ArticleController extends Controller
         $rs['art_id'] = $_GET['id'];
         $rs['uid'] = session('userid');
         $rs['addtime'] = time();
+        
         //添加评论
         try{
             Comment::create($rs);

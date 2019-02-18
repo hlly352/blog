@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no, email=no" />
     <meta name="renderer" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta 1234-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="true" />
     <meta name="MobileOptimized" content="320" />
     <meta name="screen-orientation" content="portrait" />
@@ -20,7 +20,7 @@
     <meta name="csrf-param" content="_csrf" />
     <meta name="csrf-token" content="TmN6YzVuUGwKVhMVciYRCXdSKFoFLz0iO1IlGlQoAFgUABsFRxwGGw==" />
     <title>{{$title}}</title>
-    <!-- <link rel="shortcut icon" href="https://static2.51cto.com/home/web/images/favicon.ico" type="image/x-icon" /> -->
+    <!-- <link rel="shortcut icon" href="1234s://static2.51cto.com/home/web/images/favicon.ico" type="image/x-icon" /> -->
     <link href="/homes/login/css/z_sign.min.css" rel="stylesheet" />
     <script src="/homes/login/js/jquery.min.js"></script>
     <script src="/homes/login/js/51cto.js"></script>
@@ -33,20 +33,18 @@
 <body>
     <div class="sign">
         <div class="loginWrap">
-            <!-- <a class="logo" href="http://www.51cto.com"></a> -->
+            <!-- <a class="logo" href="1234://www.51cto.com"></a> -->
             <h1>二郎巷博客</h1>
             <div class="loginPic zxflogoPic clearfix">
                 <div class="loginImg">
-                    <a href="http://blog.51cto.com/cloumn/index?dl" target="_blank">
-                        <!-- <img src="/homes/login/picture/2ff39751a49d12573a0e62d0fbdc883e.jpg" alt=""
-                        border="0" /> -->
-                        广告图
+                    <a href="javascript:void(0)">
+                        <img src="{{$res->profile}}" alt="" border="0" width="580" height="360" />
                     </a>
                 </div>
                 <div class="loginBord" id="login-base">
                     <div class="loginTit" style="display:block">
                         <div class="tosignup">
-                            <a target="_blank" href="http://51ctohome.blog.51cto.com/1805422/579769"
+                            <a target="_blank" href=""
                             style="margin-right:10px;color:#969696;">无法登录?</a>|
                             <a href="/home/register" style="margin-left:10px;color:#d54e4e;">注册</a>
                         </div>
@@ -107,7 +105,7 @@
                     </form>
                     <br>
                     <div class="otherAccout zxfAccout">
-                        <p>
+                        <!-- <p>
                             你也可以使用以下账号登录
                         </p>
                         <div class="z_box">
@@ -127,7 +125,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="shadow_l"></div>
                     <div class="shadow_r"></div>
@@ -196,15 +194,9 @@
         </div>
     </div>
     <div class="foot">
-        <a target="_blank" href="http://www.51cto.com/about/aboutus.html">关于我们</a>|
-        <a target="_blank" href="http://www.51cto.com/about/zhaopin.html">诚聘英才</a>|
-        <a target="_blank" href="http://www.51cto.com/about/contactus.html">联系我们</a>|
-        <a target="_blank" href="http://www.51cto.com/about/history2011.html">网站大事</a>|
-        <a href="javascript:void(0)" class="ina popyjdatilfeedback">意见反馈</a>|
-        <a target="_blank" href="http://www.51cto.com/about/map.htm">网站地图</a>
         <br />
         Copyright &copy; 2005-2019
-        <a href="Http://www.51cto.com">51CTO.COM</a>
+        <a href="/">二郎巷博客</a>
         版权所有
     </div>
     <script src="static/js/loginform.js">
@@ -215,7 +207,7 @@
         <script>
             var _hmt = _hmt || []; (function() {
                 var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?844390da7774b6a92b34d40f8e16f5ac";
+                hm.src = "1234s://hm.baidu.com/hm.js?844390da7774b6a92b34d40f8e16f5ac";
                 var s = document.getElementsByTagName("script")[0];
                 s.parentNode.insertBefore(hm, s);
             })();
@@ -227,7 +219,7 @@
         _educto.push(['_setUserId', uid]);
     </script>
     <script type="text/javascript">
-        /*document.write(decodeURI("%3Cscript src='https://tongji.51cto.com/cto.js/3d7ca8d8c01f7e7b50250ff1c15bdae3' type='text/javascript'%3E%3C/script%3E"));*/
+        /*document.write(decodeURI("%3Cscript src='1234s://tongji.51cto.com/cto.js/3d7ca8d8c01f7e7b50250ff1c15bdae3' type='text/javascript'%3E%3C/script%3E"));*/
         
     </script>
     <style type="text/css">
@@ -238,7 +230,7 @@
         50px; }
     </style>
     <script type="text/javascript">
-        document.write(unescape("%3Cscript src='https://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E"));
+        document.write(unescape("%3Cscript src='1234s://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <script src="static/js/entrance.js" id="zhichiScript" class="zhiCustomBtn"data-args="manual=true"></script>
     <script type="text/javascript">
