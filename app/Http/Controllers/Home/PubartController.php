@@ -10,19 +10,37 @@ use App\Model\Admin\Article;
 use App\Model\Admin\Art_info;
 use App\Model\Admin\Comment;
 use App\Model\Home\Clas;
+use App\Model\Home\Userinfo;
 use DB;
 
 
 class PubartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //显示作者的所有文章方法
+    public function index(Request $request)
     {
-        //
+        //获取作者的id和搜索条件
+        $uid = $request->uid;
+        $data = $request->person;
+        //通过分类名查询类名的id
+        try{
+            $person = Clas::where('name',$data)->first()->id;
+        } catch(\Exception $e) {
+            $person = '';
+        }
+        //查找当前用户名
+        $username = getAuthor($uid);
+
+        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->paginate(10);
+
+
+        //查找个人的分类
+        $mytype = Clas::where('uid',$uid)->get();
+        //查找用户头像
+        $img = Userinfo::where('uid',$uid)->first()->profile;
+        $art = \DB::table('article')->where('uid',$uid)->get();
+
+        return view('home.article.personal_blog',['rs'=>$rs,'mytype'=>$mytype,'title'=>$username.'的博客','img'=>$img,'art'=>$art,'authorid'=>$uid]);
     }
 
     /**

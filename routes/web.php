@@ -54,8 +54,6 @@ Route::group(['middleware'=>['login','roleper']],function(){
 	//轮播图管理
 	Route::resource('/admin/banner','Admin\BannerController');
 	Route::any('/admin/bannerajax','Admin\BannerController@ajax');
-	//添加评论
-	Route::get('/article/comment','Home\ArticleController@comment');
 
 	
 	Route::get('/admin/article','Admin\ArticleController@show');
@@ -83,6 +81,8 @@ Route::group(['middleware'=>['login','roleper']],function(){
 
 });
 
+//添加评论
+Route::get('/article/comment','Home\ArticleController@comment');
 //前台的注册
 Route::get('/home/register','Home\RegController@index');
 Route::post('/home/register/add','Home\RegController@add');

@@ -220,11 +220,11 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             <li id="blog_2342274" class='infos'>
                 <div class="userInfo clearfix">
                     <div class="is-vip-bg fl" style="margin-right:10px;">
-                        <a href="" target="_blank" style="margin-right:0;">
+                        <a href="/home/pubart?uid={{$value->uid}}" target="_blank" style="margin-right:0;">
                             <img class="avatar is-vip-img is-vip-img-4" data-uid="905592" src="{{$profile}}"/>
                         </a>
                     </div>
-                    <a class="name" href="" target="_blank">{{$value->author}}</a>
+                    <a class="name" href="" return false target="_blank">{{$value->author}}</a>
                     <span class="time">发布于:{{date('Y-m-d H:i:s',$value->addtime)}}</span>
                 </div>
                 <h2>
