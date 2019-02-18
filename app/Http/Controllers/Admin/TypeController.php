@@ -25,11 +25,12 @@ class TypeController extends Controller
       }
       
       //查询分类信息
+      // dump($request->name);exit;
       
-      
-      $rs = Type::where('pid',$pid)->get();
+      $rs = Type::where('pid',$pid)->where('name','like','%'.$request->name.'%')->paginate($request->input('nums',3));
+
       $i = 1;
-      return view('admin.type.index',['title'=>'浏览分类','rs'=>$rs,'i'=>$i]);
+      return view('admin.type.index',['title'=>'浏览分类','rs'=>$rs,'i'=>$i,'request'=>$request]);
     }
 
     //添加分类方法
