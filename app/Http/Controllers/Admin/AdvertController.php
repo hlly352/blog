@@ -17,11 +17,11 @@ class AdvertController extends Controller
     {
         //后台广告页面
         
-        $res = Advert::all();
-        return view('admin.advert.advert',[
+         $res = Advert::all();
+       return view('admin.advert.advert',[
             'title'=>'后台广告链接',
             'res'=>$res
-        ]);
+            ]);
     }
 
     /**
@@ -51,7 +51,7 @@ class AdvertController extends Controller
 
         if(!$request->hasFile('profile')){
 
-            echo '没有选择文件上传';die;
+            return redirect('/admin/advert/create')->with('error','没有文件上传');
         } else {
 
         $file = $request->file('profile');
@@ -74,6 +74,9 @@ class AdvertController extends Controller
         
         //添加
         $data = Advert::create($res);
+
+            
+        
 
         }catch(\Exception $e){
 
@@ -120,7 +123,7 @@ class AdvertController extends Controller
 
         if(!$request->hasFile('profile')){
 
-            echo '没有选择文件上传';die;
+             return back()->with('error','没有文件上传');
         } else {
 
         $file = $request->file('profile');

@@ -8,6 +8,7 @@ use App\Model\Admin\Articel;
 use App\Model\Admin\Type;
 use App\Model\Admin\User;
 use App\Model\Admin\Tip;
+use App\Model\Admin\Link;
 use DB;
 
 class IndexController extends Controller

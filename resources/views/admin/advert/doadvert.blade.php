@@ -2,6 +2,16 @@
 @section('title',$title)    
 
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success" role="alert">
+        {{session('success')}}   
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{session('error')}}   
+    </div>
+@endif
     <!-- <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
     <script src="../js/jquery-2.0.3.min.js"></script>
@@ -45,3 +55,8 @@
     </div>
 </div>
 @endsection
+@section('js')
+    <script>
+        $('.alert').delay(2000).fadeOut(1500);
+    </script>
+@stop

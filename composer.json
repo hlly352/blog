@@ -39,8 +39,8 @@
             "app/Function/getArticle.php",
             "app/Function/getComnum.php",
             "app/Function/getGood.php",
-            "app/Function/getPerson.php"
-
+            "app/Function/getPerson.php",
+            "app/Function/getLink.php"
 
         ]
     },
