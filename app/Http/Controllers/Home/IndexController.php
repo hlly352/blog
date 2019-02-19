@@ -38,7 +38,7 @@ class IndexController extends Controller
             }
             
           
-     
+
             //每三个数组变为一个数组单元插入到新数组中
       
     	$count =Type::where('pid','0')->count();
