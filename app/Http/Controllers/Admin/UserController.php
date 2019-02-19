@@ -110,10 +110,10 @@ class UserController extends Controller
         try {
             $data = User::create($rs);
             if($data){
-                return redirect('/admin/user');
+                return redirect('/admin/user')->with('success','添加成功');
             }
         } catch (\Exception $e) {
-            return back();
+            return back()->with('error','添加失败');
         }
     }
 
@@ -178,10 +178,10 @@ class UserController extends Controller
         try {
             $data = User::where('id',$id)->update($res);
             if($data){
-                return redirect('/admin/user');
+                return redirect('/admin/user')->with('success','修改成功');
             }
         } catch (\Exception $e) {
-            return back();
+            return back()->with('error','修改失败');
         }
         // dump($res);
 
@@ -199,10 +199,10 @@ class UserController extends Controller
 
         try {
             $data = User::find($id);
-            $data->delete();
+            $arr = $data->delete();
             $res = $data->infos()->delete();
-            if($res){
-                return redirect('/admin/user');
+            if($arr){
+                return redirect('/admin/user')->with('success','删除成功');
             } 
         } catch (Exception $e) {
             return back();

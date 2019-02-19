@@ -260,11 +260,14 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
   <ul class="News Box">
     <span>公告</span>
         @foreach($tips as $k=>$v)
-        <li class="f" >
-            <a href="" target="_blank"  class='blue'>{{$v->content}}</a>
+        <li class="f"  >
+            <li>{{$v->title}}</li>
+            <li style="white-space: normal;"><p>{{$v->content}}</p></li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{date('Y-m-d H:i',$v->addtime)}}</li>
         </li>
        @endforeach 
     </ul>
+
 
   
     <!-- 订阅专栏 end -->

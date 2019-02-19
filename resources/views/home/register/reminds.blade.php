@@ -5,7 +5,7 @@
     <meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="anI0MWpGWUo7B1FkLnIJKDs0fGZYFiAMJRh3QS0fFn4eS2xZLSw.Cw==">
 	<title>{{$title}}</title>
-	<link rel="shortcut icon" href="1234s://static3.51cto.com/home/web/images/favicon.ico" type="image/x-icon">				
+	<link rel="shortcut icon" href="" type="image/x-icon">				
 	<meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="anI0MWpGWUo7B1FkLnIJKDs0fGZYFiAMJRh3QS0fFn4eS2xZLSw.Cw==">
     <meta 1234-equiv="pragma" content="no-cache">
@@ -30,7 +30,7 @@
 <div class="nav">
 	<div class="nav_nr">
         <dl class="nav1">
-            <dt style="margin-top:-20px"><a href="" target="_blank" style="text-decoration: none ;"><font color="blue"><h3>二郎巷博客</h3></font></a></dt>
+            <dt style="margin-top:-20px"><a href="/" target="_blank" style="text-decoration: none ;"><font color="blue"><h3>二郎巷博客</h3></font></a></dt>
             <dd>账号通行证</dd>
         </dl>
         <dl class="nav2">
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 <!--头部文件结束-->
 <script src="/js/reg_helper.js"></script>
-<form action="/home/register/add" method="post" name="" style="height:400px">
+<form action="" method="post" name="" style="height:400px">
     <!-- <input type="hidden" name="token" id="token" value=""> -->
     <div class="zczh">
         <dl class="tit_wx clearfix"></dl>
@@ -143,14 +143,8 @@ $(document).ready(function(){
 
 <!-- <script src="./footer.js"></script> -->
 <div class="footer">
-    <a href="" target="_blank">关于我们</a>|
-    <a href="" target="_blank">诚聘英才  </a>|
-    <a href="" target="_blank">联系我们  </a>|
-    <a href="" target="_blank">网站大事  </a>|
-    <a href="" target="_blank">友情链接  </a>|
-    <a class="jsFeedCallBack" href="javascript:void(0);">意见反馈  </a>|
-    <a href="" target="_blank">网站地图</a>
-    <span>Copyright ? 2005-2015 51CTO.COM 京ICP证060544</span>
+    
+    <span>Copyright ? 2005-2015 二郎巷博客 京ICP证060544</span>
 </div>
 
 <script>

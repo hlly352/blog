@@ -37,19 +37,49 @@
                             <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">权限名</font></font>
                         </label>
                     </div>
-                    <div class="col col-md-7">
+                    <div class="col col-md-9">
                         <div class="form-check form-check">
-                            @foreach($permission as $k=>$v)
+                           <!--  @foreach($permission as $k=>$v)
                             @if(in_array($v->pername, $rp))
                             <label class="form-check-label ">
-                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" checked class="form-check-input">{{$v->pername}}&nbsp;    
+                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" checked class="form-check-input">{{$v->pername}}&nbsp;     
                             </label><br>
                             @else
                             <label class="form-check-label ">
-                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" class="form-check-input">{{$v->pername}}&nbsp;    
+                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" class="form-check-input">{{$v->pername}}&nbsp; 
                             </label><br>
                             @endif
-                            @endforeach
+                            @endforeach -->
+                            <style type="text/css">
+                                #inline-checkbox1{margin-left: -0.25rem;}
+                            </style>
+                            <div class="col-lg-12">
+                                <div class="card" style="margin-left: -80px">
+                                    <div class="card-body">
+                                        <table class="table table-bordered">
+                                            @foreach($per as $key=>$val)
+                                            <tr>
+                                                @foreach($val as $ks=>$vs)
+                                                <td style="padding:-20px">
+                                                    @if(in_array($vs[0], $rp))
+                                                    <label class="form-check-label ">
+                                                        <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$vs[1]}}" checked class="form-check-input" >
+                                                            &nbsp;&nbsp;&nbsp;{{$vs[0]}} 
+                                                    </label>
+                                                    @else
+                                                    <label class="form-check-label ">
+                                                        <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$vs[1]}}" class="form-check-input">
+                                                            &nbsp;&nbsp;&nbsp;{{$vs[0]}}
+                                                    </label>
+                                                    @endif 
+                                                </td>
+                                                @endforeach
+                                            </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

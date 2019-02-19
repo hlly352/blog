@@ -10,7 +10,7 @@ use DB;
 
 class RoleController extends Controller
 {
-    /**
+    /**.
      * 添加权限的页面.
      *
      * @return \Illuminate\Http\Response
@@ -20,13 +20,24 @@ class RoleController extends Controller
         //根据id查角色名
         $role = Role::find($id);
         //获取权限名
-        $permission = Permission::all();
+        $permission = Permission::orderBy('id','asc')->get();
+        $per = [];
+        $data = [];
+        foreach($permission as $k=>$v){
+            $data[$k][] = $v->pername;
+            $data[$k][] = $v->id;
+        }
+        for($i = 0;$i<ceil(count($data)/5);$i++){
+            $per[] = array_slice($data,$i*5,5,true);
+        }
+        // dump($per);
+        // exit;
         $roleper = $role->permissions;
         $rp = [];
         foreach($roleper as $k=>$v){
             $rp[] = $v->pername;
         }
-        return view('admin.role.roleper',['title'=>'角色权限添加页面','role'=>$role,'permission'=>$permission,'rp'=>$rp]);
+        return view('admin.role.roleper',['title'=>'角色权限添加页面','role'=>$role,'permission'=>$permission,'rp'=>$rp,'per'=>$per]);
     }
 
     /**
