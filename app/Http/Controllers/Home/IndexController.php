@@ -27,7 +27,7 @@ class IndexController extends Controller
             //通过一级分类的id作为二级分类的pid来查询二级分类
             $data = Type::where('pid',$vs->id)->get();
             //把二级分类名组成一个新数组
-            $min_cate = [];
+            $mincate = [];
             $info[$vs->id][0] = $vs->name; 
             foreach($data as $k=>$v){
                 $min_cate[$v->id] = $v->name;
@@ -38,6 +38,8 @@ class IndexController extends Controller
             }
             
           
+
+
 
             //每三个数组变为一个数组单元插入到新数组中
       

@@ -59,6 +59,7 @@ class ArticleController extends Controller
         $rs['author'] = User::where('id',$uid)->first()->username;
         $rs['contents'] = $request->input('editorValue');
         $clasname = $request->input('person');
+
         //如果person的值为空,则直接接受id值
         if(!$clasname == null){
 

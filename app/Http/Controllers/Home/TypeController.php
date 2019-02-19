@@ -83,7 +83,7 @@ class TypeController extends Controller
         $rs['type_id'] = $request->input('twice');
         $rs['person'] = $request->input('other','0');
         $rs['addtime'] = time();
-        $rs['uid'] = 3;
+        $rs['uid'] = session('userid');
         $rs['contents'] = $request->input('editorValue');
         $rs['author'] = User::where('id',$rs['uid'])->first()->username;
 
