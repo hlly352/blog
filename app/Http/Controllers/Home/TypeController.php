@@ -15,16 +15,13 @@ class TypeController extends Controller
     //显示分类信息
     public function index(Request $request)
     {
-
         //查找当前用户的自有分类
-        $rs = Article::where('uid',session('userid'))->where('title','like','%'.$request->name.'%')->paginate(1);
+        $rs = Article::where('uid',session('userid'))->where('title','like','%'.$request->name.'%')->paginate(8);
 
         $i = 1;
-       
-
         //申明数组用于填充文章类
 
-        return view('home.type.index',['title'=>'博客管理','rs'=>$rs,'i'=>$i,'request'=>$request]);
+        return view('home.type.index',['title'=>'博客管理','rs'=>$rs,'i'=>$i]);
     }
 
     /**
@@ -96,7 +93,7 @@ class TypeController extends Controller
         } catch(\Exception $e) {
             return back();
         }
-        return redirect('/home/type');
+        return redirect('/home/myblog');
     }
 
     //删除文章方法

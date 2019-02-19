@@ -242,7 +242,7 @@ class ArticleController extends Controller
         //查找当前用户名
         $username = getAuthor($uid);
 
-        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->paginate(10);
+        $rs = Article::with('artinfo')->where('person','like','%'.$person.'%')->where('uid',$uid)->orderBy('addtime','desc')->paginate(10);
 
 
         //查找个人的分类

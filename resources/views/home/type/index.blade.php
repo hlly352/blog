@@ -90,7 +90,7 @@ padding-top: 50px;
 </ul> <div class="setting-content-3">
     <form action="/home/type" method="get" name="selectForm" id="selectForm">
       <div class="select-box">
-         <input type="hidden" name="page" value={{$rs->currentPage()}} />
+      
          <input class="select-btn fl" type="text" name='name' placeholder="请输入标题" value={{(isset($_GET['name']))?$_GET['name']:''}}>
         <input class="select-btn blue-btn fl" type="submit" value="查找">
         <div class="clear"></div>

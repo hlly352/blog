@@ -19,6 +19,7 @@ class PubartController extends Controller
     //显示作者的所有文章方法
     public function index(Request $request)
     {
+        
         //获取作者的id和搜索条件
         $uid = $request->uid;
         $data = $request->person;

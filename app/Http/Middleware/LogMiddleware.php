@@ -17,7 +17,7 @@ class LogMiddleware
     {
         $userid = session('userid');
         if($userid){
-            return $next($request);   
+            return $next($request);
         }else{
             return redirect('/home/login');
         }

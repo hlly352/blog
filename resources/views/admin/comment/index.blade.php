@@ -73,6 +73,7 @@
 			                        </thead>
 			                        <tbody>
 			                        @foreach($rs as $k=>$v)
+
 			                        @if($k % 2 == 1)
 			                        <tr role="row" class="odd">
 			                        @else
@@ -82,7 +83,7 @@
 			                            @php
 											$i++;
 			                            @endphp
-			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit">
 			                            {{gettitle($v->art_id)}} 
 			                            </font></font></td>
 			                             <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->content}}</font></font></td>
