@@ -59,6 +59,7 @@
                     </div>
                     <div class="col-12 col-md-7">
                         <img src="{{$res->pic}}">
+                        <input type="hidden" name="oldpic" value="{{$res->pic}}">
                     	<input type="file" id="file_upload" name="pic" class="form-control">
                     </div>
                 </div>

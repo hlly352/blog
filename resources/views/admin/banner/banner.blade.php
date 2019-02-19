@@ -52,7 +52,8 @@
 			                        <tr role="row" class="odd">
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$id++}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->title}}</font></font></td>
-			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img src="{{$v->pic}}" width="600px"></font></font></td>
+			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><img src="{{$v->pic}}" width="600px">
+			                            </font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->link}}</font></font></td>
 			                            <td>
 			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">

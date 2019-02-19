@@ -164,7 +164,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
             @foreach($banner as $k=>$v)
             <li class="cur">
                 <a href="{{$v->link}}" target="_blank">
-                    <img src="{{$v->pic}}">
+                    <img src="{{$v->pic}}" width="650px" height="315px">
                     <span>{{$v->title}}</span>
                 </a>
             </li>

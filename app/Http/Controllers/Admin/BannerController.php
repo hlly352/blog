@@ -124,10 +124,11 @@ class BannerController extends Controller
             'link.url' => '地址格式不正确',
         ]);
 
-        $res = $request->except('_token','_method');
-        // dump($request->);
+        $oldpic = $request->oldpic;
+        $res = $request->except('_token','_method','oldpic');
 
         //判断是否修改图片
+        
         if(!$request->hasFile('pic')){
             //直接修改数据
             $data = DB::table('banner')->where('id',$id)->update($res);
@@ -138,14 +139,19 @@ class BannerController extends Controller
             }
         } else {
             //删除之前的图片
-            unlink($request->pic);
+             // dump($request->pic);exit;
+            unlink('.'.$oldpic);
             $file = $request->file('pic');
+            // dump($file);exit;
             //设置名字
             $name = rand(1111,9999).time();
+            // dump($file);exit;
             //获取后缀
             $suffix = $file->getClientOriginalExtension();
+            // dump($suffix);
             //移动文件
-            $file->move('./uploads/banner', $name.'.'.$suffix);
+            $file->move('./uploads/banner/', $name.'.'.$suffix);
+
             //存到数据库
             $res['pic'] = '/uploads/banner/'.$name.'.'.$suffix;
             //添加数据
