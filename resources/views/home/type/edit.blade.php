@@ -99,10 +99,8 @@ padding-top: 50px;
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="/static/zh-cn.js"></script>
- <script src="//www.sobot.com/chat/frame/js/entrance.js?sysNum=a8d9379eaf884b4f81a48348979e3b1a" id="zhichiScript" class="zhiCustomBtn" data-args="manual=true"></script>
-<a href="javascript:;" class="zhiCustomBtn" style="position: fixed;z-index: 2147483583;width: 60px;height: 6px;text-align: center;bottom:275px;right:0px;">
-<span class="service-btn">在线<br/>客服</span>
-</a>
+<!--  <script src="//www.sobot.com/chat/frame/js/entrance.js?sysNum=a8d9379eaf884b4f81a48348979e3b1a" id="zhichiScript" class="zhiCustomBtn" data-args="manual=true"></script> -->
+
 
 <script type="text/javascript">
 var zhiManager = (getzhiSDKInstance());
@@ -292,8 +290,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                         {{method_field('PUT')}}
                         <input class="btn-1 fr" type="submit" id="submit" value="修改文章">
                         <input type="hidden" name="did" id="did" value="">
-                                                    
-                                                <p class="btn-3 fr"></p>
+                        <p class="btn-3 fr"></p>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -304,95 +301,7 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
         <input type="hidden" name="_csrf" value="mQiidwMZ1I_jK7MUtaabGmVGv4p3Vqlb0IHEyRMu4FnrGGwTLzY9PtJ-PY37KQ3nu0D1LY-dw7Oz2gnR-ZvWJg==" />
     </form>
 </div>
-<script>
-    var picUrl = 'https://s1.51cto.com/';
-    var BLOG_URL = 'http://blog.51cto.com/';
-    var sign = 'BmCay7vag7CdjmNadmVS2mCMZ5QOW5YoJ5CwW5NS3mNS0';
-    var uploadUrl = 'http://upload.51cto.com/index.php?c=upload&m=upimg&orig=b';
-    var imgeParam = '?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=';
-    var selectUrl = 'http://blog.51cto.com/category/get-child';
-    var tag_num = '0';
-    var check_form = true;
-    var publish_url = 'http://blog.51cto.com/blogger/publish';
-    var draft_url = 'http://blog.51cto.com/blogger/draft';
-    var timer = false;
-    var blog_id = '' || '';
-    var blog_id_t = '';
-    var type = 'publish';
-    var is_old = '1'
-    var is_hide = '';
-    var editorVal = '';
-    if(blog_id) {
-        is_hide = '';
-        if(is_hide == 0){//公开隐藏
-            inputRadio(0)
-        }else if(is_hide == 1){
-            inputRadio(1)
-        }
-        if(tag_num >= 5) {
-            $("#for-tag").hide();
-        }
-    }
-    $('.switchr').css({'course':'pointer'}).click(function(){
-        new AutoBox({content:'亲，切换编辑器会使您已编辑的内容丢失噢，建议您先保存草稿再切换。',Yes:'确定',No:'取消',W:'500',mask:"#000",yc:function(){
-            window.location.href = 'publish'
-        }})
-    })
-    function inputRadio(m){//公开隐藏
-        $('.public-radio input').removeAttr('checked')
-        $('.public-radio input').eq(m).attr('checked','checked')
-    }
-    if($("#content").length>0){
-        var options = {
-        toolbars: [
-            [
-                'fullscreen', 'undo', 'redo', 'bold', 'italic', 'underline',
-                'strikethrough', 'forecolor', 'backcolor', "link","unlink","insertunorderedlist",
-                'insertorderedlist','blockquote', "justifyleft","justifycenter","justifyright","justifyjustify","imagenone",
-                "imageleft","imageright","imagecenter","horizontal"
-            ],
-            [
-                "fontfamily","fontsize","simpleupload","insertcode",
-                "removeformat","formatmatch","autotypeset","pasteplain","inserttable","deletetable",
-                "mergeright","mergedown","splittorows","splittocols","splittocells","mergecells",
-                "insertcol","deleterow","insertparagraphbeforetable","help",
-            ]
-        ],
-        initialFrameWidth:100,
-        initialFrameHeight:400,
-        serverUrl : 'http://upload.51cto.com/ue/controller.php',
-        initialContent:'',//默认提示
-        imgeParam : '?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=',
-        autoClearinitialContent:$("#blogContent").html().length>0?false:true,
-        autoHeightEnabled:false,
-        autoFloatEnabled :false,
-        allHtmlEnabled:true,
-        enableAutoSave:false,
-        saveInterval:0,
-        zIndex:18
-        }
-        var ueEditor;
-        ueEditor = UE.getEditor('content',options)
-    }
-    function removeHTMLTag(str) {//过滤掉HTML标签以及空行
-        str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
-        str = str.replace(/[ | ]*\n/g,'\n'); //去除行尾空白
-        str = str.replace(/\n(\n)*( )*(\n)*\n/g,'\n'); //去除多余空行
-        str = str.replace(/\s/g,""); //去除空格
-        str = str.replace(/[\r\n]/g, '');
-        str = str.replace(/ /ig,'');//去掉
-        return str;
-    }
-    function setAb() {//过滤摘要
-        if($("#abstract").val() == "") {
-            var content_html = $('#blogContent').val();
 
-            content_html = removeHTMLTag(content_html);
-            content_html = content_html.substring(0, 200);
-            $("#abstract").val(content_html);
-        }
-    }
-</script>
 </div>
 <script src="/static/js/jquery.form.js"></script><script src="/staticedu/blog/js/blog_publish.js?v=1.0.1.4"></script><script src="/staticedu/blog/js/blog_form.js?v=1.0.0.6"></script>
 <script src="/staticedu//blog/js/jquery.cookie.js"></script>

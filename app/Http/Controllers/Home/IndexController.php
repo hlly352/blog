@@ -47,13 +47,16 @@ class IndexController extends Controller
     	
 
         //显示轮播图
-        $banner = \DB::table('banner')->get();
+        $banner = \DB::table('banner')->where('status','0')->get();
 
        
         //获取公告数据
         $tips = Tip::limit(4)->where('status','0')->get();
 
+        
+
         return view('home.welcome',['title'=>'首页','rs'=>$rs,'cate'=>$cate,'count'=>$count,'banner'=>$banner,'info'=>$info,'res'=>$res,'tips'=>$tips]);
         
     }
+
 }

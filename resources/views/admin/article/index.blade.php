@@ -60,9 +60,7 @@
 			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 397px;">
 			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作者</font></font>
 			                            	</th>
-			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 181px;">
-			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">收藏</font></font>
-			                            	</th>
+			                            	
 			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 146px;"><font style="vertical-align: inherit;">
 			                            		<font style="vertical-align: inherit;">阅读量</font></font>
 			                            	</th>
@@ -90,8 +88,7 @@
 			                            @endphp
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->title}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->author}}</font></font></td>
-			                    			
-			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->collect_num}}</font></font></td>
+			                    		
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->read_num}}</font></font></td>
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$value->artinfo->good_num}}</font></font></td>
 			                            

@@ -100,6 +100,7 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
 			<div class="clear"></div>
 		</ul>
 			<ul class="artical-list">
+        @if($rs->count() != 0 )
          @foreach($rs as $k=>$v)
           @php
             $profile = \DB::table('userinfo')->where('uid',$v->uid)->first()->profile;
@@ -133,7 +134,15 @@ function FollowBtnSucc(e){//1:未关注,2:已关注,3:互相关注
         <ul class="pagination">
 <li>{!!$rs->links()!!}</li>
 
-</ul>	</div>
+</ul>
+
+  @else
+    <div class = "noList">
+        <!-- <img src="/static/picture/noList.png"> -->
+        <p>暂无文章</p>
+    </div>
+  @endif
+	</div>
 	<script>
 		$('#parent').click(function(){
 			alert(($(this).children());

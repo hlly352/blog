@@ -33,7 +33,7 @@ class AdvertController extends Controller
     {
         //后台广告链接添加
         return view('admin.advert.doadvert',['title'=>'后台广告链接添加']);
-
+ 
     }
 
     /**
@@ -44,6 +44,15 @@ class AdvertController extends Controller
      */
     public function store(Request $request)
     {
+         //表单验证
+        $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required',
+        ],[
+            'name.required' => '名字不能为空',
+            'url.required' => '路径不能为空',
+        ]);
+
         //
         $res = $request->except(['_token','profile']);
         
@@ -117,13 +126,23 @@ class AdvertController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //表单验证
+        $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required',
+        ],[
+            'name.required' => '名字不能为空',
+            'url.required' => '路径不能为空',
+        ]);
+     
         $res = $request->except(['_token','profile','_method']);
-       
+  
         //图片上传
 
         if(!$request->hasFile('profile')){
+              Advert::where('id', $id)->update($res);
 
-             return back()->with('error','没有文件上传');
+             return redirect('admin/advert')->with('success','修改成功');
         } else {
 
         $file = $request->file('profile');
@@ -141,11 +160,12 @@ class AdvertController extends Controller
         $res['profile'] = '/uploads/advert/'.$name.'.'.$suffix;
 
     }
-    
+
        //修改数据
+      
         try{
 
-        //添加
+        
         Advert::where('id', $id)->update($res);
 
         }catch(\Exception $e){

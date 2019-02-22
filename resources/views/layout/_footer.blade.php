@@ -1,22 +1,41 @@
-
+@php
+    
+    $link = \DB::table('friend_link')->where('status','0')->limit(6)->get();
+    $links = array();
+    $linklist = array();
+    foreach($link as $k=>$v){
+        $links[$k][] = $v->name;
+        $links[$k][] = $v->url;
+        
+    }
+    for($i = 0;$i<ceil(count($links)/3);$i++){
+        $linklist[] = array_slice($links,$i*3,3);
+    }
+@endphp
 <div class="Footer">
   <div class="Page ">
  
     <dl class="fl">
       <dt>友情链接</dt>
       <dd>
-     @foreach(getLink() as $k => $v)
+      <table>
+     @foreach($linklist as $k => $v)
       <tr>
-     <a href="{{ $v->url }}" style="background-color:red:;">{{ $v->name }}</a>
-    </tr>
+        
+          @foreach($v as $key=>$value)
+          <td><a href="{{$value[1]}}">{{$value[0]}}</a></td>           
+          @endforeach
+          
+      </tr>
       @endforeach
-      </dd>
+      </table>
     </dl>
     <dl class="fl">
-      <dt>关注我们</dt>
+      <dt>联系我们</dt>
       <dd>
-        <img src="/static/picture/qrcode_2.png">
-        <img src="/static/picture/qrcode_3.png">
+        <img src="/static/picture/chuan.jpg" width="100">
+        <img src="/static/picture/jiang.jpg" width="100">
+        <img src="/static/picture/zoujun.jpg" width="100">
       </dd>
     </dl>
     <div class="fr">

@@ -28,7 +28,7 @@
                         </label>
                     </div>
                     <div class="col-12 col-md-7">
-                        <input type="text" id="text-input" name="rolename" value="{{$role->rolename}}" class="form-control">
+                        <input type="text" id="text-input" name="rolename" value="{{$role->rolename}}" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -39,17 +39,6 @@
                     </div>
                     <div class="col col-md-9">
                         <div class="form-check form-check">
-                           <!--  @foreach($permission as $k=>$v)
-                            @if(in_array($v->pername, $rp))
-                            <label class="form-check-label ">
-                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" checked class="form-check-input">{{$v->pername}}&nbsp;     
-                            </label><br>
-                            @else
-                            <label class="form-check-label ">
-                                <input type="checkbox" id="inline-checkbox1" name="perid[]" value="{{$v->id}}" class="form-check-input">{{$v->pername}}&nbsp; 
-                            </label><br>
-                            @endif
-                            @endforeach -->
                             <style type="text/css">
                                 #inline-checkbox1{margin-left: -0.25rem;}
                             </style>

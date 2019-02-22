@@ -28,7 +28,7 @@
                         </label>
                     </div>
                     <div class="col-12 col-md-7">
-                        <input type="text" id="text-input" name="username" value="{{$user->username}}" class="form-control">
+                        <input type="text" id="text-input" name="username" value="{{$user->username}}" class="form-control" disabled>
                     </div>
                 </div>
                 <div class="row form-group">

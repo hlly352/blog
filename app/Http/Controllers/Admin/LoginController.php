@@ -42,7 +42,7 @@ class LoginController extends Controller
     	//通过账号查找数据库里面有没有
     	$res = DB::table('user')->where('username',$uname)->first();
         // dd($res->level);
-        if($res->level < 2 ){
+        if($res->level < 2 || $res->status == 1){
             return back()->with('error','你没有登录后台的权限');
         }
         

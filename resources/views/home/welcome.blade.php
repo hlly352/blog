@@ -236,7 +236,6 @@ zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:docume
                     <a class="jing" href="javascript:void(0);">精选文章</a>                  
                     <p class="">阅读&nbsp;<span class="read_num">{{$value->read_num}}</span></p>
                     <p class="">评论&nbsp;<span class="comment_num">{{getCom($value->art_id)}}</span></p>
-                    <p class="">收藏&nbsp;<span class="collect_num">{{$value->collect_num}}</span></p>
                     <p style="display:none;" class="admire_num_p">赞赏&nbsp;<span class="admire_num">{{$value->good_num}}</span></p>
                 </div>
                 <button class="zan favour_num" data-type="1" blog_id="2342274">{{$value->good_num}}</button>

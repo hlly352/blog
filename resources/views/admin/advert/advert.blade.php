@@ -3,12 +3,13 @@
 
 @section('content')
 
+<!--  -->
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card"> 
                 <div class="card-header">
-                    <strong class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$title}}</font></font></strong>
+                    <strong class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告查看</font></font></strong>
                 </div>
                 <div class="card-body">
                     <div id="bootstrap-data-table_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
@@ -47,10 +48,10 @@
 			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告图片</font></font>
 			                            	</th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 248px;">
-                                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告图片</font></font>
+                                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告链接</font></font>
                                             </th>
 			                            <!-- 	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 181px;">
-			                            		<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font>
+			                            	<font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font>
 			                            	</th> -->
 			                            	<th class="sorting" tabindex="0" aria-controls="bootstrap-data-table" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 146px;"><font style="vertical-align: inherit;">
 			                            		<font style="vertical-align: inherit;">操作</font></font>
@@ -66,11 +67,11 @@
 
 			                            <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->url}}</font></font></td>
 
-			                            <!-- <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->status==0?'开启':'禁用'}}</font></font></td> -->
+			                         <!--    <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$v->status==0?'开启':'禁用'}}</font></font></td> -->
 
 			                            <td>
                                           <a href="/admin/advert/{{$v->id}}/edit"><button class="btn btn-outline-info">编辑</button></a>
-                                        <form style='display:inline' action="/admin/link/{{$v->id}}" method='post'>
+                                        <form style='display:inline' action="/admin/advert/{{$v->id}}" method='post'>
                                         {{csrf_field()}}
 
                                         {{method_field('DELETE')}}

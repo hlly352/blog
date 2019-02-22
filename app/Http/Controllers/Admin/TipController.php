@@ -49,6 +49,15 @@ class TipController extends Controller
      */
     public function store(Request $request)
     {
+        //表单验证
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+        ],[
+            'title.required' => '请输入公告',
+            'content.required' => '公告内容不能为空',
+        ]);
+
         //
         $res = $request->except("_token");
         $res['addtime'] = time();
@@ -101,9 +110,16 @@ class TipController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //表单验证
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+        ],[
+            'title.required' => '请输入公告',
+            'content.required' => '公告内容不能为空',
+        ]); 
+        
         $res = $request->only('title','content','status');
-
        //修改数据
         try{
 
@@ -126,7 +142,7 @@ class TipController extends Controller
     public function destroy($id)
     {
         $rs = Tip::destroy($id);
-
+       
         try{
             Tip::destroy($id);
         

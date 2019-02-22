@@ -12,12 +12,21 @@
         {{session('error')}}   
     </div>
 @endif
-    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet">
+ @if(count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+             @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
     <script src="../js/jquery-2.0.3.min.js"></script>
     <script src="../js/fileinput.js" type="text/javascript"></script>
     <script src="../js/fileinput_locale_de.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.min.js" type="text/javascript"></script> -->
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
 <div class="col-lg-10">
     <div class="card">
         <div class="card-header">
@@ -37,15 +46,15 @@
                     <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="text-input" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">链接地址</font></font></label></div>
                     <div class="col-12 col-md-9"><input type="text" id="text-input" name="url" placeholder="请输入地址" class="form-control"></div>
                 </div>
-       <!--          <div class="row form-group">
-                    <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="status" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font></label></div>
+                <div class="row form-group">
+                  <!--   <div class="col col-md-2" style="text-align:center; line-height: 38px"><label for="status" class=" form-control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font></label></div>
                     <div class="col-12 col-md-9">
                         <select name="status" id="select" class="form-control">
                             <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开启</font></font></option>
                             <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">禁用</font></font></option>
                         </select>
-                    </div>
-                </div> -->
+                    </div> -->
+                </div>
             </div>
             <div class="card-footer">
             {{csrf_field()}}

@@ -48,6 +48,15 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
+        //表单验证
+        $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required',
+        ],[
+            'name.required' => '路径为空',
+            'url.required' => '地址不能为空',
+        ]);
+
         //
         $res = $request->except("_token");
         
@@ -102,8 +111,17 @@ class LinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $res = $request->except("_token",'_method');
+        //表单验证
+        $this->validate($request, [
+            'name' => 'required',
+            'url' => 'required',
+        ],[
+            'name.required' => '路径为空',
+            'url.required' => '地址不能为空',
+        ]);
 
+        $res = $request->except("_token",'_method');
+        
        //修改数据
         try{
 
